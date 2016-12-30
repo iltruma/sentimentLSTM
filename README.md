@@ -1,1 +1,1 @@
-###Sentiment Analysis Project based on LSTM and GloVe
+Sentiment Analysis Project based on LSTM and GloVe
