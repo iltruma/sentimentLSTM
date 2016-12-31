@@ -1,4 +1,7 @@
-
+'''
+Process the dataset to extract the vocabulary (dataDir + "vocab.txt") and the
+processed data (dataDir + "processed") as described by the following comments
+'''
 import os
 import nltk
 import csv
@@ -13,6 +16,13 @@ dirs = [dataDir + "aclImdb/test/pos", dataDir + "aclImdb/test/neg", dataDir +"ac
 url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
 
 
+'''
+checks if files and directories for the data are already present, if not makes them
+
+To speed up the data processing (I probably did it way too inefficiently),
+I decided to split the task in n processes, where n is the number of directories
+Each of the four (test/pos, test/neg, train/pos, train/neg) directory are processed in the same way specified below
+'''
 def run(max_seq_length, max_vocab_size):
     if not os.path.exists(dataDir):
         print('%s directory not found!' % dataDir)
@@ -52,11 +62,24 @@ def run(max_seq_length, max_vocab_size):
         if p.is_alive():
             p.join()
 
-
 '''
-To speed up the data processing (I probably did it way too inefficiently),
-I decided to split the task in n processes, where n is the number of directories
+Multithread implementation of the data processing (a thread per directory)
 A lock was used to ensure while writing to std.out bad things don't happen.
+
+
+- for each file in the directory:
+    - tokenize the lowercase text review as one sentence: (standard tokenizer of the nltk library)
+       - split standard contractions, e.g. ``don't`` -> ``do n't`` and ``they'll`` -> ``they 'll``
+       - treat most punctuation characters as separate tokens
+       - split off commas and single quotes, when followed by whitespace
+       - separate periods that appear at the end of line
+       - etc...
+    - find the index for each token based on the vocabulary mapping
+    - save indices on a numpy array of dimension max_seq_length + 2 where the last 2 values are
+      one (0/1) for the positive or negative review and the other for the review length:
+      if the review has length less than max_seq_length the remaining index are for the '<PAD>' token
+      if there are words not present in the vocabulary the index of the '<UNK>' token is used
+- stack all the numpy arrays vertically (as raw of a numpy matrix) and save them to memory
 '''
 def createProcessedDataFile(vocab_mapping, directory, pid, max_seq_length, lock):
     count = 0
@@ -144,7 +167,9 @@ def saveData(npArray, index):
     np.save(outfile, npArray)
 
 '''
-create vocab mapping file
+create vocab mapping file and stores it in vocab.txt (this is not a text file but a binary):
+the data is of the form dic = {'the': 0, 'a': 1, 'is' : 2, ..., <UNK>: max_vocab_size, <PAD>: max_vocab_size +1 }
+where the words are ordered from the most frequent to the last.
 '''
 def createVocab(dirs, max_vocab_size):
     print("Creating vocab mapping...")
