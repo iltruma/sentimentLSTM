@@ -4,15 +4,14 @@ processed data (dataDir + "processed") as described by the following comments
 '''
 import os
 import nltk
-import csv
 import pickle
 import urllib
 import numpy as np
-import sys
 from multiprocessing import Process, Lock
 
 dataDir = "../data/"
-dirs = [dataDir + "aclImdb/test/pos", dataDir + "aclImdb/test/neg", dataDir +"aclImdb/train/pos", dataDir +"aclImdb/train/neg"]
+dirs = [dataDir + "aclImdb/test/pos", dataDir + "aclImdb/test/neg", \
+        dataDir +"aclImdb/train/pos", dataDir +"aclImdb/train/neg"]
 url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
 
 
@@ -44,8 +43,9 @@ def run(max_seq_length, max_vocab_size):
         createVocab(dirs, max_vocab_size)
     if not os.path.exists(dataDir + "processed"):
         os.makedirs(dataDir + "processed/")
-        print("No processed data file found, running preprocessor...")
+        print("No processed data files found, running preprocessor...")
     else:
+        print("Processed data files found: delete " +dataDir+ "processed  to redo them")
         return
     import vocabmapping
     vocab = vocabmapping.VocabMapping()
@@ -115,8 +115,7 @@ def createProcessedDataFile(vocab_mapping, directory, pid, max_seq_length, lock)
     saveData(data, pid)
 
 
-#method from:
-#http://stackoverflow.com/questions/22676/how-do-i-download-a-file-over-http-using-python
+#method from: http://stackoverflow.com/questions/22676/how-do-i-download-a-file-over-http-using-python
 def downloadFile(url):
     file_name = os.path.join(dataDir, url.split('/')[-1])
     u = urllib.request.urlopen(url)
@@ -176,7 +175,7 @@ def createVocab(dirs, max_vocab_size):
     for w in sorted(dic, key=dic.get, reverse=True):
         d[w] = counter
         counter += 1
-        #take most frequent 50k tokens
+        #take most frequent max_vocab_size tokens
         if counter >=max_vocab_size:
             break
     #add out of vocab token and pad token
@@ -185,6 +184,7 @@ def createVocab(dirs, max_vocab_size):
     d["<PAD>"] = counter
     with open(dataDir + 'vocab.txt', 'wb') as handle:
         pickle.dump(d, handle)
+
 
 def main():
     max_seq_length = 200
