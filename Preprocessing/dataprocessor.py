@@ -7,30 +7,33 @@ import urllib
 import numpy as np
 import sys
 from multiprocessing import Process, Lock
-dirs = ["data/aclImdb/test/pos", "data/aclImdb/test/neg", "data/aclImdb/train/pos", "data/aclImdb/train/neg"]
+
+dataDir = "../data/"
+dirs = [dataDir + "aclImdb/test/pos", dataDir + "aclImdb/test/neg", dataDir +"aclImdb/train/pos", dataDir +"aclImdb/train/neg"]
 url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
 
 
 def run(max_seq_length, max_vocab_size):
-    if not os.path.exists("data/"):
-        os.makedirs("data/")
-    if not os.path.exists("data/checkpoints/"):
-        os.makedirs("data/checkpoints")
-    if not os.path.isdir("data/aclImdb"):
+    if not os.path.exists(dataDir):
+        print('%s directory not found!' % dataDir)
+        return
+    if not os.path.exists(dataDir + "checkpoints/"):
+        os.makedirs(dataDir + "checkpoints")
+    if not os.path.isdir(dataDir + "aclImdb"):
         print("Data not found, downloading dataset...")
         fileName = downloadFile(url)
         import tarfile
         tfile = tarfile.open(fileName, 'r:gz')
         print("Extracting dataset...")
-        tfile.extractall('data/')
+        tfile.extractall(dataDir)
         tfile.close()
-    if os.path.exists("data/vocab.txt"):
+    if os.path.exists(dataDir + "vocab.txt"):
         print("vocab mapping found...")
     else:
         print("no vocab mapping found, running preprocessor...")
         createVocab(dirs, max_vocab_size)
-    if not os.path.exists("data/processed"):
-        os.makedirs("data/processed/")
+    if not os.path.exists(dataDir + "processed"):
+        os.makedirs(dataDir + "processed/")
         print("No processed data file found, running preprocessor...")
     else:
         return
@@ -93,7 +96,7 @@ def createProcessedDataFile(vocab_mapping, directory, pid, max_seq_length, lock)
 #method from:
 #http://stackoverflow.com/questions/22676/how-do-i-download-a-file-over-http-using-python
 def downloadFile(url):
-    file_name = os.path.join("data/", url.split('/')[-1])
+    file_name = os.path.join(dataDir, url.split('/')[-1])
     u = urllib.request.urlopen(url)
     f = open(file_name, 'wb')
     meta = u.info()
@@ -136,7 +139,7 @@ Saves processed data numpy array
 '''
 def saveData(npArray, index):
     name = "data{0}.npy".format(str(index))
-    outfile = os.path.join("data/processed/", name)
+    outfile = os.path.join(dataDir + "processed/", name)
     print("numpy array is: {0}x{1}".format(len(npArray), len(npArray[0])))
     np.save(outfile, npArray)
 
@@ -168,7 +171,13 @@ def createVocab(dirs, max_vocab_size):
     d["<UNK>"] = counter
     counter +=1
     d["<PAD>"] = counter
-    with open('data/vocab.txt', 'wb') as handle:
+    with open(dataDir + 'vocab.txt', 'wb') as handle:
         pickle.dump(d, handle)
 
-run(1, 1)
+def main():
+    max_seq_length = 200
+    max_vocab_size = 20000
+    run(max_seq_length, max_vocab_size)
+
+if __name__ == '__main__':
+	main()
