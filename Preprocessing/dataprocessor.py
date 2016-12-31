@@ -93,7 +93,6 @@ def createProcessedDataFile(vocab_mapping, directory, pid, max_seq_length, lock)
         with open(os.path.join(directory, f), 'r') as review:
             tokens = tokenize(review.read().lower())
             numTokens = len(tokens)
-            score = findBetween(f, "_", ".txt")
             indices = [vocab_mapping.getIndex(j) for j in tokens]
             #pad sequence to max length
             if len(indices) < max_seq_length:
@@ -144,18 +143,6 @@ This function tokenizes sentences
 '''
 def tokenize(text):
     return nltk.word_tokenize(text)
-
-'''
-taken from: http://stackoverflow.com/questions/3368969/find-string-between-two-substrings
-finds the string between two substrings
-'''
-def findBetween( s, first, last ):
-    try:
-        start = s.index( first ) + len( first )
-        end = s.index( last, start )
-        return s[start:end]
-    except ValueError:
-        return ""
 
 '''
 Saves processed data numpy array
