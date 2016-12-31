@@ -20,7 +20,7 @@ class DataHandler(object):
         np.random.shuffle(self.data)
 
         # use only max_example examples when defined
-        if max_examples is not None and max_examples < len(self.data):
+        if max_examples >-1 and max_examples < len(self.data):
             self.data = self.data[:max_examples]
 
         self.num_batches = len(self.data) // self.batch_size
@@ -32,7 +32,6 @@ class DataHandler(object):
         self.train_batch_pointer = 0
         self.test_batch_pointer = 0
 
-        # cutoff non even number of batches
         targets = (self.data.transpose()[-2]).transpose()
         onehot = np.zeros((len(targets), 2))
         onehot[np.arange(len(targets)), targets] = 1
@@ -43,6 +42,7 @@ class DataHandler(object):
         self.train_data = self.data[train_start_end_index[0]: train_start_end_index[1]]
         self.test_data = self.data[test_start_end_index[0]:test_start_end_index[1]]
 
+        # cutoff non even number of batches
         num_train_batches = len(self.train_data) // self.batch_size
         num_test_batches = len(self.test_data) // self.batch_size
         train_cutoff = len(self.train_data) - (len(self.train_data) % self.batch_size)
@@ -50,7 +50,7 @@ class DataHandler(object):
         self.train_data = self.train_data[:train_cutoff]
         self.test_data = self.test_data[:test_cutoff]
 
-        print("Train size is: {0}, splitting into {1} batches".format(len(self.train_data), num_train_batches))
+        print(" Train size is: {0}, splitting into {1} batches".format(len(self.train_data), num_train_batches))
 
         self.train_sequence_lengths = sequence_lengths[train_start_end_index[0]:train_start_end_index[1]][:train_cutoff]
         self.train_sequence_lengths = np.split(self.train_sequence_lengths, num_train_batches)
@@ -58,13 +58,15 @@ class DataHandler(object):
         self.train_targets = np.split(self.train_targets, num_train_batches)
         self.train_data = np.split(self.train_data, num_train_batches)
 
-        print("Test  size is: {0}, splitting into {1} batches".format(len(self.test_data), num_test_batches))
+        print(" Test  size is: {0}, splitting into {1} batches".format(len(self.test_data), num_test_batches))
 
         self.test_data = np.split(self.test_data, num_test_batches)
         self.test_targets = onehot[test_start_end_index[0]:test_start_end_index[1]][:test_cutoff]
         self.test_targets = np.split(self.test_targets, num_test_batches)
         self.test_sequence_lengths = sequence_lengths[test_start_end_index[0]:test_start_end_index[1]][:test_cutoff]
         self.test_sequence_lengths = np.split(self.test_sequence_lengths, num_test_batches)
+        print("")
+
 
     def getBatch(self, test_data=False):
         '''
@@ -72,36 +74,33 @@ class DataHandler(object):
         not sure how efficient this is...
 
         Input:
-        test_data: flag indicating whether or not to increment batch pointer, in other
-            word whether to return the next training batch, or cross val data
+        test_data: flag indicating if a test (True) or a train (False)
+                   batch has to be returned
 
         Returns:
         A numpy arrays for inputs, target, and seq_lengths
 
         '''
-        # batch_inputs = []
         if not test_data:
             batch_inputs = self.train_data[self.train_batch_pointer]  # .transpose()
-            # for i in range(self.max_seq_length):
-            #	batch_inputs.append(temp[i])
             targets = self.train_targets[self.train_batch_pointer]
             seq_lengths = self.train_sequence_lengths[self.train_batch_pointer]
+
             # update batch pointer
             self.train_batch_pointer = (self.train_batch_pointer + 1) % len(self.train_data)
             return batch_inputs, targets, seq_lengths
         else:
             batch_inputs = self.test_data[self.test_batch_pointer]  # .transpose()
-            # for i in range(self.max_seq_length):
-            #	batch_inputs.append(temp[i])
             targets = self.test_targets[self.test_batch_pointer]
             seq_lengths = self.test_sequence_lengths[self.test_batch_pointer]
+
             # update batch pointer
             self.test_batch_pointer = (self.test_batch_pointer + 1) % len(self.test_data)
             return batch_inputs, targets, seq_lengths
 
 
 def test():
-    dataH = DataHandler("../data/processed/", 16, 0.7, -1)
+    dataH = DataHandler("../data/processed/", 16, 0.7,-1)
     print("data shape: {}".format(dataH.data.shape))
     print("train data shape (batches): list of {} elements with shape {}".format(len(dataH.train_data),
                                                                                  dataH.train_data[0].shape))
