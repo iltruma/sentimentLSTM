@@ -143,7 +143,7 @@ def test():
     test_steps = 10
     dataDir = "../data/"
     seed = 1          # data will always be randomized in the same way for the training/test division
-    train_seed = 30    # given the above division the training will chose from the sets differently changing this
+    train_seed = 3    # given the above division the training will chose from the sets differently changing this
     print("sentiment.py test with test_steps: {}, seed: {}, train_seed: {}".format(test_steps, seed, train_seed))
 
     from preprocessing.vocabmapping import VocabMapping
@@ -152,21 +152,21 @@ def test():
 
     sess = tf.Session()
     np.random.seed(seed)
-    tf.set_random_seed(1)
+    tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
     model = SentimentModel( vocab_size=vocab_size, hidden_size=50, dropout=0.5,
                  num_layers=1, max_gradient_norm=5, max_seq_length=200,
                  learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False)
     print("Created model")
 
-    model.initData("../data/processed/", 0.7,400, True, train_seed=train_seed)
+    model.initData("../data/processed/", 0.7,400, True, train_seed)
     print("dataset initialized")
 
     sess.run(tf.global_variables_initializer())
     print("varables initialized")
 
     for i in range(0,test_steps):
-        inputs, targets, seq_lengths = model.dataH.getBatch(True)
+        inputs, targets, seq_lengths = model.dataH.getBatch()
         str_summary, step_loss, _ = model.step(sess, inputs, targets, seq_lengths)
         print("{}th step executed! results:".format(i))
         print(" step_loss: %.4f" % step_loss)
