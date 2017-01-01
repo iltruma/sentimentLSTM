@@ -9,6 +9,7 @@ class DataHandler(object):
         self.batch_size = batch_size
         self.shuffle_each_pass = shuffle_each_pass
 
+
         # input files (numpy matrices, 1 row per example)
         inFiles = [f for f in os.listdir(data_path) if os.path.isfile(os.path.join(data_path, f))]
 

@@ -49,7 +49,7 @@ def run(max_seq_length, max_vocab_size, min_count):
         print("Processed data files found: delete " + dataDir + "processed  to redo them")
         return
     import vocabmapping
-    vocab = vocabmapping.VocabMapping()
+    vocab = vocabmapping.VocabMapping(dataDir + "vocab.txt")
     dirCount = 0
     processes = []
     lock = Lock()

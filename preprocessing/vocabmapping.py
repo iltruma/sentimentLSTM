@@ -6,8 +6,8 @@ dic = {'the': 0, 'a': 1, 'is' : 2, ..., <UNK>: max_vocab_size, <PAD>: max_vocab_
 where the words are ordered from the most frequent to the last.
 '''
 class VocabMapping(object):
-    def __init__(self):
-        with open("../data/vocab.txt", "rb") as handle:
+    def __init__(self, path):
+        with open(path, "rb") as handle:
             self.dic = pickle.loads(handle.read())
 
     def getIndex(self, token):
@@ -18,3 +18,12 @@ class VocabMapping(object):
 
     def getSize(self):
         return len(self.dic)
+
+
+def test():
+    voc = VocabMapping("../data/vocab.txt")
+    print("size: {}, index of 'hello': {}".format(voc.getSize(), voc.getIndex("hello")))
+
+
+if __name__ == '__main__':
+    test()
