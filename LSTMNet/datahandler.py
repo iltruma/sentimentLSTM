@@ -126,12 +126,14 @@ def test_batch_shuffling(dataH):
             print("\nbatch indices now are: {}".format(dataH.train_batch_indices))
             print('batch numbers:         ', end='')
         print(' {}'.format(dataH.train_batch_indices[dataH.train_batch_pointer]), end='')
-        dataH.getBatch()
+        batch_inputs, targets, seq_lengths = dataH.getBatch()
+        if i == 0: print("\nfirst batch_inputs:\n {}".format(batch_inputs))
     print('\n')
 
 
 def test():
-    dataH = DataHandler("../data/processed/", 16, 0.7,400, True)
+    np.random.seed(1)
+    dataH = DataHandler("../data/processed/", 16, 0.7,400, True, 3)
     print("data shape: {}".format(dataH.data.shape))
     print("train data shape (batches): list of {} elements with shape {}".format(len(dataH.train_data),
                                                                                  dataH.train_data[0].shape))
@@ -142,8 +144,6 @@ def test():
     bi, targets, seq_lengts = dataH.getBatch()
     print("batch inputs shape: {}, targets shape: {}, seq_lengths shape {}".format(bi.shape,targets.shape,
                                                                                        seq_lengts.shape))
-
-
 
 
 

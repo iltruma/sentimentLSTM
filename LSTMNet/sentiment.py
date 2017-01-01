@@ -7,7 +7,7 @@ import datahandler as dh
 class SentimentModel(object):
     def __init__(self, vocab_size, hidden_size, dropout,
                  num_layers, max_gradient_norm, max_seq_length,
-                 learning_rate, lr_decay, batch_size, forward_only=False):
+                 learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None):
         self.num_classes = 2
         self.vocab_size = vocab_size
         self.learning_rate = tf.Variable(float(learning_rate), trainable=False)
@@ -37,7 +37,7 @@ class SentimentModel(object):
         self.dropout_keep_prob_lstm_output = tf.constant(self.dropout)
 
         #embedding weights
-        embedded_tokens_drop = self.embedding_layer()
+        embedded_tokens_drop = self.embedding_layer(embedding_matrix)
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
@@ -83,12 +83,15 @@ class SentimentModel(object):
     def initData(self, data_path, train_frac, max_examples=-1, shuffle_each_pass = True, train_seed=None):
         self.dataH = dh.DataHandler(data_path, self.batch_size, train_frac, max_examples, shuffle_each_pass, train_seed)
 
-    def embedding_layer(self):
+    def embedding_layer(self, pre_W):
         with tf.variable_scope("embedding"), tf.device("/cpu:0"):
-            W = tf.get_variable(
-                "W",
-                [self.vocab_size, self.hidden_size],
-                initializer=tf.random_uniform_initializer(-1.0, 1.0))
+            if pre_W is not None:
+                W = tf.Variable(pre_W, dtype=tf.float32)
+            else:
+                W = tf.get_variable(
+                    "W",
+                    [self.vocab_size, self.hidden_size],
+                    initializer=tf.random_uniform_initializer(-1.0, 1.0))
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
             return tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
 
@@ -140,25 +143,34 @@ class SentimentModel(object):
 
 
 def test():
-    from preprocessing.vocabmapping import VocabMapping
+    test_steps = 10
     dataDir = "../data/"
+    seed = 1          # data will always be randomized in the same way for the training/test division
+    train_seed = 3    # given the above division the training will chose from the sets differently changing this
+    print("sentiment.py test with test_steps: {}, seed: {}, train_seed: {}".format(test_steps, seed, train_seed))
 
+    from preprocessing.vocabmapping import VocabMapping
     vocab_size = VocabMapping(dataDir + "vocab.txt").getSize()
+    print("vocabulary size is {}".format(vocab_size))
+
     sess = tf.Session()
-    print("tensorflow session started")
-    model = SentimentModel( vocab_size=vocab_size, hidden_size=10, dropout=0.5,
+    np.random.seed(seed)
+    tf.set_random_seed(seed)
+    print("tensorflow session started + tf and numpy seed set")
+    model = SentimentModel( vocab_size=vocab_size, hidden_size=50, dropout=0.5,
                  num_layers=1, max_gradient_norm=5, max_seq_length=200,
-                 learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False)
+                 learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
+                            embedding_matrix=np.random.rand(vocab_size, 50))
     print("Created model")
 
-    model.initData("../data/processed/", 0.7,400, True)
+    model.initData("../data/processed/", 0.7,400, True, train_seed)
     print("dataset initialized")
 
     sess.run(tf.global_variables_initializer())
     print("varables initialized")
 
-    for i in range(0,10):
-        inputs, targets, seq_lengths = model.dataH.getBatch(True)
+    for i in range(0,test_steps):
+        inputs, targets, seq_lengths = model.dataH.getBatch()
         str_summary, step_loss, _ = model.step(sess, inputs, targets, seq_lengths)
         print("{}th step executed! results:".format(i))
         print(" step_loss: %.4f" % step_loss)
