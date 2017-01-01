@@ -142,16 +142,20 @@ class SentimentModel(object):
 def test():
     test_steps = 100
     dataDir = "../data/"
-    np.random.seed(1) # data will always be randomized in the same way for the training/test division
-    train_seed = 2    # given the above division the training will chose from the sets differently changing this
+    seed = 1          # data will always be randomized in the same way for the training/test division
+    train_seed = 3    # given the above division the training will chose from the sets differently changing this
 
     from preprocessing.vocabmapping import VocabMapping
     vocab_size = VocabMapping(dataDir + "vocab.txt").getSize()
+    print("vocabulary size get")
+
     sess = tf.Session()
-    print("tensorflow session started")
-    model = SentimentModel( vocab_size=vocab_size, hidden_size=10, dropout=0.5,
+    np.random.seed(seed)
+    tf.set_random_seed(1)
+    print("tensorflow session started + tf and numpy seed set")
+    model = SentimentModel( vocab_size=vocab_size, hidden_size=50, dropout=0.5,
                  num_layers=1, max_gradient_norm=5, max_seq_length=200,
-                 learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False)
+                 learning_rate=0.01, lr_decay=0.97, batch_size=200, forward_only=False)
     print("Created model")
 
     model.initData("../data/processed/", 0.7,400, True, train_seed=train_seed)
