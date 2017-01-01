@@ -150,7 +150,7 @@ def test():
     print("sentiment.py test with test_steps: {}, seed: {}, train_seed: {}".format(test_steps, seed, train_seed))
 
     from preprocessing.vocabmapping import VocabMapping
-    vocab_size = VocabMapping(dataDir + "vocab.txt").getSize()
+    vocab_size = VocabMapping(dataDir + "vocab.txt").getSize() -1 # -1 for <PAD>
     print("vocabulary size is {}".format(vocab_size))
 
     sess = tf.Session()
