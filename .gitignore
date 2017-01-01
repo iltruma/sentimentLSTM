@@ -1,5 +1,4 @@
 data
 data/*
 
-
-glove/out*
+glove/out/*

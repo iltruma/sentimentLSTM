@@ -1,10 +1,7 @@
 #!/bin/bash
-set -e
 
 # Makes programs, downloads sample data, trains a GloVe model, and then evaluates it.
 # One optional argument can specify the language used for eval script: matlab, octave or [default] python
-
-make
 
 DATADIR=../data
 OUTDIR=out
@@ -19,8 +16,9 @@ MEMORY=4.0
 VOCAB_MIN_COUNT=5
 VECTOR_SIZE=200
 MAX_ITER=1
+LEARNINGRATE=0.05
 WINDOW_SIZE=10
-BINARY=2
+BINARY=0
 NUM_THREADS=8
 X_MAX=100
 EVALUATE=true
@@ -40,16 +38,15 @@ $BUILDDIR/shuffle -memory $MEMORY -verbose $VERBOSE < $COOCCURRENCE_FILE > $COOC
 
 #Run Glove Model
 echo "$ $BUILDDIR/glove -save-file $SAVE_FILE -threads $NUM_THREADS -input-file $COOCCURRENCE_SHUF_FILE -x-max $X_MAX -iter $MAX_ITER -vector-size $VECTOR_SIZE -binary $BINARY -vocab-file $VOCAB_FILE -verbose $VERBOSE"
-$BUILDDIR/glove -save-file $SAVE_FILE -threads $NUM_THREADS -input-file $COOCCURRENCE_SHUF_FILE -x-max $X_MAX -iter $MAX_ITER -vector-size $VECTOR_SIZE -binary $BINARY -vocab-file $VOCAB_FILE -verbose $VERBOSE
+$BUILDDIR/glove -save-file $SAVE_FILE -threads $NUM_THREADS -input-file $COOCCURRENCE_SHUF_FILE -iter $MAX_ITER -vector-size $VECTOR_SIZE -vocab-file $VOCAB_FILE -eta $LEARNINGRATE -binary 0 -verbose 2
 
 if $EVALUATE
   then
     echo ""
     python3 eval/python/evaluate.py
-
-    if $GRAPH
-      then
-        echo "I'm building the graph of embeddings..."
-        python3 eval/python/graph.py
-    fi
+fi
+if $GRAPH
+  then
+    echo "I'm building the graph of embeddings..."
+    python3 eval/python/graph.py
 fi
