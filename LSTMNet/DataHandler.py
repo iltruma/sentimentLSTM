@@ -3,7 +3,7 @@ import numpy as np
 
 
 class DataHandler(object):
-    def __init__(self, data_path, batch_size, train_frac, max_examples=-1, shuffle_each_pass=True):
+    def __init__(self, data_path, batch_size, train_frac, max_examples=-1, shuffle_each_pass=True, train_seed=None):
         print("init DataHandler with path:{}, batch_size:{}, training fraction ".format(data_path,batch_size)
               + "{}, max number of examples:{}".format(train_frac,max_examples))
         self.batch_size = batch_size
@@ -17,8 +17,8 @@ class DataHandler(object):
         for i in range(1, len(inFiles)):
             self.data = np.vstack((self.data, np.load(os.path.join(data_path, inFiles[i]))))
 
-        # randomize the dataset (not need cos randomized indices)
-        # np.random.shuffle(self.data)
+        # randomize the dataset
+        np.random.shuffle(self.data)
 
         # use only max_example examples when defined
         if max_examples >-1 and max_examples < len(self.data):
@@ -68,6 +68,7 @@ class DataHandler(object):
         self.test_sequence_lengths = np.split(self.test_sequence_lengths, num_test_batches)
 
         # train and test random indices (the test batches should be random or not?)
+        np.random.seed(train_seed)
         self.train_batch_indices = np.arange(0,num_train_batches)
         self.test_batch_indices = np.arange(0,num_test_batches)
         np.random.shuffle(self.train_batch_indices)
