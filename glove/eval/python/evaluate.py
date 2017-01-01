@@ -3,8 +3,8 @@ import numpy as np
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--vocab_file', default='../../out/vocab.txt', type=str)
-    parser.add_argument('--vectors_file', default='../../out/vectors.txt', type=str)
+    parser.add_argument('--vocab_file', default='out/vocab.txt', type=str)
+    parser.add_argument('--vectors_file', default='out/vectors.txt', type=str)
     args = parser.parse_args()
 
     with open(args.vocab_file, 'r') as f:
@@ -42,7 +42,7 @@ def evaluate_vectors(W, vocab, ivocab):
         'gram5-present-participle.txt', 'gram6-nationality-adjective.txt',
         'gram7-past-tense.txt', 'gram8-plural.txt', 'gram9-plural-verbs.txt',
         ]
-    prefix = '../question-data'
+    prefix = 'eval/question-data'
 
     # to avoid memory overflow, could be increased/decreased
     # depending on system and vocab size
