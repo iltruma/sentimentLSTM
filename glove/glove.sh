@@ -32,7 +32,7 @@ build/glove -save-file out/vectors -threads $NUM_THREADS -input-file out/cooccur
 
 if $EVALUATE
   then
-    echo ""
+    echo "EVALUTING THE MODEL"
     python3 eval/python/evaluate.py
 fi
 if $GRAPH
