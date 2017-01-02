@@ -1,13 +1,11 @@
 import os
 import nltk
+from nltk.corpus import stopwords
 import pickle
 import re
 from bs4 import BeautifulSoup
 
 dataDir = "input/"
-
-tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
-
 corpus=""
 
 for f in os.listdir(dataDir):
@@ -21,6 +19,11 @@ for f in os.listdir(dataDir):
 
         #Standard English Tokenizer
         tokens = nltk.word_tokenize(review_text.lower())
+
+        #Remove stopwords
+        stop = set(stopwords.words('english'))
+        tokens = [i for i in tokens if i not in stop]
+
         corpus += " ".join(tokens) + "\n"
 
 
