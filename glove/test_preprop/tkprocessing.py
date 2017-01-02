@@ -1,7 +1,5 @@
 import os
 import nltk
-import sys
-import time
 from nltk.corpus import stopwords
 import re
 from bs4 import BeautifulSoup
