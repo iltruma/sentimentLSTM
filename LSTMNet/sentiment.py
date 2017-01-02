@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.python.ops import rnn, rnn_cell, seq2seq
 import numpy as np
-import datahandler as dh
+from LSTMNet import datahandler as dh
 
 
 class SentimentModel(object):
@@ -73,12 +73,12 @@ class SentimentModel(object):
             gradients = tf.gradients(self.losses, params)
             clipped_gradients, norm = tf.clip_by_global_norm(gradients, self.max_gradient_norm)
             with tf.name_scope("grad_norms"):
-                grad_summ = tf.summary.scalar("grad_norms", norm)
+                grad_summ = tf.scalar_summary("grad_norms", norm)
             self.update = opt.apply_gradients(zip(clipped_gradients, params), global_step=self.global_step)
-            loss_summ = tf.summary.scalar("{0}_loss".format(self.str_summary_type), self.mean_loss)
-            acc_summ = tf.summary.scalar("{0}_accuracy".format(self.str_summary_type), self.accuracy)
-            self.merged = tf.summary.merge([loss_summ, acc_summ])
-        self.saver = tf.train.Saver(tf.global_variables())
+            loss_summ = tf.scalar_summary("{0}_loss".format(self.str_summary_type), self.mean_loss)
+            acc_summ = tf.scalar_summary("{0}_accuracy".format(self.str_summary_type), self.accuracy)
+            self.merged = tf.merge_summary([loss_summ, acc_summ])
+        self.saver = tf.train.Saver(tf.all_variables())
 
     def initData(self, data_path, train_frac, max_examples=-1, shuffle_each_pass = True, train_seed=None):
         self.dataH = dh.DataHandler(data_path, self.batch_size, train_frac, max_examples, shuffle_each_pass, train_seed)
@@ -166,7 +166,7 @@ def test():
     model.initData("../data/processed/", 0.7,400, True, train_seed)
     print("dataset initialized")
 
-    sess.run(tf.global_variables_initializer())
+    sess.run(tf.initialize_all_variables())
     print("varables initialized")
 
 

@@ -12,17 +12,16 @@ import sys
 import os
 import time
 import configparser
-from six.moves import xrange
-import preprocessing.dataprocessor as dp
-import util.hyperparams as hyperparams
-import sentiment
+from LSTMNet import sentiment
+from preprocessing import dataprocessor as dp
+from util import hyperparams as hyperparams
 import preprocessing.vocabmapping as vmapping
 
 # Defaults for network parameters
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
-flags.DEFINE_string("config_file", "../config.ini", "Path to configuration file with hyper-parameters.")
+flags.DEFINE_string("config_file", "config.ini", "Path to configuration file with hyper-parameters.")
 flags.DEFINE_string("checkpoint_dir", "data/checkpoints/", "Directory to store/restore checkpoints")
 flags.DEFINE_string("seed", 1, "seed to randomize data")
 flags.DEFINE_string("train_seed", 2, "seed to randomize training")
@@ -31,9 +30,9 @@ flags.DEFINE_string("train_seed", 2, "seed to randomize training")
 
 def main():
     hyper_params = read_config_file()
-    data_dir = "../" + hyper_params["general"]["data_dir"]
+    data_dir ="../"+ hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
-    dp.run(dp_params["max_seq_length"], dp_params["max_vocab_size"], dp_params["min_vocab_count"])
+    dp.run(int(dp_params["max_seq_length"]), int(dp_params["max_vocab_size"]), int(dp_params["min_vocab_count"]))
 
     # create model
     net_params = hyper_params["sentiment_network_params"]
@@ -53,9 +52,10 @@ def main():
         np.random.seed(FLAGS.seed)
         tf.set_random_seed(FLAGS.seed)
 
-        writer = tf.summary.FileWriter("/tmp/tb_logs", sess.graph)
         model = create_model(sess, net_params, vocab_size)
         model.initData(path, float(net_params["train_frac"]), -1, True, FLAGS.train_seed)
+        writer = tf.train.SummaryWriter("/tmp/tb_logs", sess.graph)
+
 
         print("Beggining training...")
         print("Maximum number of epochs to train for: {0}".format(net_params["max_epoch"]))
@@ -70,7 +70,7 @@ def main():
         previous_losses = []
         tot_steps = num_train_batches * int(net_params["max_epoch"])
         # starting at step 1 to prevent test set from running after first batch
-        for step in xrange(1, tot_steps):
+        for step in range(1, tot_steps):
             # Get a batch and make a step.
             start_time = time.time()
 
@@ -96,7 +96,7 @@ def main():
 
                 # Run evals on test set and print their accuracy.
                 print("Running test set")
-                for test_step in xrange(len(model.dataH.test_data)):
+                for test_step in range(len(model.dataH.test_data)):
                     inputs, targets, seq_lengths = model.dataH.getBatch(True)
                     str_summary, test_loss, _, accuracy = model.step(sess, inputs, targets, seq_lengths, train=False)
                     loss += test_loss
@@ -121,7 +121,7 @@ def create_model(session, hyper_params, vocab_size):
                                      float(hyper_params["learning_rate"]),
                                      float(hyper_params["lr_decay_factor"]),
                                      int(hyper_params["batch_size"]))
-    session.run(tf.global_variables_initializer())
+    session.run(tf.initialize_all_variables())
     return model
 
 
