@@ -169,6 +169,7 @@ def test():
     sess.run(tf.global_variables_initializer())
     print("varables initialized")
 
+
     for i in range(0,test_steps):
         inputs, targets, seq_lengths = model.dataH.getBatch()
         str_summary, step_loss, _ = model.step(sess, inputs, targets, seq_lengths)
