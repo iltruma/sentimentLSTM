@@ -4,11 +4,11 @@ import pickle
 import re
 from bs4 import BeautifulSoup
 
-dataDir = "data/"
+dataDir = "input/"
 
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
-sentences = []
+corpus=""
 
 for f in os.listdir(dataDir):
     print("Now Processing: ", f)
@@ -21,8 +21,8 @@ for f in os.listdir(dataDir):
 
         #Standard English Tokenizer
         tokens = nltk.word_tokenize(review_text.lower())
-        sentences+=tokens
+        corpus += " ".join(tokens) + "\n"
 
-corpus = " ".join(sentences)
+
 with open("output.txt", "w") as text_file:
     text_file.write(corpus)
