@@ -23,6 +23,7 @@ class VocabMapping(object):
 def test():
     voc = VocabMapping("../data/vocab.txt")
     print("size: {}, index of 'hello': {}".format(voc.getSize(), voc.getIndex("hello")))
+    print(voc.dic)
 
 
 if __name__ == '__main__':

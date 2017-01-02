@@ -150,7 +150,7 @@ def test():
     print("sentiment.py test with test_steps: {}, seed: {}, train_seed: {}".format(test_steps, seed, train_seed))
 
     from preprocessing.vocabmapping import VocabMapping
-    vocab_size = VocabMapping(dataDir + "vocab.txt").getSize() -1 # -1 for <PAD>
+    vocab_size = VocabMapping(dataDir + "vocab.txt").getSize() - 1  # -1 for <PAD>
     print("vocabulary size is {}".format(vocab_size))
 
     sess = tf.Session()
@@ -158,7 +158,7 @@ def test():
     tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
     model = SentimentModel( vocab_size=vocab_size, hidden_size=50, dropout=0.5,
-                 num_layers=1, max_gradient_norm=5, max_seq_length=200,
+                 num_layers=2, max_gradient_norm=5, max_seq_length=200,
                  learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
                             embedding_matrix=np.random.rand(vocab_size, 50))
     print("Created model")
