@@ -10,13 +10,13 @@ parser.add_argument("--punct", help="remove punctuation", action="store_true")
 parser.add_argument("--stop", help="remove stopwords", action="store_true")
 args = parser.parse_args()
 
-args = parser.parse_args()
-
-dataDir = "input/"
+#dataDir = "../../data/aclImdb/train/unsup"
+dataDir = "input"
 corpus=""
+count=0
+print("Now Processing " + dataDir + "\n")
 
 for f in os.listdir(dataDir):
-    print("Now Processing: ", f)
     with open(os.path.join(dataDir, f), 'r') as review:
         #Remove HTML
         review_text = BeautifulSoup(review, "lxml").get_text()
@@ -35,6 +35,12 @@ for f in os.listdir(dataDir):
 
         corpus += " ".join(tokens) + "\n"
 
+        count+=1
+        progress = count/len(os.listdir(dataDir))*100
+        if (progress)%5 == 0:
+            print(progress,"% percent complete")
+
 
 with open("output.txt", "w") as text_file:
     text_file.write(corpus)
+    print("\nFinished!")
