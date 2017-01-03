@@ -2,3 +2,4 @@ data
 data/*
 
 glove/out/*
+!glove/out/convert.py
