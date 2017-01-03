@@ -38,8 +38,9 @@ def glove_converter(dataDir, outDir):
 	            s = re.sub('^(.*?) ',"", line)
 	            nf.write(s)
 
-    nf.close()
-    f.close()
+        nf.close()
+        f.close()
+
     n = np.loadtxt(outDir + "temp_vectors.txt")
     np.save(dataDir + "embedding_matrix.npy", n)
     os.remove(outDir + "temp_vectors.txt")
