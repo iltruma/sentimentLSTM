@@ -58,7 +58,7 @@ class DataProcessor(object):
         dirCount = 0
         processes = []
         lock = Lock()
-        for d in dirs:
+        for d in self.dirs:
             print("Procesing data with process: " + str(dirCount))
             p = Process(target=self.createProcessedDataFile, args=(vocab, d, dirCount, max_seq_length, lock))
             p.start()
