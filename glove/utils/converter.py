@@ -22,13 +22,13 @@ def glove_converter(dataDir, outDir):
             s = re.match('^\S*', line).group(0)
             dic[s] = lineno
             lineno += 1
-    f.close()
+        f.close()
 
     with open(dataDir + "vocab.txt", 'wb') as nf:
         dic['<UNK>'] = lineno
         dic['<PAD>'] = lineno + 1
         pickle.dump(dic, nf)
-    nf.close()
+        nf.close()
 
     print("Converting vectors file into npy array...")
 
@@ -38,9 +38,11 @@ def glove_converter(dataDir, outDir):
 	            s = re.sub('^(.*?) ',"", line)
 	            nf.write(s)
 
-            temp = np.loadtxt(nf)
-            np.save(dataDir + "embedding_matrix.npy", temp)
-            os.remove(nf)
+    nf.close()
+    f.close()
+    n = np.loadtxt(outDir + "temp_vectors.txt")
+    np.save(dataDir + "embedding_matrix.npy", n)
+    os.remove(outDir + "temp_vectors.txt")
 
     print("Finished :D")
 
