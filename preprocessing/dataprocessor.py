@@ -164,7 +164,7 @@ def saveData(npArray, index):
 
 '''
 create vocab mapping file and stores it in vocab.txt (this is not a text file but a binary):
-the data is of the form dic = {'the': 0, 'a': 1, 'is' : 2, ..., <UNK>: number of words, <PAD>: number of words +1 }
+the data is of the form dic = {'the': 0, 'a': 1, 'is' : 2, ..., <UNK>: number of words, <PAD>: number of words˛ +1 }
 where the words are ordered from the most frequent to the last.
 '''
 

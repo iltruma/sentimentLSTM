@@ -5,7 +5,7 @@ from LSTMNet import datahandler as dh
 
 
 class SentimentModel(object):
-    def __init__(self, vocab_size, hidden_size, dropout,
+    def __init__(self, vocab_size, hidden_size, num_rec_units, dropout,
                  num_layers, max_gradient_norm, max_seq_length,
                  learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None):
         self.num_classes = 2
@@ -18,6 +18,7 @@ class SentimentModel(object):
         self.batch_size = batch_size
         self.seq_lengths = []
         self.hidden_size = hidden_size
+        self.num_rec_units = num_rec_units
         self.dropout = dropout
         self.max_gradient_norm = max_gradient_norm
         self.global_step = tf.Variable(0, trainable=False)
@@ -46,7 +47,7 @@ class SentimentModel(object):
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
                 "W",
-                [hidden_size, self.num_classes],
+                [self.num_rec_units, self.num_classes],
                 initializer=tf.truncated_normal_initializer(stddev=0.1))
             b = tf.get_variable(
                 "b",
@@ -97,7 +98,7 @@ class SentimentModel(object):
     def lstm_layers(self, lstm_input, num_layers):
         with tf.variable_scope("lstm"):
             single_cell = rnn_cell.DropoutWrapper(
-                rnn_cell.LSTMCell(self.hidden_size,
+                rnn_cell.LSTMCell(self.num_rec_units,
                                   initializer=tf.random_uniform_initializer(-1.0, 1.0),
                                   state_is_tuple=True),
                 input_keep_prob=self.dropout_keep_prob_lstm_input,
@@ -171,14 +172,14 @@ def test():
     print("sentiment.py test with test_steps: {}, seed: {}, train_seed: {}".format(test_steps, seed, train_seed))
 
     from preprocessing.vocabmapping import VocabMapping
-    vocab_size = VocabMapping(dataDir + "vocab.txt").getSize() - 1  # -1 for <PAD>
+    vocab_size = VocabMapping(dataDir + "vocab.txt").getSize()
     print("vocabulary size is {}".format(vocab_size))
 
     sess = tf.Session()
     np.random.seed(seed)
     tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
-    model = SentimentModel(vocab_size=vocab_size, hidden_size=50, dropout=0.5,
+    model = SentimentModel(vocab_size=vocab_size, hidden_size=50, num_rec_units=100, dropout=0.5,
                            num_layers=2, max_gradient_norm=5, max_seq_length=200,
                            learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
                            embedding_matrix=np.random.rand(vocab_size, 50))

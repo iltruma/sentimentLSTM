@@ -115,6 +115,7 @@ def main():
 def create_model(session, hyper_params, vocab_size):
     model = sentiment.SentimentModel(vocab_size,
                                      int(hyper_params["hidden_size"]),
+                                     int(hyper_params["num_rec_units"]),
                                      float(hyper_params["dropout"]),
                                      int(hyper_params["num_layers"]),
                                      float(hyper_params["grad_clip"]),

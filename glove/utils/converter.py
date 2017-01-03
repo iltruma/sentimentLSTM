@@ -3,7 +3,7 @@ import pickle
 import os
 import re
 
-#default directories
+# default directories
 dataDir = "../../data/"
 outDir = "../out/"
 
@@ -12,6 +12,8 @@ Convert glove file for LSTM:
     - convert glove vocabulary into a binary vocabulary for dataprocessor
     - convert glove word vectors into a numpy matrix (vocab_size x dim_vectors) for initial weights
 '''
+
+
 def glove_converter(dataDir, outDir):
     dic = {}
     lineno = 0
@@ -35,8 +37,8 @@ def glove_converter(dataDir, outDir):
     with open(outDir + "temp_vectors.txt", "w") as nf:
         with open(outDir + "vectors.txt", "r") as f:
             for line in f.readlines():
-	            s = re.sub('^(.*?) ',"", line)
-	            nf.write(s)
+                s = re.sub('^(.*?) ', "", line)
+                nf.write(s)
 
         nf.close()
         f.close()
@@ -46,6 +48,7 @@ def glove_converter(dataDir, outDir):
     os.remove(outDir + "temp_vectors.txt")
 
     print("Finished :D")
+
 
 if __name__ == '__main__':
     glove_converter(dataDir, outDir)
