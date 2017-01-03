@@ -9,6 +9,8 @@ dataDir = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../.
 #dataDir = ["../../data/aclImdb/train/unsup"]
 #dataDir = ["input"]
 
+print("Tokenizer started")
+
 def new_tokenizer(review, punct, stop):
     '''CC
     Tokenize a review:
@@ -31,13 +33,13 @@ def new_tokenizer(review, punct, stop):
 
 #Tokenize every file of dataDir and merge them together
 for dir in dataDir:
-    print("Now processing folder: " + dataDir + "\n")
+    print("\tNow processing folder: " + dir)
 
-    for f in os.listdir(dataDir):
-        with open(os.path.join(dataDir, f), 'r') as review:
+    for f in os.listdir(dir):
+        with open(os.path.join(dir, f), 'r') as review:
             review_tkn = new_tokenizer(review.read(), punct=True, stop=True)
             corpus += " ".join(review_tkn) + "\n"
 
-with open("output.txt", "w") as text_file:
+with open("../../data/train_glove", "w") as text_file:
     text_file.write(corpus)
     print("Finished :D")
