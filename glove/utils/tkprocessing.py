@@ -5,9 +5,9 @@ import re
 from bs4 import BeautifulSoup
 
 corpus = ""
-dataDir = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
-#dataDir = ["../../data/aclImdb/train/unsup"]
-#dataDir = ["input"]
+dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
+#dataDirs = ["../../data/aclImdb/train/unsup"]
+#dataDirs = ["input"]
 
 print("Tokenizer started")
 
@@ -31,15 +31,19 @@ def new_tokenizer(review, punct, stop):
 
     return tokens
 
-#Tokenize every file of dataDir and merge them together
-for dir in dataDir:
-    print("\tNow processing folder: " + dir)
+if __name__ == '__main__':
+    #Tokenize every file of dataDirs and merge them together
+    for dir in dataDirs:
+        print("\tNow processing folder: " + dir)
 
-    for f in os.listdir(dir):
-        with open(os.path.join(dir, f), 'r') as review:
-            review_tkn = new_tokenizer(review.read(), punct=True, stop=True)
-            corpus += " ".join(review_tkn) + "\n"
+        for f in os.listdir(dir):
+            with open(os.path.join(dir, f), 'r') as review:
+                review_tkn = new_tokenizer(review.read(), punct=True, stop=True)
+                corpus += " ".join(review_tkn) + "\n"
+                review.close()
 
-with open("../../data/train_glove", "w") as text_file:
-    text_file.write(corpus)
+    with open("../../data/train_glove", "w") as text_file:
+        text_file.write(corpus)
+        text_file.close()
+
     print("Finished :D")
