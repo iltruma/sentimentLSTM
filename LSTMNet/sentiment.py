@@ -36,13 +36,12 @@ class SentimentModel(object):
         self.dropout_keep_prob_lstm_input = tf.constant(self.dropout)
         self.dropout_keep_prob_lstm_output = tf.constant(self.dropout)
 
-        #embedding weights
+        # embedding weights
         embedded_tokens_drop = self.embedding_layer(embedding_matrix)
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
-        rnn_output, rnn_state = self.lstm_layers(lstm_input,num_layers)
-
+        rnn_output, rnn_state = self.lstm_layers(lstm_input, num_layers)
 
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
@@ -80,7 +79,7 @@ class SentimentModel(object):
             self.merged = tf.merge_summary([loss_summ, acc_summ])
         self.saver = tf.train.Saver(tf.all_variables())
 
-    def initData(self, data_path, train_frac, max_examples=-1, shuffle_each_pass = True, train_seed=None):
+    def initData(self, data_path, train_frac, max_examples=-1, shuffle_each_pass=True, train_seed=None):
         self.dataH = dh.DataHandler(data_path, self.batch_size, train_frac, max_examples, shuffle_each_pass, train_seed)
 
     def embedding_layer(self, pre_W):
@@ -108,9 +107,31 @@ class SentimentModel(object):
             initial_state = cell.zero_state(self.batch_size, tf.float32)
 
             return rnn.rnn(cell, lstm_input,
-                                            initial_state=initial_state,
-                                            sequence_length=self.seq_lengths)
+                           initial_state=initial_state,
+                           sequence_length=self.seq_lengths)
 
+    def nn_layer(self, input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
+        """Reusable code for making a simple neural net layer.
+
+        It does a matrix multiply, bias add, and then uses relu to nonlinearize.
+        """
+        # Adding a name scope ensures logical grouping of the layers in the graph.
+        with tf.name_scope(layer_name):
+            # This Variable will hold the state of the weights for the layer
+            with tf.name_scope('weights'):
+                weights = tf.get_variable(
+                    "W",
+                    [input_dim, output_dim],
+                    initializer=tf.random_uniform_initializer(-1.0, 1.0))
+            with tf.name_scope('biases'):
+                biases = tf.get_variable(
+                    "b",
+                    [output_dim],
+                    initializer=tf.constant_initializer(0.1))
+            with tf.name_scope('Wx_plus_b'):
+                preactivate = tf.nn.xw_plus_b(input_tensor, weights, biases)
+            activations = act(preactivate, name='activation')
+            return activations
 
     def step(self, session, inputs, targets, seq_lengths, train=True):
         '''
@@ -122,8 +143,8 @@ class SentimentModel(object):
 
         Returns:
         merged_tb_vars, loss, none
-        or (in forward only):
-        merged_tb_vars, loss, outputs
+        or (in train=False):
+        merged_tb_vars, loss, outputs, accuracy
         '''
         input_feed = {}
         input_feed[self.seq_input.name] = inputs
@@ -132,21 +153,21 @@ class SentimentModel(object):
         if train:
             input_feed[self.str_summary_type.name] = "train"
             output_feed = [self.merged, self.mean_loss, self.update]
+            outputs = session.run(output_feed, input_feed)
+            return outputs[0], outputs[1], None
+
         else:
             input_feed[self.str_summary_type.name] = "test"
             output_feed = [self.merged, self.mean_loss, self.y, self.accuracy]
-        outputs = session.run(output_feed, input_feed)
-        if train:
-            return outputs[0], outputs[1], None
-        else:
+            outputs = session.run(output_feed, input_feed)
             return outputs[0], outputs[1], outputs[2], outputs[3]
 
 
 def test():
     test_steps = 10
     dataDir = "../data/"
-    seed = 1          # data will always be randomized in the same way for the training/test division
-    train_seed = 3    # given the above division the training will chose from the sets differently changing this
+    seed = 1  # data will always be randomized in the same way for the training/test division
+    train_seed = 3  # given the above division the training will chose from the sets differently changing this
     print("sentiment.py test with test_steps: {}, seed: {}, train_seed: {}".format(test_steps, seed, train_seed))
 
     from preprocessing.vocabmapping import VocabMapping
@@ -157,30 +178,24 @@ def test():
     np.random.seed(seed)
     tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
-    model = SentimentModel( vocab_size=vocab_size, hidden_size=50, dropout=0.5,
-                 num_layers=2, max_gradient_norm=5, max_seq_length=200,
-                 learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
-                            embedding_matrix=np.random.rand(vocab_size, 50))
+    model = SentimentModel(vocab_size=vocab_size, hidden_size=50, dropout=0.5,
+                           num_layers=2, max_gradient_norm=5, max_seq_length=200,
+                           learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
+                           embedding_matrix=np.random.rand(vocab_size, 50))
     print("Created model")
 
-    model.initData("../data/processed/", 0.7,400, True, train_seed)
+    model.initData("../data/processed/", 0.7, 400, True, train_seed)
     print("dataset initialized")
 
     sess.run(tf.initialize_all_variables())
     print("varables initialized")
 
-
-    for i in range(0,test_steps):
+    for i in range(0, test_steps):
         inputs, targets, seq_lengths = model.dataH.getBatch()
         str_summary, step_loss, _ = model.step(sess, inputs, targets, seq_lengths)
         print("{}th step executed! results:".format(i))
         print(" step_loss: %.4f" % step_loss)
 
 
-
-
-
 if __name__ == '__main__':
     test()
-
-

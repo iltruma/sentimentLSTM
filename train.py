@@ -21,7 +21,7 @@ import preprocessing.vocabmapping as vmapping
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
-flags.DEFINE_string("config_file", "config.ini", "Path to configuration file with hyper-parameters.")
+flags.DEFINE_string("config_file", "../config.ini", "Path to configuration file with hyper-parameters.")
 flags.DEFINE_string("checkpoint_dir", "data/checkpoints/", "Directory to store/restore checkpoints")
 flags.DEFINE_string("seed", 1, "seed to randomize data")
 flags.DEFINE_string("train_seed", 2, "seed to randomize training")
@@ -30,7 +30,7 @@ flags.DEFINE_string("train_seed", 2, "seed to randomize training")
 
 def main():
     hyper_params = read_config_file()
-    data_dir ="../"+ hyper_params["general"]["data_dir"]
+    data_dir = "../" + hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
     dp.run(int(dp_params["max_seq_length"]), int(dp_params["max_vocab_size"]), int(dp_params["min_vocab_count"]))
 
@@ -95,8 +95,9 @@ def main():
                 step_time, loss, test_accuracy = 0.0, 0.0, 0.0
 
                 # Run evals on test set and print their accuracy.
+                # print("projW:{}".format(model.projW.eval()))
                 print("Running test set")
-                for test_step in range(len(model.dataH.test_data)):
+                for test_step in range(num_test_batches):
                     inputs, targets, seq_lengths = model.dataH.getBatch(True)
                     str_summary, test_loss, _, accuracy = model.step(sess, inputs, targets, seq_lengths, train=False)
                     loss += test_loss
