@@ -4,7 +4,7 @@ import re
 
 
 f = open("../out/vocab.txt", 'r')
-nf = open("../../data/vocab_glove.txt", 'wb')
+nf = open("../../data/vocab.txt", 'wb')
 
 dic = {}
 lineno = 0
@@ -15,5 +15,7 @@ for line in f.readlines():
     dic[s] = lineno
     lineno += 1
 
+dic['<UNK>'] = -1
+dic['<PAD>'] = 0
 pickle.dump(dic, nf)
 print("Finished :D")
