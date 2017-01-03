@@ -185,7 +185,7 @@ def test():
                            embedding_matrix=np.random.rand(vocab_size, 50))
     print("Created model")
 
-    model.initData("../data/processed/", 0.7, 400, True, train_seed)
+    model.initData(dataDir + "processed/", 0.7, 400, True, train_seed)
     print("dataset initialized")
 
     sess.run(tf.initialize_all_variables())

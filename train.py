@@ -21,7 +21,7 @@ import preprocessing.vocabmapping as vmapping
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
-flags.DEFINE_string("config_file", "../config.ini", "Path to configuration file with hyper-parameters.")
+flags.DEFINE_string("config_file", "config.ini", "Path to configuration file with hyper-parameters.")
 flags.DEFINE_string("checkpoint_dir", "data/checkpoints/", "Directory to store/restore checkpoints")
 flags.DEFINE_string("seed", 1, "seed to randomize data")
 flags.DEFINE_string("train_seed", 2, "seed to randomize training")
@@ -30,9 +30,10 @@ flags.DEFINE_string("train_seed", 2, "seed to randomize training")
 
 def main():
     hyper_params = read_config_file()
-    data_dir = "../" + hyper_params["general"]["data_dir"]
+    data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
-    dp.run(int(dp_params["max_seq_length"]), int(dp_params["max_vocab_size"]), int(dp_params["min_vocab_count"]))
+    processor = dp.DataProcessor(data_dir)
+    processor.run(int(dp_params["max_seq_length"]), int(dp_params["max_vocab_size"]), int(dp_params["min_vocab_count"]))
 
     # create model
     net_params = hyper_params["sentiment_network_params"]
