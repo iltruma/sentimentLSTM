@@ -18,8 +18,8 @@ with open("../out/vocab.txt", 'r') as f:
     f.close()
 
 with open("../../data/vocab.txt", 'wb') as nf:
-    dic['<UNK>'] = -1
-    dic['<PAD>'] = 0
+    dic['<UNK>'] = lineno
+    dic['<PAD>'] = lineno + 1 
     pickle.dump(dic, nf)
     nf.close()
 
