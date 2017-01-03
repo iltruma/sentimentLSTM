@@ -3,35 +3,46 @@ import pickle
 import os
 import re
 
-f = open("../out/vocab.txt", 'r')
-nf = open("../../data/vocab.txt", 'wb')
+#default directories
+dataDir = "../../data/"
+outDir = "../out/"
 
-dic = {}
-lineno = 0
+'''
+Convert glove file for LSTM:
+    - convert glove vocabulary into a binary vocabulary for dataprocessor
+    - convert glove word vectors into a numpy matrix (vocab_size x dim_vectors) for initial weights
+'''
+def glove_converter(dataDir, outDir):
+    dic = {}
+    lineno = 0
 
-print("Converting vocab file into binary dictonary...")
-with open("../out/vocab.txt", 'r') as f:
-    for line in f.readlines():
-        s = re.match('^\S*', line).group(0)
-        dic[s] = lineno
-        lineno += 1
+    print("Converting vocab file into binary dictonary...")
+    with open(outDir + "vocab.txt", 'r') as f:
+        for line in f.readlines():
+            s = re.match('^\S*', line).group(0)
+            dic[s] = lineno
+            lineno += 1
     f.close()
 
-with open("../../data/vocab.txt", 'wb') as nf:
-    dic['<UNK>'] = lineno
-    dic['<PAD>'] = lineno + 1 
-    pickle.dump(dic, nf)
+    with open(dataDir + "vocab.txt", 'wb') as nf:
+        dic['<UNK>'] = lineno
+        dic['<PAD>'] = lineno + 1
+        pickle.dump(dic, nf)
     nf.close()
 
-print("Converting vectors file into npy array...")
+    print("Converting vectors file into npy array...")
 
-with open("../out/temp_vectors.txt", "w") as nf:
-	with open("../out/vectors.txt", "r") as f:
-		for line in f.readlines():
-			s = re.sub('^(.*?) ',"", line)
-			nf.write(s)
+    with open(outDir + "temp_vectors.txt", "w") as nf:
+        with open(outDir + "vectors.txt", "r") as f:
+            for line in f.readlines():
+	            s = re.sub('^(.*?) ',"", line)
+	            nf.write(s)
 
-temp = np.loadtxt("../out/temp_vectors.txt")
-np.save("../../data/embedding_matrix.npy", temp)
-os.remove("../out/temp_vectors.txt")
-print("Finished :D")
+            temp = np.loadtxt(nf)
+            np.save(dataDir + "embedding_matrix.npy", temp)
+            os.remove(nf)
+
+    print("Finished :D")
+
+if __name__ == '__main__':
+    glove_converter(dataDir, outDir)
