@@ -48,7 +48,7 @@ def run(max_seq_length, max_vocab_size, min_count):
     else:
         print("Processed data files found: delete " + dataDir + "processed  to redo them")
         return
-    import vocabmapping
+    import preprocessing.vocabmapping as vocabmapping
     vocab = vocabmapping.VocabMapping(dataDir + "vocab.txt")
     dirCount = 0
     processes = []
