@@ -31,7 +31,7 @@ with open("../out/temp_vectors.txt", "w") as nf:
 			s = re.sub('^(.*?) ',"", line)
 			nf.write(s)
 
-s = np.loadtxt("../out/temp_vectors.txt")
-np.save("../../data/embedding_matrix.npy", s)
+temp = np.loadtxt("../out/temp_vectors.txt")
+np.save("../../data/embedding_matrix.npy", temp)
 os.remove("../out/temp_vectors.txt")
 print("Finished :D")
