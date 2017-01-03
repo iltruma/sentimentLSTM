@@ -31,7 +31,7 @@ def new_tokenizer(review, punct, stop):
 
 #Tokenize every file of dataDir and merge them together
 for dir in dataDir:
-    print("Now processing folder: " + dir + "\n")
+    print("Now processing folder: " + dataDir + "\n")
 
     for f in os.listdir(dataDir):
         with open(os.path.join(dataDir, f), 'r') as review:
