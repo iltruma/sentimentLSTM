@@ -6,7 +6,7 @@ import os
 import nltk
 import pickle
 import urllib
-import preprocessing.tokenizer as tokenizer
+import tokenizer as tokenizer
 import numpy as np
 from multiprocessing import Process, Lock
 
@@ -219,20 +219,13 @@ class DataProcessor(object):
                 # take word more frequent than min_count
                 if dic[w] < min_count: break
 
-                v.write(w + " " + dic[w])
+                v.write(w + " " + str(dic[w]))
 
                 d[w] = counter
                 counter += 1
                 # take most frequent max_vocab_size tokens
                 if max_vocab_size > -1 and counter >= max_vocab_size: break
 
-        # add out of vocab token and pad token
-        d["<UNK>"] = counter
-        counter += 1
-        d["<PAD>"] = counter
-        print("vocab mapping created: size: %d discarded: %d" % (len(d), len(dic) - len(d) + 2))
-        with open(self.dataDir + 'vocab.txt', 'wb') as handle:
-            pickle.dump(d, handle)
 
 
 def main():
