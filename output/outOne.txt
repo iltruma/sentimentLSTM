@@ -1,0 +1,1408 @@
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so locally
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 0 with properties:
+name: GeForce GTX 970
+major: 5 minor: 2 memoryClockRate (GHz) 1.253
+pciBusID 0000:03:00.0
+Total memory: 3.94GiB
+Free memory: 3.88GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x3685d90
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 1 with properties:
+name: GeForce GTX 970
+major: 5 minor: 2 memoryClockRate (GHz) 1.253
+pciBusID 0000:04:00.0
+Total memory: 3.94GiB
+Free memory: 3.88GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:126] DMA: 0 1
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 0:   Y Y
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 1:   Y Y
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:839] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 970, pci bus id: 0000:03:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:839] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 970, pci bus id: 0000:04:00.0)
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 14865 get requests, put_count=8767 evicted_count=1000 eviction_rate=0.114064 and unsatisfied allocation rate=0.484225
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 100 to 110
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1425 get requests, put_count=4436 evicted_count=3000 eviction_rate=0.676285 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 2751 get requests, put_count=8763 evicted_count=6000 eviction_rate=0.684697 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 952 get requests, put_count=2966 evicted_count=2000 eviction_rate=0.674309 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 2371 get requests, put_count=7387 evicted_count=5000 eviction_rate=0.676865 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 17689 get requests, put_count=17544 evicted_count=7000 eviction_rate=0.398997 and unsatisfied allocation rate=0.404884
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 193 to 212
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1423 get requests, put_count=4444 evicted_count=3000 eviction_rate=0.675068 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 2737 get requests, put_count=8760 evicted_count=6000 eviction_rate=0.684932 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 954 get requests, put_count=2982 evicted_count=2000 eviction_rate=0.670691 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 2373 get requests, put_count=7403 evicted_count=5000 eviction_rate=0.675402 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 492 get requests, put_count=1529 evicted_count=1000 eviction_rate=0.654022 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1906 get requests, put_count=5946 evicted_count=4000 eviction_rate=0.672721 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 17786 get requests, put_count=17960 evicted_count=7000 eviction_rate=0.389755 and unsatisfied allocation rate=0.386259
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 493 to 542
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1444 get requests, put_count=4498 evicted_count=3000 eviction_rate=0.666963 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 17286 get requests, put_count=16733 evicted_count=6000 eviction_rate=0.358573 and unsatisfied allocation rate=0.382506
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 655 to 720
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1451 get requests, put_count=4523 evicted_count=3000 eviction_rate=0.663277 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 17986 get requests, put_count=18589 evicted_count=7000 eviction_rate=0.376567 and unsatisfied allocation rate=0.360058
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 871 to 958
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1931 get requests, put_count=6026 evicted_count=4000 eviction_rate=0.66379 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 525 get requests, put_count=1640 evicted_count=1000 eviction_rate=0.609756 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 17270 get requests, put_count=16539 evicted_count=5000 eviction_rate=0.302316 and unsatisfied allocation rate=0.339201
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 1400 to 1540
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1934 get requests, put_count=6088 evicted_count=4000 eviction_rate=0.65703 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1506 get requests, put_count=4692 evicted_count=3000 eviction_rate=0.639386 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1055 get requests, put_count=3280 evicted_count=2000 eviction_rate=0.609756 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1435 get requests, put_count=4707 evicted_count=3000 eviction_rate=0.637349 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 644 get requests, put_count=2006 evicted_count=1000 eviction_rate=0.498504 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 17987 get requests, put_count=18537 evicted_count=2000 eviction_rate=0.107892 and unsatisfied allocation rate=0.107411
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 5305 to 5835
+vocab mapping found...
+Processed data files found: delete ../data/processed  to redo them
+Creating model with...
+Number of hidden layers: 2
+Number of units per layer: 50
+Dropout: 0.5
+Vocab size is: 20002
+init DataHandler with path:../data/processed/, batch_size:200, training fraction 0.7, max number of examples:-1
+ Train size is: 35000, splitting into 175 batches
+ Test  size is: 14800, splitting into 74 batches
+
+Beggining training...
+Maximum number of epochs to train for: 200
+Batch size: 200
+Starting learning rate: 0.01
+Learning rate decay factor: 0.97
+global step 50 learning rate 0.0100000 step-time 0.46 loss 0.7095
+Running test set
+Avg Test Loss: 0.7040446666446892, Avg Test Accuracy: 0.4932432239120071
+-------Step 50/35000------
+global step 100 learning rate 0.0100000 step-time 0.36 loss 0.7015
+Running test set
+Avg Test Loss: 0.7036471334663598, Avg Test Accuracy: 0.49587835532587926
+-------Step 100/35000------
+global step 150 learning rate 0.0100000 step-time 0.36 loss 0.7017
+Running test set
+Avg Test Loss: 0.7015159879181836, Avg Test Accuracy: 0.5043243000636229
+-------Step 150/35000------
+global step 200 learning rate 0.0100000 step-time 0.36 loss 0.7034
+Running test set
+Avg Test Loss: 0.6998158612766782, Avg Test Accuracy: 0.5062161921649366
+-------Step 200/35000------
+global step 250 learning rate 0.0100000 step-time 0.36 loss 0.7015
+Running test set
+Avg Test Loss: 0.6998481202769924, Avg Test Accuracy: 0.5045945648406003
+-------Step 250/35000------
+global step 300 learning rate 0.0100000 step-time 0.36 loss 0.6989
+Running test set
+Avg Test Loss: 0.7023412110032262, Avg Test Accuracy: 0.4989188994104798
+-------Step 300/35000------
+global step 350 learning rate 0.0100000 step-time 0.36 loss 0.6997
+Running test set
+Avg Test Loss: 0.6995588210788933, Avg Test Accuracy: 0.4991891674093298
+-------Step 350/35000------
+global step 400 learning rate 0.0100000 step-time 0.36 loss 0.6987
+Running test set
+Avg Test Loss: 0.7013985546859535, Avg Test Accuracy: 0.49986484163516276
+-------Step 400/35000------
+global step 450 learning rate 0.0100000 step-time 0.36 loss 0.7001
+Running test set
+Avg Test Loss: 0.6995822110691586, Avg Test Accuracy: 0.4964864636595185
+-------Step 450/35000------
+global step 500 learning rate 0.0097000 step-time 0.36 loss 0.6989
+Running test set
+Avg Test Loss: 0.7003110300850224, Avg Test Accuracy: 0.4943918722706872
+-------Step 500/35000------
+global step 550 learning rate 0.0097000 step-time 0.36 loss 0.7005
+Running test set
+Avg Test Loss: 0.6991334170908541, Avg Test Accuracy: 0.503513491636998
+-------Step 550/35000------
+global step 600 learning rate 0.0094090 step-time 0.36 loss 0.6996
+Running test set
+Avg Test Loss: 0.6976484889919693, Avg Test Accuracy: 0.4987837595714105
+-------Step 600/35000------
+global step 650 learning rate 0.0094090 step-time 0.35 loss 0.6984
+Running test set
+Avg Test Loss: 0.6988171790097211, Avg Test Accuracy: 0.4990540283757287
+-------Step 650/35000------
+global step 700 learning rate 0.0094090 step-time 0.36 loss 0.6992
+Running test set
+Avg Test Loss: 0.6985166121173549, Avg Test Accuracy: 0.501013495229386
+-------Step 700/35000------
+global step 750 learning rate 0.0094090 step-time 0.37 loss 0.6979
+Running test set
+Avg Test Loss: 0.6989479918737669, Avg Test Accuracy: 0.5018918731728116
+-------Step 750/35000------
+global step 800 learning rate 0.0094090 step-time 0.35 loss 0.6993
+Running test set
+Avg Test Loss: 0.697957157283216, Avg Test Accuracy: 0.4981756536541758
+-------Step 800/35000------
+global step 850 learning rate 0.0091267 step-time 0.35 loss 0.6987
+Running test set
+Avg Test Loss: 0.6979851287764471, Avg Test Accuracy: 0.5067567321899775
+-------Step 850/35000------
+global step 900 learning rate 0.0091267 step-time 0.36 loss 0.6996
+Running test set
+Avg Test Loss: 0.6959128693954365, Avg Test Accuracy: 0.5082432180643082
+-------Step 900/35000------
+global step 950 learning rate 0.0088529 step-time 0.36 loss 0.6985
+Running test set
+Avg Test Loss: 0.6965007193990655, Avg Test Accuracy: 0.5035134880123912
+-------Step 950/35000------
+global step 1000 learning rate 0.0088529 step-time 0.36 loss 0.6983
+Running test set
+Avg Test Loss: 0.6965105686638806, Avg Test Accuracy: 0.5080405191795246
+-------Step 1000/35000------
+global step 1050 learning rate 0.0088529 step-time 0.36 loss 0.6966
+Running test set
+Avg Test Loss: 0.6973906014416669, Avg Test Accuracy: 0.5047972786265451
+-------Step 1050/35000------
+global step 1100 learning rate 0.0088529 step-time 0.35 loss 0.6983
+Running test set
+Avg Test Loss: 0.6962778560213141, Avg Test Accuracy: 0.49682430077243495
+-------Step 1100/35000------
+global step 1150 learning rate 0.0088529 step-time 0.35 loss 0.6974
+Running test set
+Avg Test Loss: 0.6968977886277277, Avg Test Accuracy: 0.4952026839191849
+-------Step 1150/35000------
+global step 1200 learning rate 0.0088529 step-time 0.36 loss 0.6977
+Running test set
+Avg Test Loss: 0.6956630550526284, Avg Test Accuracy: 0.5006756536863946
+-------Step 1200/35000------
+global step 1250 learning rate 0.0088529 step-time 0.35 loss 0.6978
+Running test set
+Avg Test Loss: 0.6963894270561837, Avg Test Accuracy: 0.5014188982344963
+-------Step 1250/35000------
+global step 1300 learning rate 0.0088529 step-time 0.35 loss 0.6970
+Running test set
+Avg Test Loss: 0.6965909245851878, Avg Test Accuracy: 0.5027702418533532
+-------Step 1300/35000------
+global step 1350 learning rate 0.0088529 step-time 0.36 loss 0.6982
+Running test set
+Avg Test Loss: 0.6949855588577889, Avg Test Accuracy: 0.5043918655530827
+-------Step 1350/35000------
+global step 1400 learning rate 0.0085873 step-time 0.35 loss 0.6959
+Running test set
+Avg Test Loss: 0.6960337886939177, Avg Test Accuracy: 0.5079053813541258
+-------Step 1400/35000------
+global step 1450 learning rate 0.0085873 step-time 0.35 loss 0.6979
+Running test set
+Avg Test Loss: 0.6967002419201104, Avg Test Accuracy: 0.4993918683077838
+-------Step 1450/35000------
+global step 1500 learning rate 0.0085873 step-time 0.36 loss 0.6965
+Running test set
+Avg Test Loss: 0.6980564489557937, Avg Test Accuracy: 0.4984459248748985
+-------Step 1500/35000------
+global step 1550 learning rate 0.0085873 step-time 0.36 loss 0.6965
+Running test set
+Avg Test Loss: 0.6947381311171764, Avg Test Accuracy: 0.5038513275417121
+-------Step 1550/35000------
+global step 1600 learning rate 0.0085873 step-time 0.36 loss 0.6963
+Running test set
+Avg Test Loss: 0.696657657623291, Avg Test Accuracy: 0.5009459261153195
+-------Step 1600/35000------
+global step 1650 learning rate 0.0085873 step-time 0.35 loss 0.6969
+Running test set
+Avg Test Loss: 0.6977667719931215, Avg Test Accuracy: 0.4949999830207309
+-------Step 1650/35000------
+global step 1700 learning rate 0.0083297 step-time 0.36 loss 0.6963
+Running test set
+Avg Test Loss: 0.6958980946927458, Avg Test Accuracy: 0.49804051824518153
+-------Step 1700/35000------
+global step 1750 learning rate 0.0083297 step-time 0.35 loss 0.6964
+Running test set
+Avg Test Loss: 0.6968400043410223, Avg Test Accuracy: 0.505337814221511
+-------Step 1750/35000------
+global step 1800 learning rate 0.0083297 step-time 0.35 loss 0.6961
+Running test set
+Avg Test Loss: 0.6963924950844532, Avg Test Accuracy: 0.4989864648999395
+-------Step 1800/35000------
+global step 1850 learning rate 0.0083297 step-time 0.35 loss 0.6967
+Running test set
+Avg Test Loss: 0.6955918226693127, Avg Test Accuracy: 0.4971621419126923
+-------Step 1850/35000------
+global step 1900 learning rate 0.0080798 step-time 0.35 loss 0.6960
+Running test set
+Avg Test Loss: 0.6954153405653464, Avg Test Accuracy: 0.49722971142949285
+-------Step 1900/35000------
+global step 1950 learning rate 0.0080798 step-time 0.35 loss 0.6962
+Running test set
+Avg Test Loss: 0.6960900901137171, Avg Test Accuracy: 0.4959459248426798
+-------Step 1950/35000------
+global step 2000 learning rate 0.0080798 step-time 0.36 loss 0.6961
+Running test set
+Avg Test Loss: 0.6967899855729696, Avg Test Accuracy: 0.5045270053921519
+-------Step 2000/35000------
+global step 2050 learning rate 0.0080798 step-time 0.36 loss 0.6945
+Running test set
+Avg Test Loss: 0.6965882600964727, Avg Test Accuracy: 0.4949999765769855
+-------Step 2050/35000------
+global step 2100 learning rate 0.0080798 step-time 0.36 loss 0.6962
+Running test set
+Avg Test Loss: 0.695923975996069, Avg Test Accuracy: 0.5030405239478962
+-------Step 2100/35000------
+global step 2150 learning rate 0.0078374 step-time 0.36 loss 0.6959
+Running test set
+Avg Test Loss: 0.698533114549276, Avg Test Accuracy: 0.49763511000452815
+-------Step 2150/35000------
+global step 2200 learning rate 0.0078374 step-time 0.36 loss 0.6958
+Running test set
+Avg Test Loss: 0.6955631085344263, Avg Test Accuracy: 0.5002702430293366
+-------Step 2200/35000------
+global step 2250 learning rate 0.0078374 step-time 0.36 loss 0.6942
+Running test set
+Avg Test Loss: 0.6966412703733187, Avg Test Accuracy: 0.500337811740669
+-------Step 2250/35000------
+global step 2300 learning rate 0.0078374 step-time 0.36 loss 0.6964
+Running test set
+Avg Test Loss: 0.6941719304870915, Avg Test Accuracy: 0.5066216020165263
+-------Step 2300/35000------
+global step 2350 learning rate 0.0076023 step-time 0.36 loss 0.6941
+Running test set
+Avg Test Loss: 0.6946284553489169, Avg Test Accuracy: 0.5006080865859985
+-------Step 2350/35000------
+global step 2400 learning rate 0.0076023 step-time 0.36 loss 0.6961
+Running test set
+Avg Test Loss: 0.695623792506553, Avg Test Accuracy: 0.49513511480511846
+-------Step 2400/35000------
+global step 2450 learning rate 0.0076023 step-time 0.35 loss 0.6947
+Running test set
+Avg Test Loss: 0.695016169870222, Avg Test Accuracy: 0.49770267871586055
+-------Step 2450/35000------
+global step 2500 learning rate 0.0076023 step-time 0.36 loss 0.6961
+Running test set
+Avg Test Loss: 0.6962850488520957, Avg Test Accuracy: 0.503716192938186
+-------Step 2500/35000------
+global step 2550 learning rate 0.0076023 step-time 0.35 loss 0.6948
+Running test set
+Avg Test Loss: 0.6942186210606549, Avg Test Accuracy: 0.49851349237802867
+-------Step 2550/35000------
+global step 2600 learning rate 0.0076023 step-time 0.36 loss 0.6950
+Running test set
+Avg Test Loss: 0.6960138742988174, Avg Test Accuracy: 0.49945943540817983
+-------Step 2600/35000------
+global step 2650 learning rate 0.0076023 step-time 0.35 loss 0.6959
+Running test set
+Avg Test Loss: 0.6951428659864374, Avg Test Accuracy: 0.5022972761779219
+-------Step 2650/35000------
+global step 2700 learning rate 0.0076023 step-time 0.36 loss 0.6950
+Running test set
+Avg Test Loss: 0.6946634819378724, Avg Test Accuracy: 0.5028378198275695
+-------Step 2700/35000------
+global step 2750 learning rate 0.0076023 step-time 0.35 loss 0.6952
+Running test set
+Avg Test Loss: 0.6943434799039686, Avg Test Accuracy: 0.5086486198612161
+-------Step 2750/35000------
+global step 2800 learning rate 0.0076023 step-time 0.35 loss 0.6945
+Running test set
+Avg Test Loss: 0.6943326068891061, Avg Test Accuracy: 0.5079053841732644
+-------Step 2800/35000------
+global step 2850 learning rate 0.0076023 step-time 0.35 loss 0.6946
+Running test set
+Avg Test Loss: 0.6946912319273562, Avg Test Accuracy: 0.5018918699509388
+-------Step 2850/35000------
+global step 2900 learning rate 0.0076023 step-time 0.35 loss 0.6946
+Running test set
+Avg Test Loss: 0.6943474806643821, Avg Test Accuracy: 0.5015540332407564
+-------Step 2900/35000------
+global step 2950 learning rate 0.0076023 step-time 0.36 loss 0.6941
+Running test set
+Avg Test Loss: 0.6937468454644486, Avg Test Accuracy: 0.5095945693351127
+-------Step 2950/35000------
+global step 3000 learning rate 0.0076023 step-time 0.36 loss 0.6947
+Running test set
+Avg Test Loss: 0.6958306729793549, Avg Test Accuracy: 0.49533781811997696
+-------Step 3000/35000------
+global step 3050 learning rate 0.0073742 step-time 0.36 loss 0.6944
+Running test set
+Avg Test Loss: 0.6939655534318976, Avg Test Accuracy: 0.5087837560756786
+-------Step 3050/35000------
+global step 3100 learning rate 0.0073742 step-time 0.35 loss 0.6942
+Running test set
+Avg Test Loss: 0.6943229944319338, Avg Test Accuracy: 0.50554051955004
+-------Step 3100/35000------
+global step 3150 learning rate 0.0073742 step-time 0.36 loss 0.6943
+Running test set
+Avg Test Loss: 0.6954713753751807, Avg Test Accuracy: 0.4949324131011963
+-------Step 3150/35000------
+global step 3200 learning rate 0.0073742 step-time 0.35 loss 0.6941
+Running test set
+Avg Test Loss: 0.6938109534817773, Avg Test Accuracy: 0.5054053768918321
+-------Step 3200/35000------
+global step 3250 learning rate 0.0073742 step-time 0.35 loss 0.6941
+Running test set
+Avg Test Loss: 0.6953492945915943, Avg Test Accuracy: 0.5018243024478087
+-------Step 3250/35000------
+global step 3300 learning rate 0.0073742 step-time 0.36 loss 0.6948
+Running test set
+Avg Test Loss: 0.6956222677553022, Avg Test Accuracy: 0.49682430399430766
+-------Step 3300/35000------
+global step 3350 learning rate 0.0071530 step-time 0.35 loss 0.6947
+Running test set
+Avg Test Loss: 0.6934194878951924, Avg Test Accuracy: 0.5118918636360684
+-------Step 3350/35000------
+global step 3400 learning rate 0.0071530 step-time 0.36 loss 0.6943
+Running test set
+Avg Test Loss: 0.6954351864956521, Avg Test Accuracy: 0.4945270048605429
+-------Step 3400/35000------
+global step 3450 learning rate 0.0071530 step-time 0.36 loss 0.6943
+Running test set
+Avg Test Loss: 0.6935814788212648, Avg Test Accuracy: 0.5033107943631507
+-------Step 3450/35000------
+global step 3500 learning rate 0.0071530 step-time 0.35 loss 0.6946
+Running test set
+Avg Test Loss: 0.6934496373743624, Avg Test Accuracy: 0.5091891667327365
+-------Step 3500/35000------
+global step 3550 learning rate 0.0071530 step-time 0.36 loss 0.6941
+Running test set
+Avg Test Loss: 0.6937328633424398, Avg Test Accuracy: 0.5057432212539621
+-------Step 3550/35000------
+global step 3600 learning rate 0.0071530 step-time 0.35 loss 0.6935
+Running test set
+Avg Test Loss: 0.694690591580159, Avg Test Accuracy: 0.5046621399956781
+-------Step 3600/35000------
+global step 3650 learning rate 0.0071530 step-time 0.36 loss 0.6943
+Running test set
+Avg Test Loss: 0.6943291320994094, Avg Test Accuracy: 0.5025675413576333
+-------Step 3650/35000------
+global step 3700 learning rate 0.0071530 step-time 0.35 loss 0.6947
+Running test set
+Avg Test Loss: 0.6950858348124737, Avg Test Accuracy: 0.5007432199813224
+-------Step 3700/35000------
+global step 3750 learning rate 0.0069384 step-time 0.36 loss 0.6937
+Running test set
+Avg Test Loss: 0.694552472314319, Avg Test Accuracy: 0.5058107867434218
+-------Step 3750/35000------
+global step 3800 learning rate 0.0069384 step-time 0.36 loss 0.6941
+Running test set
+Avg Test Loss: 0.6943306036897607, Avg Test Accuracy: 0.49810808534557754
+-------Step 3800/35000------
+global step 3850 learning rate 0.0069384 step-time 0.35 loss 0.6940
+Running test set
+Avg Test Loss: 0.6941406581852887, Avg Test Accuracy: 0.5002026791508133
+-------Step 3850/35000------
+global step 3900 learning rate 0.0069384 step-time 0.35 loss 0.6942
+Running test set
+Avg Test Loss: 0.6943037501863532, Avg Test Accuracy: 0.5043243012718253
+-------Step 3900/35000------
+global step 3950 learning rate 0.0067303 step-time 0.37 loss 0.6933
+Running test set
+Avg Test Loss: 0.6940144832069809, Avg Test Accuracy: 0.5052026792152507
+-------Step 3950/35000------
+global step 4000 learning rate 0.0067303 step-time 0.35 loss 0.6933
+Running test set
+Avg Test Loss: 0.6940947779127069, Avg Test Accuracy: 0.5065540333051939
+-------Step 4000/35000------
+global step 4050 learning rate 0.0067303 step-time 0.35 loss 0.6943
+Running test set
+Avg Test Loss: 0.6934624789534388, Avg Test Accuracy: 0.5046621371765394
+-------Step 4050/35000------
+global step 4100 learning rate 0.0065284 step-time 0.35 loss 0.6942
+Running test set
+Avg Test Loss: 0.6939629018306732, Avg Test Accuracy: 0.5112161910211718
+-------Step 4100/35000------
+global step 4150 learning rate 0.0065284 step-time 0.35 loss 0.6937
+Running test set
+Avg Test Loss: 0.6939379435938757, Avg Test Accuracy: 0.5102702491992229
+-------Step 4150/35000------
+global step 4200 learning rate 0.0065284 step-time 0.36 loss 0.6935
+Running test set
+Avg Test Loss: 0.6939974580262158, Avg Test Accuracy: 0.5045945732980162
+-------Step 4200/35000------
+global step 4250 learning rate 0.0065284 step-time 0.36 loss 0.6936
+Running test set
+Avg Test Loss: 0.6943103920769047, Avg Test Accuracy: 0.5062837616817372
+-------Step 4250/35000------
+global step 4300 learning rate 0.0065284 step-time 0.35 loss 0.6926
+Running test set
+Avg Test Loss: 0.6933934374435528, Avg Test Accuracy: 0.5145945738296251
+-------Step 4300/35000------
+global step 4350 learning rate 0.0065284 step-time 0.35 loss 0.6935
+Running test set
+Avg Test Loss: 0.6940504288351214, Avg Test Accuracy: 0.5106756497879286
+-------Step 4350/35000------
+global step 4400 learning rate 0.0065284 step-time 0.35 loss 0.6936
+Running test set
+Avg Test Loss: 0.6943801665628279, Avg Test Accuracy: 0.5054053841410456
+-------Step 4400/35000------
+global step 4450 learning rate 0.0065284 step-time 0.35 loss 0.6937
+Running test set
+Avg Test Loss: 0.6930186120239464, Avg Test Accuracy: 0.5109459250359922
+-------Step 4450/35000------
+global step 4500 learning rate 0.0063325 step-time 0.35 loss 0.6926
+Running test set
+Avg Test Loss: 0.6943728102220071, Avg Test Accuracy: 0.5062837636954075
+-------Step 4500/35000------
+global step 4550 learning rate 0.0063325 step-time 0.36 loss 0.6930
+Running test set
+Avg Test Loss: 0.6931454184893016, Avg Test Accuracy: 0.5147972678815996
+-------Step 4550/35000------
+global step 4600 learning rate 0.0063325 step-time 0.36 loss 0.6939
+Running test set
+Avg Test Loss: 0.6935478754945703, Avg Test Accuracy: 0.5046621428148167
+-------Step 4600/35000------
+global step 4650 learning rate 0.0061425 step-time 0.35 loss 0.6925
+Running test set
+Avg Test Loss: 0.6929599674972328, Avg Test Accuracy: 0.5118918716907501
+-------Step 4650/35000------
+global step 4700 learning rate 0.0061425 step-time 0.36 loss 0.6953
+Running test set
+Avg Test Loss: 0.6949307113080412, Avg Test Accuracy: 0.4990540336112718
+-------Step 4700/35000------
+global step 4750 learning rate 0.0059583 step-time 0.36 loss 0.6937
+Running test set
+Avg Test Loss: 0.6937719092175767, Avg Test Accuracy: 0.5105405119625298
+-------Step 4750/35000------
+global step 4800 learning rate 0.0059583 step-time 0.35 loss 0.6931
+Running test set
+Avg Test Loss: 0.6924032834736077, Avg Test Accuracy: 0.5148648398148047
+-------Step 4800/35000------
+global step 4850 learning rate 0.0059583 step-time 0.35 loss 0.6930
+Running test set
+Avg Test Loss: 0.693165701788825, Avg Test Accuracy: 0.5140540241389662
+-------Step 4850/35000------
+global step 4900 learning rate 0.0059583 step-time 0.35 loss 0.6926
+Running test set
+Avg Test Loss: 0.6935657891067298, Avg Test Accuracy: 0.5145270035073564
+-------Step 4900/35000------
+global step 4950 learning rate 0.0059583 step-time 0.35 loss 0.6926
+Running test set
+Avg Test Loss: 0.6931692394050392, Avg Test Accuracy: 0.5142567278565587
+-------Step 4950/35000------
+global step 5000 learning rate 0.0059583 step-time 0.35 loss 0.6923
+Running test set
+Avg Test Loss: 0.6935622740436245, Avg Test Accuracy: 0.513851327670587
+-------Step 5000/35000------
+global step 5050 learning rate 0.0059583 step-time 0.36 loss 0.6931
+Running test set
+Avg Test Loss: 0.692212458397891, Avg Test Accuracy: 0.5223648423278654
+-------Step 5050/35000------
+global step 5100 learning rate 0.0057795 step-time 0.36 loss 0.6920
+Running test set
+Avg Test Loss: 0.6920800821201222, Avg Test Accuracy: 0.5219594361008825
+-------Step 5100/35000------
+global step 5150 learning rate 0.0057795 step-time 0.35 loss 0.6926
+Running test set
+Avg Test Loss: 0.6944461690412985, Avg Test Accuracy: 0.514054028569041
+-------Step 5150/35000------
+global step 5200 learning rate 0.0057795 step-time 0.35 loss 0.6924
+Running test set
+Avg Test Loss: 0.6909796233112747, Avg Test Accuracy: 0.5297972708940506
+-------Step 5200/35000------
+global step 5250 learning rate 0.0057795 step-time 0.35 loss 0.6923
+Running test set
+Avg Test Loss: 0.6917310920921532, Avg Test Accuracy: 0.5182432202068535
+-------Step 5250/35000------
+global step 5300 learning rate 0.0057795 step-time 0.35 loss 0.6924
+Running test set
+Avg Test Loss: 0.691639902623924, Avg Test Accuracy: 0.5230405141372938
+-------Step 5300/35000------
+global step 5350 learning rate 0.0057795 step-time 0.35 loss 0.6915
+Running test set
+Avg Test Loss: 0.6927391902820484, Avg Test Accuracy: 0.5121621368704615
+-------Step 5350/35000------
+global step 5400 learning rate 0.0057795 step-time 0.36 loss 0.6903
+Running test set
+Avg Test Loss: 0.689011429612701, Avg Test Accuracy: 0.5370270082273999
+-------Step 5400/35000------
+global step 5450 learning rate 0.0057795 step-time 0.35 loss 0.6871
+Running test set
+Avg Test Loss: 0.6875558809654133, Avg Test Accuracy: 0.5427702427715868
+-------Step 5450/35000------
+global step 5500 learning rate 0.0057795 step-time 0.36 loss 0.6826
+Running test set
+Avg Test Loss: 0.6834205437350918, Avg Test Accuracy: 0.5587161904251253
+-------Step 5500/35000------
+global step 5550 learning rate 0.0057795 step-time 0.36 loss 0.6769
+Running test set
+Avg Test Loss: 0.6752833079647373, Avg Test Accuracy: 0.5773648398148047
+-------Step 5550/35000------
+global step 5600 learning rate 0.0057795 step-time 0.36 loss 0.6792
+Running test set
+Avg Test Loss: 0.6733587416442665, Avg Test Accuracy: 0.5830405153132774
+-------Step 5600/35000------
+global step 5650 learning rate 0.0057795 step-time 0.36 loss 0.6653
+Running test set
+Avg Test Loss: 0.6670979503038768, Avg Test Accuracy: 0.5891215978442012
+-------Step 5650/35000------
+global step 5700 learning rate 0.0057795 step-time 0.36 loss 0.6580
+Running test set
+Avg Test Loss: 0.664450461800034, Avg Test Accuracy: 0.597364846919034
+-------Step 5700/35000------
+global step 5750 learning rate 0.0057795 step-time 0.35 loss 0.6570
+Running test set
+Avg Test Loss: 0.6561693669976415, Avg Test Accuracy: 0.614256734783585
+-------Step 5750/35000------
+global step 5800 learning rate 0.0057795 step-time 0.36 loss 0.6509
+Running test set
+Avg Test Loss: 0.660605755206701, Avg Test Accuracy: 0.6118918681466902
+-------Step 5800/35000------
+global step 5850 learning rate 0.0057795 step-time 0.35 loss 0.6490
+Running test set
+Avg Test Loss: 0.6530577145718239, Avg Test Accuracy: 0.6129729546405174
+-------Step 5850/35000------
+global step 5900 learning rate 0.0057795 step-time 0.36 loss 0.6349
+Running test set
+Avg Test Loss: 0.650603207381996, Avg Test Accuracy: 0.6239864616780668
+-------Step 5900/35000------
+global step 5950 learning rate 0.0057795 step-time 0.37 loss 0.6363
+Running test set
+Avg Test Loss: 0.6320569579665726, Avg Test Accuracy: 0.6396621505956392
+-------Step 5950/35000------
+global step 6000 learning rate 0.0057795 step-time 0.36 loss 0.6283
+Running test set
+Avg Test Loss: 0.6299974016241126, Avg Test Accuracy: 0.6411486276098199
+-------Step 6000/35000------
+global step 6050 learning rate 0.0057795 step-time 0.35 loss 0.6148
+Running test set
+Avg Test Loss: 0.6314048211316805, Avg Test Accuracy: 0.6497972752596881
+-------Step 6050/35000------
+global step 6100 learning rate 0.0057795 step-time 0.35 loss 0.6172
+Running test set
+Avg Test Loss: 0.6098070136598639, Avg Test Accuracy: 0.6681756538313788
+-------Step 6100/35000------
+global step 6150 learning rate 0.0057795 step-time 0.35 loss 0.6052
+Running test set
+Avg Test Loss: 0.6148299164063221, Avg Test Accuracy: 0.6635810595911902
+-------Step 6150/35000------
+global step 6200 learning rate 0.0057795 step-time 0.35 loss 0.6022
+Running test set
+Avg Test Loss: 0.6091108434909099, Avg Test Accuracy: 0.6699999788322965
+-------Step 6200/35000------
+global step 6250 learning rate 0.0057795 step-time 0.36 loss 0.5845
+Running test set
+Avg Test Loss: 0.6107826144308657, Avg Test Accuracy: 0.6743243062818373
+-------Step 6250/35000------
+global step 6300 learning rate 0.0057795 step-time 0.35 loss 0.5873
+Running test set
+Avg Test Loss: 0.5907501264198406, Avg Test Accuracy: 0.6883107947336661
+-------Step 6300/35000------
+global step 6350 learning rate 0.0057795 step-time 0.36 loss 0.5872
+Running test set
+Avg Test Loss: 0.5814350513187615, Avg Test Accuracy: 0.6921621456339553
+-------Step 6350/35000------
+global step 6400 learning rate 0.0057795 step-time 0.36 loss 0.5645
+Running test set
+Avg Test Loss: 0.5817879361880792, Avg Test Accuracy: 0.6981756646890898
+-------Step 6400/35000------
+global step 6450 learning rate 0.0057795 step-time 0.36 loss 0.5708
+Running test set
+Avg Test Loss: 0.5847580159032667, Avg Test Accuracy: 0.6953378190865388
+-------Step 6450/35000------
+global step 6500 learning rate 0.0057795 step-time 0.35 loss 0.5631
+Running test set
+Avg Test Loss: 0.5669104489120277, Avg Test Accuracy: 0.707702683435904
+-------Step 6500/35000------
+global step 6550 learning rate 0.0057795 step-time 0.35 loss 0.5560
+Running test set
+Avg Test Loss: 0.5711458643545976, Avg Test Accuracy: 0.705472963887292
+-------Step 6550/35000------
+global step 6600 learning rate 0.0057795 step-time 0.36 loss 0.5557
+Running test set
+Avg Test Loss: 0.5658685424037881, Avg Test Accuracy: 0.7112837731838226
+-------Step 6600/35000------
+global step 6650 learning rate 0.0057795 step-time 0.36 loss 0.5417
+Running test set
+Avg Test Loss: 0.5501149655193895, Avg Test Accuracy: 0.7187162057773487
+-------Step 6650/35000------
+global step 6700 learning rate 0.0057795 step-time 0.35 loss 0.5336
+Running test set
+Avg Test Loss: 0.5541318224088566, Avg Test Accuracy: 0.7208107975689141
+-------Step 6700/35000------
+global step 6750 learning rate 0.0057795 step-time 0.35 loss 0.5380
+Running test set
+Avg Test Loss: 0.545667252830557, Avg Test Accuracy: 0.7254053990583162
+-------Step 6750/35000------
+global step 6800 learning rate 0.0057795 step-time 0.35 loss 0.5196
+Running test set
+Avg Test Loss: 0.5513557296346974, Avg Test Accuracy: 0.7238513368207056
+-------Step 6800/35000------
+global step 6850 learning rate 0.0057795 step-time 0.35 loss 0.5301
+Running test set
+Avg Test Loss: 0.5309549211650282, Avg Test Accuracy: 0.7341891873527218
+-------Step 6850/35000------
+global step 6900 learning rate 0.0057795 step-time 0.36 loss 0.5179
+Running test set
+Avg Test Loss: 0.5270392145659473, Avg Test Accuracy: 0.7382432310967832
+-------Step 6900/35000------
+global step 6950 learning rate 0.0057795 step-time 0.35 loss 0.5079
+Running test set
+Avg Test Loss: 0.527983004579673, Avg Test Accuracy: 0.7376351284014212
+-------Step 6950/35000------
+global step 7000 learning rate 0.0057795 step-time 0.36 loss 0.5107
+Running test set
+Avg Test Loss: 0.5279975183106758, Avg Test Accuracy: 0.7369594517591838
+-------Step 7000/35000------
+global step 7050 learning rate 0.0057795 step-time 0.36 loss 0.5054
+Running test set
+Avg Test Loss: 0.5163974419638917, Avg Test Accuracy: 0.7472972813490275
+-------Step 7050/35000------
+global step 7100 learning rate 0.0057795 step-time 0.36 loss 0.4988
+Running test set
+Avg Test Loss: 0.5214095413684845, Avg Test Accuracy: 0.7410810783102706
+-------Step 7100/35000------
+global step 7150 learning rate 0.0057795 step-time 0.36 loss 0.4912
+Running test set
+Avg Test Loss: 0.5086073283408139, Avg Test Accuracy: 0.7556080979269904
+-------Step 7150/35000------
+global step 7200 learning rate 0.0057795 step-time 0.35 loss 0.4910
+Running test set
+Avg Test Loss: 0.5059439217722094, Avg Test Accuracy: 0.7493918940827653
+-------Step 7200/35000------
+global step 7250 learning rate 0.0057795 step-time 0.35 loss 0.4921
+Running test set
+Avg Test Loss: 0.5055680951556644, Avg Test Accuracy: 0.7612837786610062
+-------Step 7250/35000------
+global step 7300 learning rate 0.0057795 step-time 0.36 loss 0.4794
+Running test set
+Avg Test Loss: 0.5025897352276621, Avg Test Accuracy: 0.7576351214099575
+-------Step 7300/35000------
+global step 7350 learning rate 0.0057795 step-time 0.35 loss 0.4626
+Running test set
+Avg Test Loss: 0.5046054974601075, Avg Test Accuracy: 0.7610810793734886
+-------Step 7350/35000------
+global step 7400 learning rate 0.0057795 step-time 0.36 loss 0.4623
+Running test set
+Avg Test Loss: 0.4863421389380017, Avg Test Accuracy: 0.7699999897866636
+-------Step 7400/35000------
+global step 7450 learning rate 0.0057795 step-time 0.36 loss 0.4683
+Running test set
+Avg Test Loss: 0.48829280001086156, Avg Test Accuracy: 0.7660135111293277
+-------Step 7450/35000------
+global step 7500 learning rate 0.0057795 step-time 0.36 loss 0.4628
+Running test set
+Avg Test Loss: 0.48281827206547195, Avg Test Accuracy: 0.7697972921100823
+-------Step 7500/35000------
+global step 7550 learning rate 0.0057795 step-time 0.36 loss 0.4480
+Running test set
+Avg Test Loss: 0.48474005146606547, Avg Test Accuracy: 0.7679729654982284
+-------Step 7550/35000------
+global step 7600 learning rate 0.0057795 step-time 0.36 loss 0.4443
+Running test set
+Avg Test Loss: 0.4758115128890888, Avg Test Accuracy: 0.7759459381167954
+-------Step 7600/35000------
+global step 7650 learning rate 0.0057795 step-time 0.36 loss 0.4344
+Running test set
+Avg Test Loss: 0.4713868579349002, Avg Test Accuracy: 0.778783768415451
+-------Step 7650/35000------
+global step 7700 learning rate 0.0057795 step-time 0.35 loss 0.4511
+Running test set
+Avg Test Loss: 0.46637232037814885, Avg Test Accuracy: 0.7810810699656203
+-------Step 7700/35000------
+global step 7750 learning rate 0.0056061 step-time 0.36 loss 0.4313
+Running test set
+Avg Test Loss: 0.46437060510790024, Avg Test Accuracy: 0.7852026916838981
+-------Step 7750/35000------
+global step 7800 learning rate 0.0056061 step-time 0.36 loss 0.4395
+Running test set
+Avg Test Loss: 0.4598870680138871, Avg Test Accuracy: 0.787229719194206
+-------Step 7800/35000------
+global step 7850 learning rate 0.0056061 step-time 0.36 loss 0.4354
+Running test set
+Avg Test Loss: 0.4575513263006468, Avg Test Accuracy: 0.7862837701230436
+-------Step 7850/35000------
+global step 7900 learning rate 0.0056061 step-time 0.35 loss 0.4241
+Running test set
+Avg Test Loss: 0.4554696505939638, Avg Test Accuracy: 0.7876351242129868
+-------Step 7900/35000------
+global step 7950 learning rate 0.0056061 step-time 0.35 loss 0.4274
+Running test set
+Avg Test Loss: 0.46907507084511424, Avg Test Accuracy: 0.7815540449039357
+-------Step 7950/35000------
+global step 8000 learning rate 0.0056061 step-time 0.36 loss 0.4165
+Running test set
+Avg Test Loss: 0.4577108275245976, Avg Test Accuracy: 0.7875675518770475
+-------Step 8000/35000------
+global step 8050 learning rate 0.0056061 step-time 0.35 loss 0.4129
+Running test set
+Avg Test Loss: 0.4556060445469779, Avg Test Accuracy: 0.7854729641128231
+-------Step 8050/35000------
+global step 8100 learning rate 0.0056061 step-time 0.36 loss 0.4157
+Running test set
+Avg Test Loss: 0.44308832247514984, Avg Test Accuracy: 0.7905405252366453
+-------Step 8100/35000------
+global step 8150 learning rate 0.0056061 step-time 0.37 loss 0.4062
+Running test set
+Avg Test Loss: 0.4550543789928024, Avg Test Accuracy: 0.791554042616406
+-------Step 8150/35000------
+global step 8200 learning rate 0.0056061 step-time 0.36 loss 0.4060
+Running test set
+Avg Test Loss: 0.4484299924728033, Avg Test Accuracy: 0.7893918720451562
+-------Step 8200/35000------
+global step 8250 learning rate 0.0056061 step-time 0.36 loss 0.3992
+Running test set
+Avg Test Loss: 0.45546796394361033, Avg Test Accuracy: 0.7945270119486628
+-------Step 8250/35000------
+global step 8300 learning rate 0.0056061 step-time 0.36 loss 0.4077
+Running test set
+Avg Test Loss: 0.44321650629108017, Avg Test Accuracy: 0.800337814801448
+-------Step 8300/35000------
+global step 8350 learning rate 0.0054379 step-time 0.36 loss 0.4019
+Running test set
+Avg Test Loss: 0.437800314378094, Avg Test Accuracy: 0.7966216093785053
+-------Step 8350/35000------
+global step 8400 learning rate 0.0054379 step-time 0.35 loss 0.3973
+Running test set
+Avg Test Loss: 0.44144339899759033, Avg Test Accuracy: 0.7978378236293793
+-------Step 8400/35000------
+global step 8450 learning rate 0.0054379 step-time 0.35 loss 0.3798
+Running test set
+Avg Test Loss: 0.4393569702232206, Avg Test Accuracy: 0.801891877844527
+-------Step 8450/35000------
+global step 8500 learning rate 0.0054379 step-time 0.35 loss 0.3972
+Running test set
+Avg Test Loss: 0.4361302739865071, Avg Test Accuracy: 0.8047297081431827
+-------Step 8500/35000------
+global step 8550 learning rate 0.0054379 step-time 0.35 loss 0.3877
+Running test set
+Avg Test Loss: 0.43387496592225255, Avg Test Accuracy: 0.8019594469585934
+-------Step 8550/35000------
+global step 8600 learning rate 0.0054379 step-time 0.35 loss 0.3879
+Running test set
+Avg Test Loss: 0.4329133456623232, Avg Test Accuracy: 0.8054729563158911
+-------Step 8600/35000------
+global step 8650 learning rate 0.0054379 step-time 0.36 loss 0.3792
+Running test set
+Avg Test Loss: 0.4282497151477917, Avg Test Accuracy: 0.8085810654872173
+-------Step 8650/35000------
+global step 8700 learning rate 0.0054379 step-time 0.36 loss 0.3778
+Running test set
+Avg Test Loss: 0.43158995984373866, Avg Test Accuracy: 0.8016216013882611
+-------Step 8700/35000------
+global step 8750 learning rate 0.0054379 step-time 0.36 loss 0.3733
+Running test set
+Avg Test Loss: 0.425209524663719, Avg Test Accuracy: 0.8042567396486128
+-------Step 8750/35000------
+global step 8800 learning rate 0.0054379 step-time 0.36 loss 0.3816
+Running test set
+Avg Test Loss: 0.4280701191038699, Avg Test Accuracy: 0.8062837679643888
+-------Step 8800/35000------
+global step 8850 learning rate 0.0052748 step-time 0.35 loss 0.3650
+Running test set
+Avg Test Loss: 0.4227327909824011, Avg Test Accuracy: 0.8116215999061996
+-------Step 8850/35000------
+global step 8900 learning rate 0.0052748 step-time 0.36 loss 0.3692
+Running test set
+Avg Test Loss: 0.4190831812652382, Avg Test Accuracy: 0.8102702498435974
+-------Step 8900/35000------
+global step 8950 learning rate 0.0052748 step-time 0.36 loss 0.3714
+Running test set
+Avg Test Loss: 0.43277471935426864, Avg Test Accuracy: 0.8099999862748224
+-------Step 8950/35000------
+global step 9000 learning rate 0.0052748 step-time 0.37 loss 0.3663
+Running test set
+Avg Test Loss: 0.42723127233015523, Avg Test Accuracy: 0.8108783581772366
+-------Step 9000/35000------
+global step 9050 learning rate 0.0052748 step-time 0.36 loss 0.3663
+Running test set
+Avg Test Loss: 0.4160858646437928, Avg Test Accuracy: 0.8182432168238872
+-------Step 9050/35000------
+global step 9100 learning rate 0.0052748 step-time 0.35 loss 0.3605
+Running test set
+Avg Test Loss: 0.41355288431451126, Avg Test Accuracy: 0.8147297131048666
+-------Step 9100/35000------
+global step 9150 learning rate 0.0052748 step-time 0.35 loss 0.3467
+Running test set
+Avg Test Loss: 0.4129977443733731, Avg Test Accuracy: 0.8154053865252314
+-------Step 9150/35000------
+global step 9200 learning rate 0.0052748 step-time 0.35 loss 0.3506
+Running test set
+Avg Test Loss: 0.421746257994626, Avg Test Accuracy: 0.813851334758707
+-------Step 9200/35000------
+global step 9250 learning rate 0.0052748 step-time 0.36 loss 0.3623
+Running test set
+Avg Test Loss: 0.4207111963549176, Avg Test Accuracy: 0.8164188910175014
+-------Step 9250/35000------
+global step 9300 learning rate 0.0051166 step-time 0.36 loss 0.3544
+Running test set
+Avg Test Loss: 0.42452678003826655, Avg Test Accuracy: 0.8108783581772366
+-------Step 9300/35000------
+global step 9350 learning rate 0.0051166 step-time 0.35 loss 0.3451
+Running test set
+Avg Test Loss: 0.40034671369436625, Avg Test Accuracy: 0.8206756541857848
+-------Step 9350/35000------
+global step 9400 learning rate 0.0051166 step-time 0.35 loss 0.3493
+Running test set
+Avg Test Loss: 0.423495893542831, Avg Test Accuracy: 0.8153378117728878
+-------Step 9400/35000------
+global step 9450 learning rate 0.0051166 step-time 0.35 loss 0.3551
+Running test set
+Avg Test Loss: 0.4086176845672968, Avg Test Accuracy: 0.8163513323745212
+-------Step 9450/35000------
+global step 9500 learning rate 0.0049631 step-time 0.35 loss 0.3454
+Running test set
+Avg Test Loss: 0.4065213199402835, Avg Test Accuracy: 0.8206080826553138
+-------Step 9500/35000------
+global step 9550 learning rate 0.0049631 step-time 0.35 loss 0.3557
+Running test set
+Avg Test Loss: 0.40768775102254506, Avg Test Accuracy: 0.8162161981737291
+-------Step 9550/35000------
+global step 9600 learning rate 0.0048142 step-time 0.36 loss 0.3290
+Running test set
+Avg Test Loss: 0.4169387064270071, Avg Test Accuracy: 0.8161486330870036
+-------Step 9600/35000------
+global step 9650 learning rate 0.0048142 step-time 0.36 loss 0.3437
+Running test set
+Avg Test Loss: 0.40159660416680415, Avg Test Accuracy: 0.8195270066325729
+-------Step 9650/35000------
+global step 9700 learning rate 0.0048142 step-time 0.36 loss 0.3425
+Running test set
+Avg Test Loss: 0.4063755120780017, Avg Test Accuracy: 0.8212161885725485
+-------Step 9700/35000------
+global step 9750 learning rate 0.0048142 step-time 0.35 loss 0.3417
+Running test set
+Avg Test Loss: 0.39497985590148615, Avg Test Accuracy: 0.828851333341083
+-------Step 9750/35000------
+global step 9800 learning rate 0.0048142 step-time 0.35 loss 0.3278
+Running test set
+Avg Test Loss: 0.3979750219229105, Avg Test Accuracy: 0.8220945822226035
+-------Step 9800/35000------
+global step 9850 learning rate 0.0048142 step-time 0.35 loss 0.3287
+Running test set
+Avg Test Loss: 0.3951272142900003, Avg Test Accuracy: 0.826756738327645
+-------Step 9850/35000------
+global step 9900 learning rate 0.0048142 step-time 0.36 loss 0.3338
+Running test set
+Avg Test Loss: 0.3873195547509838, Avg Test Accuracy: 0.8266215984885757
+-------Step 9900/35000------
+global step 9950 learning rate 0.0048142 step-time 0.35 loss 0.3279
+Running test set
+Avg Test Loss: 0.4093782962174029, Avg Test Accuracy: 0.8260810536307257
+-------Step 9950/35000------
+global step 10000 learning rate 0.0048142 step-time 0.35 loss 0.3260
+Running test set
+Avg Test Loss: 0.3933517989274618, Avg Test Accuracy: 0.8243243017712155
+-------Step 10000/35000------
+global step 10050 learning rate 0.0048142 step-time 0.35 loss 0.3303
+Running test set
+Avg Test Loss: 0.39351979018868627, Avg Test Accuracy: 0.826351341363546
+-------Step 10050/35000------
+global step 10100 learning rate 0.0048142 step-time 0.36 loss 0.3240
+Running test set
+Avg Test Loss: 0.3961995356791728, Avg Test Accuracy: 0.8246621384813979
+-------Step 10100/35000------
+global step 10150 learning rate 0.0048142 step-time 0.35 loss 0.3307
+Running test set
+Avg Test Loss: 0.39491794399313024, Avg Test Accuracy: 0.8284459331551114
+-------Step 10150/35000------
+global step 10200 learning rate 0.0046697 step-time 0.36 loss 0.3313
+Running test set
+Avg Test Loss: 0.3976691643128524, Avg Test Accuracy: 0.827837819183195
+-------Step 10200/35000------
+global step 10250 learning rate 0.0045297 step-time 0.35 loss 0.3322
+Running test set
+Avg Test Loss: 0.39408504076906153, Avg Test Accuracy: 0.826283760167457
+-------Step 10250/35000------
+global step 10300 learning rate 0.0043938 step-time 0.36 loss 0.3139
+Running test set
+Avg Test Loss: 0.40362046940906626, Avg Test Accuracy: 0.8311486268365705
+-------Step 10300/35000------
+global step 10350 learning rate 0.0043938 step-time 0.36 loss 0.3127
+Running test set
+Avg Test Loss: 0.39929656321937973, Avg Test Accuracy: 0.8270270083401654
+-------Step 10350/35000------
+global step 10400 learning rate 0.0043938 step-time 0.35 loss 0.3117
+Running test set
+Avg Test Loss: 0.4046173236660055, Avg Test Accuracy: 0.8241216000672933
+-------Step 10400/35000------
+global step 10450 learning rate 0.0043938 step-time 0.35 loss 0.3210
+Running test set
+Avg Test Loss: 0.38575364085468083, Avg Test Accuracy: 0.8305405241412085
+-------Step 10450/35000------
+global step 10500 learning rate 0.0042620 step-time 0.35 loss 0.3093
+Running test set
+Avg Test Loss: 0.402742489366918, Avg Test Accuracy: 0.82972970846537
+-------Step 10500/35000------
+global step 10550 learning rate 0.0042620 step-time 0.35 loss 0.3211
+Running test set
+Avg Test Loss: 0.38734858624033025, Avg Test Accuracy: 0.8311486284475069
+-------Step 10550/35000------
+global step 10600 learning rate 0.0041341 step-time 0.36 loss 0.3108
+Running test set
+Avg Test Loss: 0.39744658687630213, Avg Test Accuracy: 0.8310134974685875
+-------Step 10600/35000------
+global step 10650 learning rate 0.0041341 step-time 0.36 loss 0.3066
+Running test set
+Avg Test Loss: 0.39463201346429616, Avg Test Accuracy: 0.8312837739248533
+-------Step 10650/35000------
+global step 10700 learning rate 0.0041341 step-time 0.36 loss 0.3171
+Running test set
+Avg Test Loss: 0.3804295058991458, Avg Test Accuracy: 0.8349324223157522
+-------Step 10700/35000------
+global step 10750 learning rate 0.0041341 step-time 0.35 loss 0.3076
+Running test set
+Avg Test Loss: 0.38400155346135834, Avg Test Accuracy: 0.8293243050575256
+-------Step 10750/35000------
+global step 10800 learning rate 0.0041341 step-time 0.36 loss 0.3022
+Running test set
+Avg Test Loss: 0.38652543965223674, Avg Test Accuracy: 0.8316216001639495
+-------Step 10800/35000------
+global step 10850 learning rate 0.0041341 step-time 0.35 loss 0.3071
+Running test set
+Avg Test Loss: 0.3904535077713631, Avg Test Accuracy: 0.8361486341502216
+-------Step 10850/35000------
+global step 10900 learning rate 0.0041341 step-time 0.36 loss 0.3041
+Running test set
+Avg Test Loss: 0.3764632444929432, Avg Test Accuracy: 0.8374324142932892
+-------Step 10900/35000------
+global step 10950 learning rate 0.0041341 step-time 0.35 loss 0.3011
+Running test set
+Avg Test Loss: 0.3864816846074285, Avg Test Accuracy: 0.8348648362868542
+-------Step 10950/35000------
+global step 11000 learning rate 0.0041341 step-time 0.36 loss 0.3045
+Running test set
+Avg Test Loss: 0.38952873002838445, Avg Test Accuracy: 0.8346621498868272
+-------Step 11000/35000------
+global step 11050 learning rate 0.0041341 step-time 0.35 loss 0.2945
+Running test set
+Avg Test Loss: 0.3943282685972549, Avg Test Accuracy: 0.8401351216677073
+-------Step 11050/35000------
+global step 11100 learning rate 0.0041341 step-time 0.36 loss 0.2978
+Running test set
+Avg Test Loss: 0.3857845458629969, Avg Test Accuracy: 0.8377026915550232
+-------Step 11100/35000------
+global step 11150 learning rate 0.0041341 step-time 0.35 loss 0.3031
+Running test set
+Avg Test Loss: 0.3905910273661485, Avg Test Accuracy: 0.8387837635504233
+-------Step 11150/35000------
+global step 11200 learning rate 0.0041341 step-time 0.36 loss 0.2925
+Running test set
+Avg Test Loss: 0.3786137575233305, Avg Test Accuracy: 0.8367567320127745
+-------Step 11200/35000------
+global step 11250 learning rate 0.0041341 step-time 0.35 loss 0.2918
+Running test set
+Avg Test Loss: 0.38187132816056946, Avg Test Accuracy: 0.8375675541323584
+-------Step 11250/35000------
+global step 11300 learning rate 0.0041341 step-time 0.36 loss 0.2994
+Running test set
+Avg Test Loss: 0.3928620182984584, Avg Test Accuracy: 0.8346621378048046
+-------Step 11300/35000------
+global step 11350 learning rate 0.0041341 step-time 0.35 loss 0.2931
+Running test set
+Avg Test Loss: 0.37874051002231807, Avg Test Accuracy: 0.8378378217284744
+-------Step 11350/35000------
+global step 11400 learning rate 0.0041341 step-time 0.35 loss 0.2934
+Running test set
+Avg Test Loss: 0.38339448377892776, Avg Test Accuracy: 0.8390540351738801
+-------Step 11400/35000------
+global step 11450 learning rate 0.0041341 step-time 0.35 loss 0.2943
+Running test set
+Avg Test Loss: 0.3825772879896937, Avg Test Accuracy: 0.8360810666470915
+-------Step 11450/35000------
+global step 11500 learning rate 0.0041341 step-time 0.36 loss 0.2832
+Running test set
+Avg Test Loss: 0.38014700283875336, Avg Test Accuracy: 0.8356080949306488
+-------Step 11500/35000------
+global step 11550 learning rate 0.0041341 step-time 0.35 loss 0.2879
+Running test set
+Avg Test Loss: 0.3779158471403895, Avg Test Accuracy: 0.8406756616927482
+-------Step 11550/35000------
+global step 11600 learning rate 0.0041341 step-time 0.35 loss 0.2849
+Running test set
+Avg Test Loss: 0.3730468101598121, Avg Test Accuracy: 0.8414864709248414
+-------Step 11600/35000------
+global step 11650 learning rate 0.0041341 step-time 0.35 loss 0.2799
+Running test set
+Avg Test Loss: 0.39162273020357696, Avg Test Accuracy: 0.8374324102659483
+-------Step 11650/35000------
+global step 11700 learning rate 0.0041341 step-time 0.36 loss 0.2937
+Running test set
+Avg Test Loss: 0.39006461323918523, Avg Test Accuracy: 0.8340540351094426
+-------Step 11700/35000------
+global step 11750 learning rate 0.0040101 step-time 0.36 loss 0.2817
+Running test set
+Avg Test Loss: 0.4058396260480623, Avg Test Accuracy: 0.8329729461992109
+-------Step 11750/35000------
+global step 11800 learning rate 0.0040101 step-time 0.36 loss 0.2830
+Running test set
+Avg Test Loss: 0.3723507753095111, Avg Test Accuracy: 0.8406756544435346
+-------Step 11800/35000------
+global step 11850 learning rate 0.0040101 step-time 0.36 loss 0.2782
+Running test set
+Avg Test Loss: 0.3837331940193434, Avg Test Accuracy: 0.8453378258524714
+-------Step 11850/35000------
+global step 11900 learning rate 0.0040101 step-time 0.35 loss 0.2901
+Running test set
+Avg Test Loss: 0.3792754443916115, Avg Test Accuracy: 0.8433783690671663
+-------Step 11900/35000------
+global step 11950 learning rate 0.0038898 step-time 0.36 loss 0.2855
+Running test set
+Avg Test Loss: 0.37786772283347875, Avg Test Accuracy: 0.8418918775545584
+-------Step 11950/35000------
+global step 12000 learning rate 0.0038898 step-time 0.36 loss 0.2730
+Running test set
+Avg Test Loss: 0.3784533545777604, Avg Test Accuracy: 0.8386486301550994
+-------Step 12000/35000------
+global step 12050 learning rate 0.0038898 step-time 0.36 loss 0.2678
+Running test set
+Avg Test Loss: 0.37909063978775126, Avg Test Accuracy: 0.8421621419288017
+-------Step 12050/35000------
+global step 12100 learning rate 0.0038898 step-time 0.35 loss 0.2680
+Running test set
+Avg Test Loss: 0.3836442409334956, Avg Test Accuracy: 0.8393918775223397
+-------Step 12100/35000------
+global step 12150 learning rate 0.0038898 step-time 0.35 loss 0.2794
+Running test set
+Avg Test Loss: 0.37612367884532827, Avg Test Accuracy: 0.8419594402248795
+-------Step 12150/35000------
+global step 12200 learning rate 0.0037731 step-time 0.35 loss 0.2657
+Running test set
+Avg Test Loss: 0.372154325649545, Avg Test Accuracy: 0.8383783545043018
+-------Step 12200/35000------
+global step 12250 learning rate 0.0037731 step-time 0.36 loss 0.2719
+Running test set
+Avg Test Loss: 0.3853905587582975, Avg Test Accuracy: 0.8361486260955399
+-------Step 12250/35000------
+global step 12300 learning rate 0.0037731 step-time 0.35 loss 0.2762
+Running test set
+Avg Test Loss: 0.3719491402845125, Avg Test Accuracy: 0.8404729527396124
+-------Step 12300/35000------
+global step 12350 learning rate 0.0037731 step-time 0.36 loss 0.2725
+Running test set
+Avg Test Loss: 0.3730814819400375, Avg Test Accuracy: 0.8446621516266385
+-------Step 12350/35000------
+global step 12400 learning rate 0.0037731 step-time 0.36 loss 0.2626
+Running test set
+Avg Test Loss: 0.38288531835014755, Avg Test Accuracy: 0.8410810667115289
+-------Step 12400/35000------
+global step 12450 learning rate 0.0037731 step-time 0.36 loss 0.2801
+Running test set
+Avg Test Loss: 0.3731754869222641, Avg Test Accuracy: 0.8429053868796375
+-------Step 12450/35000------
+global step 12500 learning rate 0.0036599 step-time 0.35 loss 0.2621
+Running test set
+Avg Test Loss: 0.3803813594418603, Avg Test Accuracy: 0.8410134943755897
+-------Step 12500/35000------
+global step 12550 learning rate 0.0036599 step-time 0.35 loss 0.2652
+Running test set
+Avg Test Loss: 0.3820249023469719, Avg Test Accuracy: 0.8416891669904863
+-------Step 12550/35000------
+global step 12600 learning rate 0.0036599 step-time 0.36 loss 0.2764
+Running test set
+Avg Test Loss: 0.3758877274152395, Avg Test Accuracy: 0.843243224395288
+-------Step 12600/35000------
+global step 12650 learning rate 0.0036599 step-time 0.36 loss 0.2611
+Running test set
+Avg Test Loss: 0.3822246616756594, Avg Test Accuracy: 0.8393918726895306
+-------Step 12650/35000------
+global step 12700 learning rate 0.0036599 step-time 0.36 loss 0.2724
+Running test set
+Avg Test Loss: 0.3691904343463279, Avg Test Accuracy: 0.841418897783434
+-------Step 12700/35000------
+global step 12750 learning rate 0.0036599 step-time 0.35 loss 0.2745
+Running test set
+Avg Test Loss: 0.3787457548283242, Avg Test Accuracy: 0.8449999754493301
+-------Step 12750/35000------
+global step 12800 learning rate 0.0036599 step-time 0.36 loss 0.2456
+Running test set
+Avg Test Loss: 0.3753408125123462, Avg Test Accuracy: 0.8443918800031817
+-------Step 12800/35000------
+global step 12850 learning rate 0.0036599 step-time 0.36 loss 0.2611
+Running test set
+Avg Test Loss: 0.3795096930619833, Avg Test Accuracy: 0.8452026860134022
+-------Step 12850/35000------
+global step 12900 learning rate 0.0036599 step-time 0.35 loss 0.2740
+Running test set
+Avg Test Loss: 0.37112512741539927, Avg Test Accuracy: 0.8428378266257208
+-------Step 12900/35000------
+global step 12950 learning rate 0.0036599 step-time 0.36 loss 0.2653
+Running test set
+Avg Test Loss: 0.3743888030986528, Avg Test Accuracy: 0.8442567417750487
+-------Step 12950/35000------
+global step 13000 learning rate 0.0036599 step-time 0.37 loss 0.2537
+Running test set
+Avg Test Loss: 0.3742033919772586, Avg Test Accuracy: 0.8452026868188703
+-------Step 13000/35000------
+global step 13050 learning rate 0.0036599 step-time 0.35 loss 0.2639
+Running test set
+Avg Test Loss: 0.38068396416870326, Avg Test Accuracy: 0.8458108007907867
+-------Step 13050/35000------
+global step 13100 learning rate 0.0036599 step-time 0.36 loss 0.2585
+Running test set
+Avg Test Loss: 0.36788161260050695, Avg Test Accuracy: 0.8485810724464623
+-------Step 13100/35000------
+global step 13150 learning rate 0.0036599 step-time 0.35 loss 0.2665
+Running test set
+Avg Test Loss: 0.3711568209770563, Avg Test Accuracy: 0.8469594459275942
+-------Step 13150/35000------
+global step 13200 learning rate 0.0035501 step-time 0.35 loss 0.2515
+Running test set
+Avg Test Loss: 0.3774420697544072, Avg Test Accuracy: 0.8453378250470033
+-------Step 13200/35000------
+global step 13250 learning rate 0.0035501 step-time 0.35 loss 0.2635
+Running test set
+Avg Test Loss: 0.36151570403898087, Avg Test Accuracy: 0.8456080950595237
+-------Step 13250/35000------
+global step 13300 learning rate 0.0035501 step-time 0.36 loss 0.2633
+Running test set
+Avg Test Loss: 0.37478711717837565, Avg Test Accuracy: 0.8449999907532254
+-------Step 13300/35000------
+global step 13350 learning rate 0.0035501 step-time 0.35 loss 0.2487
+Running test set
+Avg Test Loss: 0.37757612140597524, Avg Test Accuracy: 0.848851334404301
+-------Step 13350/35000------
+global step 13400 learning rate 0.0035501 step-time 0.35 loss 0.2545
+Running test set
+Avg Test Loss: 0.38350758520332545, Avg Test Accuracy: 0.8400675525536409
+-------Step 13400/35000------
+global step 13450 learning rate 0.0035501 step-time 0.35 loss 0.2468
+Running test set
+Avg Test Loss: 0.3721380535815213, Avg Test Accuracy: 0.8468243076994613
+-------Step 13450/35000------
+global step 13500 learning rate 0.0035501 step-time 0.35 loss 0.2586
+Running test set
+Avg Test Loss: 0.3687094812457626, Avg Test Accuracy: 0.8464188978478715
+-------Step 13500/35000------
+global step 13550 learning rate 0.0034436 step-time 0.35 loss 0.2480
+Running test set
+Avg Test Loss: 0.36319929602983836, Avg Test Accuracy: 0.8472297111073056
+-------Step 13550/35000------
+global step 13600 learning rate 0.0034436 step-time 0.36 loss 0.2398
+Running test set
+Avg Test Loss: 0.37024978326784597, Avg Test Accuracy: 0.8499999835684493
+-------Step 13600/35000------
+global step 13650 learning rate 0.0034436 step-time 0.36 loss 0.2579
+Running test set
+Avg Test Loss: 0.36681343534508265, Avg Test Accuracy: 0.851486465415439
+-------Step 13650/35000------
+global step 13700 learning rate 0.0034436 step-time 0.35 loss 0.2456
+Running test set
+Avg Test Loss: 0.36388660725709554, Avg Test Accuracy: 0.8472972866651174
+-------Step 13700/35000------
+global step 13750 learning rate 0.0034436 step-time 0.35 loss 0.2414
+Running test set
+Avg Test Loss: 0.3834195161187971, Avg Test Accuracy: 0.8468918663424414
+-------Step 13750/35000------
+global step 13800 learning rate 0.0034436 step-time 0.36 loss 0.2445
+Running test set
+Avg Test Loss: 0.36441441846860423, Avg Test Accuracy: 0.8513513304091789
+-------Step 13800/35000------
+global step 13850 learning rate 0.0034436 step-time 0.36 loss 0.2542
+Running test set
+Avg Test Loss: 0.37166537545822764, Avg Test Accuracy: 0.8463513327611459
+-------Step 13850/35000------
+global step 13900 learning rate 0.0033403 step-time 0.35 loss 0.2438
+Running test set
+Avg Test Loss: 0.3626934225494797, Avg Test Accuracy: 0.8476351177370226
+-------Step 13900/35000------
+global step 13950 learning rate 0.0033403 step-time 0.36 loss 0.2634
+Running test set
+Avg Test Loss: 0.3605946282277236, Avg Test Accuracy: 0.8463513327611459
+-------Step 13950/35000------
+global step 14000 learning rate 0.0032401 step-time 0.36 loss 0.2507
+Running test set
+Avg Test Loss: 0.36105219898997126, Avg Test Accuracy: 0.8497297208051424
+-------Step 14000/35000------
+global step 14050 learning rate 0.0032401 step-time 0.35 loss 0.2465
+Running test set
+Avg Test Loss: 0.37308529140176, Avg Test Accuracy: 0.8464864685728744
+-------Step 14050/35000------
+global step 14100 learning rate 0.0032401 step-time 0.36 loss 0.2399
+Running test set
+Avg Test Loss: 0.38029060371824214, Avg Test Accuracy: 0.8479053893604794
+-------Step 14100/35000------
+global step 14150 learning rate 0.0032401 step-time 0.36 loss 0.2529
+Running test set
+Avg Test Loss: 0.3575745893491281, Avg Test Accuracy: 0.8496621484692032
+-------Step 14150/35000------
+global step 14200 learning rate 0.0031429 step-time 0.36 loss 0.2432
+Running test set
+Avg Test Loss: 0.3719129387188602, Avg Test Accuracy: 0.8491216060277578
+-------Step 14200/35000------
+global step 14250 learning rate 0.0031429 step-time 0.36 loss 0.2529
+Running test set
+Avg Test Loss: 0.3809885141011831, Avg Test Accuracy: 0.845878364266576
+-------Step 14250/35000------
+global step 14300 learning rate 0.0031429 step-time 0.35 loss 0.2391
+Running test set
+Avg Test Loss: 0.36797007153163086, Avg Test Accuracy: 0.8456080958649919
+-------Step 14300/35000------
+global step 14350 learning rate 0.0031429 step-time 0.36 loss 0.2391
+Running test set
+Avg Test Loss: 0.3632993855186411, Avg Test Accuracy: 0.8485134944722459
+-------Step 14350/35000------
+global step 14400 learning rate 0.0031429 step-time 0.35 loss 0.2375
+Running test set
+Avg Test Loss: 0.36895484134957596, Avg Test Accuracy: 0.8501351185747095
+-------Step 14400/35000------
+global step 14450 learning rate 0.0031429 step-time 0.36 loss 0.2386
+Running test set
+Avg Test Loss: 0.3896482864747176, Avg Test Accuracy: 0.8438513399781408
+-------Step 14450/35000------
+global step 14500 learning rate 0.0031429 step-time 0.36 loss 0.2436
+Running test set
+Avg Test Loss: 0.37256208344085795, Avg Test Accuracy: 0.8477702543542192
+-------Step 14500/35000------
+global step 14550 learning rate 0.0030486 step-time 0.35 loss 0.2381
+Running test set
+Avg Test Loss: 0.3685064621873804, Avg Test Accuracy: 0.8505405195661493
+-------Step 14550/35000------
+global step 14600 learning rate 0.0030486 step-time 0.35 loss 0.2438
+Running test set
+Avg Test Loss: 0.3638851751346846, Avg Test Accuracy: 0.8496621492746714
+-------Step 14600/35000------
+global step 14650 learning rate 0.0029571 step-time 0.35 loss 0.2450
+Running test set
+Avg Test Loss: 0.36460272041527003, Avg Test Accuracy: 0.849527013462943
+-------Step 14650/35000------
+global step 14700 learning rate 0.0028684 step-time 0.36 loss 0.2329
+Running test set
+Avg Test Loss: 0.39002627617604024, Avg Test Accuracy: 0.8494594346832585
+-------Step 14700/35000------
+global step 14750 learning rate 0.0028684 step-time 0.36 loss 0.2405
+Running test set
+Avg Test Loss: 0.378712530474405, Avg Test Accuracy: 0.8474999835362306
+-------Step 14750/35000------
+global step 14800 learning rate 0.0028684 step-time 0.35 loss 0.2234
+Running test set
+Avg Test Loss: 0.38045152900992213, Avg Test Accuracy: 0.8487162034253817
+-------Step 14800/35000------
+global step 14850 learning rate 0.0028684 step-time 0.35 loss 0.2383
+Running test set
+Avg Test Loss: 0.3730856768182806, Avg Test Accuracy: 0.8500675518770475
+-------Step 14850/35000------
+global step 14900 learning rate 0.0028684 step-time 0.36 loss 0.2351
+Running test set
+Avg Test Loss: 0.3810908260780412, Avg Test Accuracy: 0.8482432212378528
+-------Step 14900/35000------
+global step 14950 learning rate 0.0028684 step-time 0.36 loss 0.2311
+Running test set
+Avg Test Loss: 0.3700740023239239, Avg Test Accuracy: 0.8479729568636095
+-------Step 14950/35000------
+global step 15000 learning rate 0.0028684 step-time 0.35 loss 0.2294
+Running test set
+Avg Test Loss: 0.3739588174062806, Avg Test Accuracy: 0.8484459342183294
+-------Step 15000/35000------
+global step 15050 learning rate 0.0028684 step-time 0.36 loss 0.2256
+Running test set
+Avg Test Loss: 0.38208103582665726, Avg Test Accuracy: 0.8487837773722571
+-------Step 15050/35000------
+global step 15100 learning rate 0.0028684 step-time 0.35 loss 0.2287
+Running test set
+Avg Test Loss: 0.37668773209726486, Avg Test Accuracy: 0.8502026884942442
+-------Step 15100/35000------
+global step 15150 learning rate 0.0028684 step-time 0.36 loss 0.2280
+Running test set
+Avg Test Loss: 0.37305909153577443, Avg Test Accuracy: 0.8456756553134402
+-------Step 15150/35000------
+global step 15200 learning rate 0.0028684 step-time 0.35 loss 0.2345
+Running test set
+Avg Test Loss: 0.36680662027887395, Avg Test Accuracy: 0.852499983600668
+-------Step 15200/35000------
+global step 15250 learning rate 0.0027824 step-time 0.36 loss 0.2352
+Running test set
+Avg Test Loss: 0.3790877268121049, Avg Test Accuracy: 0.8502702559973743
+-------Step 15250/35000------
+global step 15300 learning rate 0.0026989 step-time 0.36 loss 0.2285
+Running test set
+Avg Test Loss: 0.3702247142791748, Avg Test Accuracy: 0.8487837644847663
+-------Step 15300/35000------
+global step 15350 learning rate 0.0026989 step-time 0.35 loss 0.2238
+Running test set
+Avg Test Loss: 0.3705984877573477, Avg Test Accuracy: 0.8510134953099329
+-------Step 15350/35000------
+global step 15400 learning rate 0.0026989 step-time 0.36 loss 0.2363
+Running test set
+Avg Test Loss: 0.36514823964318716, Avg Test Accuracy: 0.8522972802858095
+-------Step 15400/35000------
+global step 15450 learning rate 0.0026179 step-time 0.35 loss 0.2262
+Running test set
+Avg Test Loss: 0.39303814801009923, Avg Test Accuracy: 0.8444594418680346
+-------Step 15450/35000------
+global step 15500 learning rate 0.0026179 step-time 0.36 loss 0.2311
+Running test set
+Avg Test Loss: 0.3657960996434495, Avg Test Accuracy: 0.8541891808445389
+-------Step 15500/35000------
+global step 15550 learning rate 0.0026179 step-time 0.36 loss 0.2257
+Running test set
+Avg Test Loss: 0.3786010238769892, Avg Test Accuracy: 0.8505405348700446
+-------Step 15550/35000------
+global step 15600 learning rate 0.0026179 step-time 0.35 loss 0.2277
+Running test set
+Avg Test Loss: 0.36509371206567093, Avg Test Accuracy: 0.8512162042630685
+-------Step 15600/35000------
+global step 15650 learning rate 0.0026179 step-time 0.35 loss 0.2255
+Running test set
+Avg Test Loss: 0.37206922713163737, Avg Test Accuracy: 0.8478378242737538
+-------Step 15650/35000------
+global step 15700 learning rate 0.0026179 step-time 0.35 loss 0.2213
+Running test set
+Avg Test Loss: 0.3800426657135422, Avg Test Accuracy: 0.8536486335702844
+-------Step 15700/35000------
+global step 15750 learning rate 0.0026179 step-time 0.36 loss 0.2218
+Running test set
+Avg Test Loss: 0.37925540293390686, Avg Test Accuracy: 0.849729709528588
+-------Step 15750/35000------
+global step 15800 learning rate 0.0026179 step-time 0.36 loss 0.2323
+Running test set
+Avg Test Loss: 0.37183522896186727, Avg Test Accuracy: 0.8503378291387815
+-------Step 15800/35000------
+global step 15850 learning rate 0.0025394 step-time 0.35 loss 0.2310
+Running test set
+Avg Test Loss: 0.3615327280115437, Avg Test Accuracy: 0.8532432293569719
+-------Step 15850/35000------
+global step 15900 learning rate 0.0025394 step-time 0.35 loss 0.2079
+Running test set
+Avg Test Loss: 0.3852975098667918, Avg Test Accuracy: 0.8523648485944078
+-------Step 15900/35000------
+global step 15950 learning rate 0.0025394 step-time 0.35 loss 0.2199
+Running test set
+Avg Test Loss: 0.3676774014492293, Avg Test Accuracy: 0.8506080902911521
+-------Step 15950/35000------
+global step 16000 learning rate 0.0025394 step-time 0.35 loss 0.2298
+Running test set
+Avg Test Loss: 0.37346488036013936, Avg Test Accuracy: 0.8466891654439874
+-------Step 16000/35000------
+global step 16050 learning rate 0.0025394 step-time 0.35 loss 0.2235
+Running test set
+Avg Test Loss: 0.3774320581877554, Avg Test Accuracy: 0.8524324249576878
+-------Step 16050/35000------
+global step 16100 learning rate 0.0025394 step-time 0.36 loss 0.2152
+Running test set
+Avg Test Loss: 0.37472774289749766, Avg Test Accuracy: 0.8507432204646033
+-------Step 16100/35000------
+global step 16150 learning rate 0.0025394 step-time 0.35 loss 0.2085
+Running test set
+Avg Test Loss: 0.3834962985805563, Avg Test Accuracy: 0.8508107879677335
+-------Step 16150/35000------
+global step 16200 learning rate 0.0025394 step-time 0.36 loss 0.2257
+Running test set
+Avg Test Loss: 0.37218538933509104, Avg Test Accuracy: 0.8509459342505481
+-------Step 16200/35000------
+global step 16250 learning rate 0.0024632 step-time 0.35 loss 0.2221
+Running test set
+Avg Test Loss: 0.3662808656289771, Avg Test Accuracy: 0.853040528458518
+-------Step 16250/35000------
+global step 16300 learning rate 0.0024632 step-time 0.35 loss 0.2272
+Running test set
+Avg Test Loss: 0.36256331688648946, Avg Test Accuracy: 0.8511486278997885
+-------Step 16300/35000------
+global step 16350 learning rate 0.0023893 step-time 0.35 loss 0.2239
+Running test set
+Avg Test Loss: 0.3707873688356296, Avg Test Accuracy: 0.8537162034898191
+-------Step 16350/35000------
+global step 16400 learning rate 0.0023893 step-time 0.35 loss 0.2132
+Running test set
+Avg Test Loss: 0.36925105186733037, Avg Test Accuracy: 0.8535134985640243
+-------Step 16400/35000------
+global step 16450 learning rate 0.0023893 step-time 0.36 loss 0.2238
+Running test set
+Avg Test Loss: 0.36904040099801244, Avg Test Accuracy: 0.8502026884942442
+-------Step 16450/35000------
+global step 16500 learning rate 0.0023893 step-time 0.36 loss 0.2234
+Running test set
+Avg Test Loss: 0.36232448147760854, Avg Test Accuracy: 0.850675656183346
+-------Step 16500/35000------
+global step 16550 learning rate 0.0023893 step-time 0.35 loss 0.2162
+Running test set
+Avg Test Loss: 0.37032995795881424, Avg Test Accuracy: 0.8500675470442385
+-------Step 16550/35000------
+global step 16600 learning rate 0.0023893 step-time 0.37 loss 0.2211
+Running test set
+Avg Test Loss: 0.37255939599629995, Avg Test Accuracy: 0.8512837717661986
+-------Step 16600/35000------
+global step 16650 learning rate 0.0023893 step-time 0.36 loss 0.2120
+Running test set
+Avg Test Loss: 0.36781449172947855, Avg Test Accuracy: 0.851486474275589
+-------Step 16650/35000------
+global step 16700 learning rate 0.0023893 step-time 0.36 loss 0.2094
+Running test set
+Avg Test Loss: 0.36998887722556656, Avg Test Accuracy: 0.8519594451865634
+-------Step 16700/35000------

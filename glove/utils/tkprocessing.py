@@ -35,8 +35,8 @@ def new_tokenizer(review, punct, stop):
 if __name__ == '__main__':
     #Tokenize every file of dataDirs and merge them together
     parser = argparse.ArgumentParser(description='Tokenizer for Glove')
-    parser.add_argument('--punct', action='store_true', help='include punctuation into corpus')
-    parser.add_argument('--stop', action='store_true', help='include stopwords into corpus')
+    parser.add_argument('--punct', action='store_true', help='remove punctuation from corpus')
+    parser.add_argument('--stop', action='store_true', help='remove stopwords from corpus')
     args = parser.parse_args()
 
     for dir in dataDirs:

@@ -1,0 +1,1382 @@
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so locally
+no vocab mapping found, running preprocessor...
+Creating vocab mapping (max size: -1, min frequency: 5)...
+vocab mapping created: size: 44988 discarded: 123995
+No processed data files found, running preprocessor...
+Procesing data with process: 0
+Procesing data with process: 1
+Procesing data with process: 2
+Procesing data with process: 3
+Processing: 938_10.txt the 100th file... on process: 0
+Processing: 1573_8.txt the 200th file... on process: 0
+Processing: 5142_10.txt the 300th file... on process: 0
+Processing: 7941_10.txt the 400th file... on process: 0
+Processing: 4049_9.txt the 500th file... on process: 0
+Processing: 11792_10.txt the 600th file... on process: 0
+Processing: 10896_10.txt the 700th file... on process: 0
+Processing: 7082_10.txt the 800th file... on process: 0
+Processing: 8174_9.txt the 900th file... on process: 0
+Processing: 2731_10.txt the 1000th file... on process: 0
+Processing: 12103_10.txt the 1100th file... on process: 0
+Processing: 4183_10.txt the 1200th file... on process: 0
+Processing: 5745_7.txt the 1300th file... on process: 0
+Processing: 6208_7.txt the 1400th file... on process: 0
+Processing: 5283_10.txt the 1500th file... on process: 0
+Processing: 6680_9.txt the 1600th file... on process: 0
+Processing: 5956_7.txt the 1700th file... on process: 0
+Processing: 1017_7.txt the 1800th file... on process: 0
+Processing: 11006_8.txt the 1900th file... on process: 0
+Processing: 1174_7.txt the 2000th file... on process: 0
+Processing: 6480_10.txt the 2100th file... on process: 0
+Processing: 12463_10.txt the 2200th file... on process: 0
+Processing: 3862_8.txt the 2300th file... on process: 0
+Processing: 10281_9.txt the 2400th file... on process: 0
+Processing: 633_10.txt the 2500th file... on process: 0
+Processing: 5089_9.txt the 2600th file... on process: 0
+Processing: 338_10.txt the 2700th file... on process: 0
+Processing: 4060_8.txt the 2800th file... on process: 0
+Processing: 10704_10.txt the 2900th file... on process: 0
+Processing: 9516_10.txt the 3000th file... on process: 0
+Processing: 6106_9.txt the 3100th file... on process: 0
+Processing: 657_10.txt the 3200th file... on process: 0
+Processing: 4197_10.txt the 3300th file... on process: 0
+Processing: 11318_8.txt the 3400th file... on process: 0
+Processing: 1287_8.txt the 3500th file... on process: 0
+Processing: 239_9.txt the 3600th file... on process: 0
+Processing: 4684_9.txt the 3700th file... on process: 0
+Processing: 10946_7.txt the 3800th file... on process: 0
+Processing: 11302_9.txt the 3900th file... on process: 0
+Processing: 9744_10.txt the 4000th file... on process: 0
+Processing: 8491_8.txt the 4100th file... on process: 0
+Processing: 3573_9.txt the 4200th file... on process: 0
+Processing: 2497_7.txt the 4300th file... on process: 0
+Processing: 9747_10.txt the 4400th file... on process: 0
+Processing: 6031_9.txt the 4500th file... on process: 0
+Processing: 11111_10.txt the 4600th file... on process: 0
+Processing: 3726_7.txt the 4700th file... on process: 0
+Processing: 11251_7.txt the 4800th file... on process: 0
+Processing: 7292_9.txt the 4900th file... on process: 0
+Processing: 8412_10.txt the 5000th file... on process: 0
+Processing: 1810_10.txt the 5100th file... on process: 0
+Processing: 12128_7.txt the 5200th file... on process: 0
+Processing: 5146_7.txt the 5300th file... on process: 0
+Processing: 918_10.txt the 5400th file... on process: 0
+Processing: 6002_7.txt the 5500th file... on process: 0
+Processing: 11189_10.txt the 5600th file... on process: 0
+Processing: 6830_9.txt the 5700th file... on process: 0
+Processing: 11754_10.txt the 5800th file... on process: 0
+Processing: 1374_9.txt the 5900th file... on process: 0
+Processing: 7919_9.txt the 6000th file... on process: 0
+Processing: 10907_8.txt the 6100th file... on process: 0
+Processing: 8977_9.txt the 6200th file... on process: 0
+Processing: 12050_9.txt the 6300th file... on process: 0
+Processing: 4833_9.txt the 6400th file... on process: 0
+Processing: 4424_9.txt the 6500th file... on process: 0
+Processing: 7191_7.txt the 6600th file... on process: 0
+Processing: 4786_9.txt the 6700th file... on process: 0
+Processing: 1300_9.txt the 6800th file... on process: 0
+Processing: 9834_8.txt the 6900th file... on process: 0
+Processing: 3466_10.txt the 7000th file... on process: 0
+Processing: 1203_7.txt the 7100th file... on process: 0
+Processing: 543_8.txt the 7200th file... on process: 0
+Processing: 679_10.txt the 7300th file... on process: 0
+Processing: 10164_9.txt the 7400th file... on process: 0
+Processing: 10745_8.txt the 7500th file... on process: 0
+Processing: 4626_8.txt the 7600th file... on process: 0
+Processing: 9797_10.txt the 7700th file... on process: 0
+Processing: 5189_9.txt the 7800th file... on process: 0
+Processing: 7579_10.txt the 7900th file... on process: 0
+Processing: 8126_7.txt the 8000th file... on process: 0
+Processing: 3796_10.txt the 8100th file... on process: 0
+Processing: 8286_9.txt the 8200th file... on process: 0
+Processing: 6312_9.txt the 8300th file... on process: 0
+Processing: 2653_10.txt the 8400th file... on process: 0
+Processing: 11240_10.txt the 8500th file... on process: 0
+Processing: 3623_10.txt the 8600th file... on process: 0
+Processing: 5910_7.txt the 8700th file... on process: 0
+Processing: 5046_9.txt the 8800th file... on process: 0
+Processing: 863_10.txt the 8900th file... on process: 0
+Processing: 1_10.txt the 9000th file... on process: 0
+Processing: 10826_10.txt the 9100th file... on process: 0
+Processing: 8641_10.txt the 9200th file... on process: 0
+Processing: 2509_7.txt the 9300th file... on process: 0
+Processing: 11276_7.txt the 9400th file... on process: 0
+Processing: 11320_8.txt the 9500th file... on process: 0
+Processing: 1018_7.txt the 9600th file... on process: 0
+Processing: 10289_9.txt the 9700th file... on process: 0
+Processing: 705_10.txt the 9800th file... on process: 0
+Processing: 4215_7.txt the 9900th file... on process: 0
+Processing: 2324_9.txt the 10000th file... on process: 0
+Processing: 12393_7.txt the 10100th file... on process: 0
+Processing: 3338_7.txt the 10200th file... on process: 0
+Processing: 11923_8.txt the 10300th file... on process: 0
+Processing: 8381_9.txt the 10400th file... on process: 0
+Processing: 8109_9.txt the 10500th file... on process: 0
+Processing: 7824_7.txt the 10600th file... on process: 0
+Processing: 6144_10.txt the 10700th file... on process: 0
+Processing: 3492_9.txt the 10800th file... on process: 0
+Processing: 11932_10.txt the 10900th file... on process: 0
+Processing: 7547_9.txt the 11000th file... on process: 0
+Processing: 5905_9.txt the 11100th file... on process: 0
+Processing: 10899_8.txt the 11200th file... on process: 0
+Processing: 1327_9.txt the 11300th file... on process: 0
+Processing: 43_10.txt the 11400th file... on process: 0
+Processing: 5058_8.txt the 11500th file... on process: 0
+Processing: 9373_7.txt the 11600th file... on process: 0
+Processing: 4057_7.txt the 11700th file... on process: 0
+Processing: 10765_10.txt the 11800th file... on process: 0
+Processing: 11456_10.txt the 11900th file... on process: 0
+Processing: 11015_10.txt the 12000th file... on process: 0
+Processing: 864_10.txt the 12100th file... on process: 0
+Processing: 5262_8.txt the 12200th file... on process: 0
+Processing: 6617_7.txt the 12300th file... on process: 0
+Processing: 10572_10.txt the 12400th file... on process: 0
+Processing: 2326_9.txt the 12500th file... on process: 0
+Saving data file0 to disk...
+numpy array is: 12500x202
+Processing: 11148_3.txt the 100th file... on process: 1
+Processing: 11542_3.txt the 200th file... on process: 1
+Processing: 7454_1.txt the 300th file... on process: 1
+Processing: 356_3.txt the 400th file... on process: 1
+Processing: 1967_3.txt the 500th file... on process: 1
+Processing: 9261_2.txt the 600th file... on process: 1
+Processing: 9871_1.txt the 700th file... on process: 1
+Processing: 10203_2.txt the 800th file... on process: 1
+Processing: 7216_3.txt the 900th file... on process: 1
+Processing: 2703_1.txt the 1000th file... on process: 1
+Processing: 9053_4.txt the 1100th file... on process: 1
+Processing: 11679_1.txt the 1200th file... on process: 1
+Processing: 1904_2.txt the 1300th file... on process: 1
+Processing: 6937_4.txt the 1400th file... on process: 1
+Processing: 3687_1.txt the 1500th file... on process: 1
+Processing: 8653_2.txt the 1600th file... on process: 1
+Processing: 11348_1.txt the 1700th file... on process: 1
+Processing: 6469_4.txt the 1800th file... on process: 1
+Processing: 8360_3.txt the 1900th file... on process: 1
+Processing: 3522_4.txt the 2000th file... on process: 1
+Processing: 3782_1.txt the 2100th file... on process: 1
+Processing: 11369_1.txt the 2200th file... on process: 1
+Processing: 3401_3.txt the 2300th file... on process: 1
+Processing: 6240_1.txt the 2400th file... on process: 1
+Processing: 1940_3.txt the 2500th file... on process: 1
+Processing: 27_4.txt the 2600th file... on process: 1
+Processing: 5605_1.txt the 2700th file... on process: 1
+Processing: 6373_4.txt the 2800th file... on process: 1
+Processing: 1870_2.txt the 2900th file... on process: 1
+Processing: 2181_2.txt the 3000th file... on process: 1
+Processing: 1556_1.txt the 3100th file... on process: 1
+Processing: 3770_4.txt the 3200th file... on process: 1
+Processing: 1992_2.txt the 3300th file... on process: 1
+Processing: 8456_1.txt the 3400th file... on process: 1
+Processing: 8279_2.txt the 3500th file... on process: 1
+Processing: 7448_4.txt the 3600th file... on process: 1
+Processing: 8432_3.txt the 3700th file... on process: 1
+Processing: 3603_3.txt the 3800th file... on process: 1
+Processing: 2035_4.txt the 3900th file... on process: 1
+Processing: 8822_4.txt the 4000th file... on process: 1
+Processing: 11921_3.txt the 4100th file... on process: 1
+Processing: 4244_4.txt the 4200th file... on process: 1
+Processing: 6853_3.txt the 4300th file... on process: 1
+Processing: 9378_1.txt the 4400th file... on process: 1
+Processing: 11458_4.txt the 4500th file... on process: 1
+Processing: 3847_1.txt the 4600th file... on process: 1
+Processing: 3481_2.txt the 4700th file... on process: 1
+Processing: 2704_4.txt the 4800th file... on process: 1
+Processing: 6573_1.txt the 4900th file... on process: 1
+Processing: 9423_1.txt the 5000th file... on process: 1
+Processing: 12240_2.txt the 5100th file... on process: 1
+Processing: 7740_2.txt the 5200th file... on process: 1
+Processing: 3194_1.txt the 5300th file... on process: 1
+Processing: 7007_3.txt the 5400th file... on process: 1
+Processing: 4852_3.txt the 5500th file... on process: 1
+Processing: 7820_1.txt the 5600th file... on process: 1
+Processing: 8650_3.txt the 5700th file... on process: 1
+Processing: 4580_3.txt the 5800th file... on process: 1
+Processing: 10248_1.txt the 5900th file... on process: 1
+Processing: 5070_2.txt the 6000th file... on process: 1
+Processing: 213_3.txt the 6100th file... on process: 1
+Processing: 2059_1.txt the 6200th file... on process: 1
+Processing: 1367_3.txt the 6300th file... on process: 1
+Processing: 2465_2.txt the 6400th file... on process: 1
+Processing: 161_3.txt the 6500th file... on process: 1
+Processing: 1265_2.txt the 6600th file... on process: 1
+Processing: 5960_1.txt the 6700th file... on process: 1
+Processing: 6559_2.txt the 6800th file... on process: 1
+Processing: 1541_2.txt the 6900th file... on process: 1
+Processing: 7657_2.txt the 7000th file... on process: 1
+Processing: 8648_3.txt the 7100th file... on process: 1
+Processing: 3841_1.txt the 7200th file... on process: 1
+Processing: 12338_2.txt the 7300th file... on process: 1
+Processing: 7122_1.txt the 7400th file... on process: 1
+Processing: 5780_2.txt the 7500th file... on process: 1
+Processing: 9829_2.txt the 7600th file... on process: 1
+Processing: 7324_4.txt the 7700th file... on process: 1
+Processing: 289_1.txt the 7800th file... on process: 1
+Processing: 7300_1.txt the 7900th file... on process: 1
+Processing: 3061_1.txt the 8000th file... on process: 1
+Processing: 6416_1.txt the 8100th file... on process: 1
+Processing: 9747_1.txt the 8200th file... on process: 1
+Processing: 4308_1.txt the 8300th file... on process: 1
+Processing: 11389_3.txt the 8400th file... on process: 1
+Processing: 3532_2.txt the 8500th file... on process: 1
+Processing: 9325_1.txt the 8600th file... on process: 1
+Processing: 7681_3.txt the 8700th file... on process: 1
+Processing: 9610_1.txt the 8800th file... on process: 1
+Processing: 1446_3.txt the 8900th file... on process: 1
+Processing: 692_4.txt the 9000th file... on process: 1
+Processing: 10914_1.txt the 9100th file... on process: 1
+Processing: 12096_1.txt the 9200th file... on process: 1
+Processing: 6517_3.txt the 9300th file... on process: 1
+Processing: 3563_1.txt the 9400th file... on process: 1
+Processing: 4126_1.txt the 9500th file... on process: 1
+Processing: 10981_4.txt the 9600th file... on process: 1
+Processing: 8872_4.txt the 9700th file... on process: 1
+Processing: 1142_1.txt the 9800th file... on process: 1
+Processing: 2821_3.txt the 9900th file... on process: 1
+Processing: 11969_4.txt the 10000th file... on process: 1
+Processing: 2870_1.txt the 10100th file... on process: 1
+Processing: 4945_3.txt the 10200th file... on process: 1
+Processing: 11543_3.txt the 10300th file... on process: 1
+Processing: 4551_1.txt the 10400th file... on process: 1
+Processing: 9602_1.txt the 10500th file... on process: 1
+Processing: 3552_4.txt the 10600th file... on process: 1
+Processing: 6084_4.txt the 10700th file... on process: 1
+Processing: 5933_1.txt the 10800th file... on process: 1
+Processing: 5908_4.txt the 10900th file... on process: 1
+Processing: 2698_3.txt the 11000th file... on process: 1
+Processing: 10518_1.txt the 11100th file... on process: 1
+Processing: 12147_1.txt the 11200th file... on process: 1
+Processing: 286_1.txt the 11300th file... on process: 1
+Processing: 6403_3.txt the 11400th file... on process: 1
+Processing: 6244_1.txt the 11500th file... on process: 1
+Processing: 6556_1.txt the 11600th file... on process: 1
+Processing: 1954_1.txt the 11700th file... on process: 1
+Processing: 6721_1.txt the 11800th file... on process: 1
+Processing: 4434_2.txt the 11900th file... on process: 1
+Processing: 9393_4.txt the 12000th file... on process: 1
+Processing: 1896_2.txt the 12100th file... on process: 1
+Processing: 8953_1.txt the 12200th file... on process: 1
+Processing: 11655_2.txt the 12300th file... on process: 1
+Processing: 9482_1.txt the 12400th file... on process: 1
+Processing: 11851_1.txt the 12500th file... on process: 1
+Saving data file1 to disk...
+numpy array is: 12500x202
+Processing: 11360_7.txt the 100th file... on process: 2
+Processing: 11233_10.txt the 200th file... on process: 2
+Processing: 422_7.txt the 300th file... on process: 2
+Processing: 6591_8.txt the 400th file... on process: 2
+Processing: 670_7.txt the 500th file... on process: 2
+Processing: 6812_7.txt the 600th file... on process: 2
+Processing: 6473_8.txt the 700th file... on process: 2
+Processing: 10033_10.txt the 800th file... on process: 2
+Processing: 935_9.txt the 900th file... on process: 2
+Processing: 11159_8.txt the 1000th file... on process: 2
+Processing: 747_10.txt the 1100th file... on process: 2
+Processing: 10297_8.txt the 1200th file... on process: 2
+Processing: 5439_10.txt the 1300th file... on process: 2
+Processing: 41_9.txt the 1400th file... on process: 2
+Processing: 8671_7.txt the 1500th file... on process: 2
+Processing: 5541_9.txt the 1600th file... on process: 2
+Processing: 2169_7.txt the 1700th file... on process: 2
+Processing: 992_7.txt the 1800th file... on process: 2
+Processing: 8454_8.txt the 1900th file... on process: 2
+Processing: 5205_7.txt the 2000th file... on process: 2
+Processing: 2821_9.txt the 2100th file... on process: 2
+Processing: 5231_10.txt the 2200th file... on process: 2
+Processing: 3122_8.txt the 2300th file... on process: 2
+Processing: 4324_7.txt the 2400th file... on process: 2
+Processing: 7372_9.txt the 2500th file... on process: 2
+Processing: 5736_7.txt the 2600th file... on process: 2
+Processing: 2924_10.txt the 2700th file... on process: 2
+Processing: 1845_7.txt the 2800th file... on process: 2
+Processing: 512_10.txt the 2900th file... on process: 2
+Processing: 11185_9.txt the 3000th file... on process: 2
+Processing: 5065_7.txt the 3100th file... on process: 2
+Processing: 5828_9.txt the 3200th file... on process: 2
+Processing: 4226_10.txt the 3300th file... on process: 2
+Processing: 4851_7.txt the 3400th file... on process: 2
+Processing: 12302_7.txt the 3500th file... on process: 2
+Processing: 8874_8.txt the 3600th file... on process: 2
+Processing: 919_8.txt the 3700th file... on process: 2
+Processing: 5245_8.txt the 3800th file... on process: 2
+Processing: 5930_7.txt the 3900th file... on process: 2
+Processing: 10847_10.txt the 4000th file... on process: 2
+Processing: 1828_8.txt the 4100th file... on process: 2
+Processing: 9228_10.txt the 4200th file... on process: 2
+Processing: 12230_9.txt the 4300th file... on process: 2
+Processing: 4700_9.txt the 4400th file... on process: 2
+Processing: 5379_7.txt the 4500th file... on process: 2
+Processing: 12084_8.txt the 4600th file... on process: 2
+Processing: 5528_7.txt the 4700th file... on process: 2
+Processing: 604_8.txt the 4800th file... on process: 2
+Processing: 1175_9.txt the 4900th file... on process: 2
+Processing: 6919_9.txt the 5000th file... on process: 2
+Processing: 7135_10.txt the 5100th file... on process: 2
+Processing: 2675_9.txt the 5200th file... on process: 2
+Processing: 1451_8.txt the 5300th file... on process: 2
+Processing: 2420_10.txt the 5400th file... on process: 2
+Processing: 8826_9.txt the 5500th file... on process: 2
+Processing: 10452_10.txt the 5600th file... on process: 2
+Processing: 405_10.txt the 5700th file... on process: 2
+Processing: 4416_9.txt the 5800th file... on process: 2
+Processing: 5629_10.txt the 5900th file... on process: 2
+Processing: 10779_10.txt the 6000th file... on process: 2
+Processing: 2771_7.txt the 6100th file... on process: 2
+Processing: 2467_10.txt the 6200th file... on process: 2
+Processing: 6558_8.txt the 6300th file... on process: 2
+Processing: 10205_10.txt the 6400th file... on process: 2
+Processing: 735_8.txt the 6500th file... on process: 2
+Processing: 6032_10.txt the 6600th file... on process: 2
+Processing: 4783_10.txt the 6700th file... on process: 2
+Processing: 2051_8.txt the 6800th file... on process: 2
+Processing: 3659_9.txt the 6900th file... on process: 2
+Processing: 4691_10.txt the 7000th file... on process: 2
+Processing: 5573_10.txt the 7100th file... on process: 2
+Processing: 6854_10.txt the 7200th file... on process: 2
+Processing: 7809_10.txt the 7300th file... on process: 2
+Processing: 7907_7.txt the 7400th file... on process: 2
+Processing: 5694_9.txt the 7500th file... on process: 2
+Processing: 7932_8.txt the 7600th file... on process: 2
+Processing: 1418_9.txt the 7700th file... on process: 2
+Processing: 3836_8.txt the 7800th file... on process: 2
+Processing: 11678_8.txt the 7900th file... on process: 2
+Processing: 355_9.txt the 8000th file... on process: 2
+Processing: 3838_7.txt the 8100th file... on process: 2
+Processing: 4041_7.txt the 8200th file... on process: 2
+Processing: 6772_10.txt the 8300th file... on process: 2
+Processing: 4565_8.txt the 8400th file... on process: 2
+Processing: 12438_8.txt the 8500th file... on process: 2
+Processing: 4732_10.txt the 8600th file... on process: 2
+Processing: 2725_8.txt the 8700th file... on process: 2
+Processing: 7377_9.txt the 8800th file... on process: 2
+Processing: 540_8.txt the 8900th file... on process: 2
+Processing: 5642_7.txt the 9000th file... on process: 2
+Processing: 7858_10.txt the 9100th file... on process: 2
+Processing: 1212_8.txt the 9200th file... on process: 2
+Processing: 6934_9.txt the 9300th file... on process: 2
+Processing: 710_9.txt the 9400th file... on process: 2
+Processing: 10842_7.txt the 9500th file... on process: 2
+Processing: 4043_7.txt the 9600th file... on process: 2
+Processing: 12000_8.txt the 9700th file... on process: 2
+Processing: 11548_10.txt the 9800th file... on process: 2
+Processing: 8344_10.txt the 9900th file... on process: 2
+Processing: 7444_10.txt the 10000th file... on process: 2
+Processing: 6074_7.txt the 10100th file... on process: 2
+Processing: 309_9.txt the 10200th file... on process: 2
+Processing: 5762_8.txt the 10300th file... on process: 2
+Processing: 12386_8.txt the 10400th file... on process: 2
+Processing: 3514_7.txt the 10500th file... on process: 2
+Processing: 5488_10.txt the 10600th file... on process: 2
+Processing: 3874_9.txt the 10700th file... on process: 2
+Processing: 2193_10.txt the 10800th file... on process: 2
+Processing: 3786_9.txt the 10900th file... on process: 2
+Processing: 4824_7.txt the 11000th file... on process: 2
+Processing: 2268_10.txt the 11100th file... on process: 2
+Processing: 2394_7.txt the 11200th file... on process: 2
+Processing: 4917_8.txt the 11300th file... on process: 2
+Processing: 6728_8.txt the 11400th file... on process: 2
+Processing: 163_10.txt the 11500th file... on process: 2
+Processing: 12380_7.txt the 11600th file... on process: 2
+Processing: 2451_8.txt the 11700th file... on process: 2
+Processing: 1293_8.txt the 11800th file... on process: 2
+Processing: 7302_10.txt the 11900th file... on process: 2
+Processing: 9504_10.txt the 12000th file... on process: 2
+Processing: 5692_7.txt the 12100th file... on process: 2
+Processing: 1113_10.txt the 12200th file... on process: 2
+Processing: 3943_10.txt the 12300th file... on process: 2
+Processing: 2855_8.txt the 12400th file... on process: 2
+Processing: 9803_7.txt the 12500th file... on process: 2
+Saving data file2 to disk...
+numpy array is: 12500x202
+Processing: 5838_4.txt the 100th file... on process: 3
+Processing: 10121_3.txt the 200th file... on process: 3
+Processing: 4346_3.txt the 300th file... on process: 3
+Processing: 11081_1.txt the 400th file... on process: 3
+Processing: 824_3.txt the 500th file... on process: 3
+Processing: 2229_1.txt the 600th file... on process: 3
+Processing: 3627_1.txt the 700th file... on process: 3
+Processing: 54_1.txt the 800th file... on process: 3
+Processing: 9490_1.txt the 900th file... on process: 3
+Processing: 3474_2.txt the 1000th file... on process: 3
+Processing: 2722_2.txt the 1100th file... on process: 3
+Processing: 10453_1.txt the 1200th file... on process: 3
+Processing: 11443_2.txt the 1300th file... on process: 3
+Processing: 3503_1.txt the 1400th file... on process: 3
+Processing: 5975_1.txt the 1500th file... on process: 3
+Processing: 7499_3.txt the 1600th file... on process: 3
+Processing: 9289_3.txt the 1700th file... on process: 3
+Processing: 11345_2.txt the 1800th file... on process: 3
+Processing: 11722_4.txt the 1900th file... on process: 3
+Processing: 9398_4.txt the 2000th file... on process: 3
+Processing: 868_3.txt the 2100th file... on process: 3
+Processing: 1871_4.txt the 2200th file... on process: 3
+Processing: 618_2.txt the 2300th file... on process: 3
+Processing: 12101_4.txt the 2400th file... on process: 3
+Processing: 1116_3.txt the 2500th file... on process: 3
+Processing: 10276_1.txt the 2600th file... on process: 3
+Processing: 4245_3.txt the 2700th file... on process: 3
+Processing: 8403_4.txt the 2800th file... on process: 3
+Processing: 532_2.txt the 2900th file... on process: 3
+Processing: 309_1.txt the 3000th file... on process: 3
+Processing: 4397_3.txt the 3100th file... on process: 3
+Processing: 3517_1.txt the 3200th file... on process: 3
+Processing: 6379_4.txt the 3300th file... on process: 3
+Processing: 3433_3.txt the 3400th file... on process: 3
+Processing: 6022_1.txt the 3500th file... on process: 3
+Processing: 995_3.txt the 3600th file... on process: 3
+Processing: 8992_4.txt the 3700th file... on process: 3
+Processing: 6859_1.txt the 3800th file... on process: 3
+Processing: 5168_1.txt the 3900th file... on process: 3
+Processing: 7715_2.txt the 4000th file... on process: 3
+Processing: 6428_3.txt the 4100th file... on process: 3
+Processing: 7818_1.txt the 4200th file... on process: 3
+Processing: 11894_3.txt the 4300th file... on process: 3
+Processing: 6530_4.txt the 4400th file... on process: 3
+Processing: 9690_4.txt the 4500th file... on process: 3
+Processing: 3649_4.txt the 4600th file... on process: 3
+Processing: 9943_1.txt the 4700th file... on process: 3
+Processing: 1909_1.txt the 4800th file... on process: 3
+Processing: 600_1.txt the 4900th file... on process: 3
+Processing: 5412_2.txt the 5000th file... on process: 3
+Processing: 6803_1.txt the 5100th file... on process: 3
+Processing: 9335_1.txt the 5200th file... on process: 3
+Processing: 5634_1.txt the 5300th file... on process: 3
+Processing: 2815_2.txt the 5400th file... on process: 3
+Processing: 3107_3.txt the 5500th file... on process: 3
+Processing: 5055_4.txt the 5600th file... on process: 3
+Processing: 1663_1.txt the 5700th file... on process: 3
+Processing: 7196_4.txt the 5800th file... on process: 3
+Processing: 12236_2.txt the 5900th file... on process: 3
+Processing: 6261_2.txt the 6000th file... on process: 3
+Processing: 11188_1.txt the 6100th file... on process: 3
+Processing: 3153_2.txt the 6200th file... on process: 3
+Processing: 1648_1.txt the 6300th file... on process: 3
+Processing: 11249_4.txt the 6400th file... on process: 3
+Processing: 975_4.txt the 6500th file... on process: 3
+Processing: 5851_1.txt the 6600th file... on process: 3
+Processing: 7579_4.txt the 6700th file... on process: 3
+Processing: 8064_2.txt the 6800th file... on process: 3
+Processing: 6592_1.txt the 6900th file... on process: 3
+Processing: 7705_2.txt the 7000th file... on process: 3
+Processing: 5399_1.txt the 7100th file... on process: 3
+Processing: 7567_4.txt the 7200th file... on process: 3
+Processing: 5045_1.txt the 7300th file... on process: 3
+Processing: 7992_4.txt the 7400th file... on process: 3
+Processing: 11150_3.txt the 7500th file... on process: 3
+Processing: 5491_1.txt the 7600th file... on process: 3
+Processing: 8627_4.txt the 7700th file... on process: 3
+Processing: 4730_4.txt the 7800th file... on process: 3
+Processing: 9523_3.txt the 7900th file... on process: 3
+Processing: 4932_4.txt the 8000th file... on process: 3
+Processing: 7065_2.txt the 8100th file... on process: 3
+Processing: 4738_4.txt the 8200th file... on process: 3
+Processing: 2434_4.txt the 8300th file... on process: 3
+Processing: 5125_1.txt the 8400th file... on process: 3
+Processing: 4905_1.txt the 8500th file... on process: 3
+Processing: 2095_3.txt the 8600th file... on process: 3
+Processing: 2019_2.txt the 8700th file... on process: 3
+Processing: 1449_1.txt the 8800th file... on process: 3
+Processing: 11287_3.txt the 8900th file... on process: 3
+Processing: 2877_1.txt the 9000th file... on process: 3
+Processing: 10873_4.txt the 9100th file... on process: 3
+Processing: 6775_3.txt the 9200th file... on process: 3
+Processing: 4069_1.txt the 9300th file... on process: 3
+Processing: 6425_4.txt the 9400th file... on process: 3
+Processing: 3307_3.txt the 9500th file... on process: 3
+Processing: 1803_4.txt the 9600th file... on process: 3
+Processing: 11505_3.txt the 9700th file... on process: 3
+Processing: 8497_3.txt the 9800th file... on process: 3
+Processing: 7154_3.txt the 9900th file... on process: 3
+Processing: 8043_1.txt the 10000th file... on process: 3
+Processing: 798_1.txt the 10100th file... on process: 3
+Processing: 4700_1.txt the 10200th file... on process: 3
+Processing: 10188_2.txt the 10300th file... on process: 3
+Processing: 6603_3.txt the 10400th file... on process: 3
+Processing: 7740_3.txt the 10500th file... on process: 3
+Processing: 1770_1.txt the 10600th file... on process: 3
+Processing: 5181_3.txt the 10700th file... on process: 3
+Processing: 6602_2.txt the 10800th file... on process: 3
+Processing: 7556_1.txt the 10900th file... on process: 3
+Processing: 11068_4.txt the 11000th file... on process: 3
+Processing: 10459_2.txt the 11100th file... on process: 3
+Processing: 2682_3.txt the 11200th file... on process: 3
+Processing: 91_1.txt the 11300th file... on process: 3
+Processing: 7790_2.txt the 11400th file... on process: 3
+Processing: 1844_3.txt the 11500th file... on process: 3
+Processing: 11121_1.txt the 11600th file... on process: 3
+Processing: 3831_4.txt the 11700th file... on process: 3
+Processing: 2304_1.txt the 11800th file... on process: 3
+Processing: 5487_4.txt the 11900th file... on process: 3
+Processing: 556_1.txt the 12000th file... on process: 3
+Processing: 6343_2.txt the 12100th file... on process: 3
+Processing: 6090_2.txt the 12200th file... on process: 3
+Processing: 4336_4.txt the 12300th file... on process: 3
+Processing: 1956_3.txt the 12400th file... on process: 3
+Processing: 11851_1.txt the 12500th file... on process: 3
+Saving data file3 to disk...
+numpy array is: 12500x202
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 0 with properties: 
+name: GeForce GTX 970
+major: 5 minor: 2 memoryClockRate (GHz) 1.253
+pciBusID 0000:03:00.0
+Total memory: 3.94GiB
+Free memory: 3.88GiB
+W tensorflow/stream_executor/cuda/cuda_driver.cc:572] creating context when one is currently active; existing: 0x380c070
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:102] Found device 1 with properties: 
+name: GeForce GTX 970
+major: 5 minor: 2 memoryClockRate (GHz) 1.253
+pciBusID 0000:04:00.0
+Total memory: 3.94GiB
+Free memory: 3.88GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:126] DMA: 0 1 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 0:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:136] 1:   Y Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:839] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 970, pci bus id: 0000:03:00.0)
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:839] Creating TensorFlow device (/gpu:1) -> (device: 1, name: GeForce GTX 970, pci bus id: 0000:04:00.0)
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 7994 get requests, put_count=5291 evicted_count=1000 eviction_rate=0.189 and unsatisfied allocation rate=0.475732
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 100 to 110
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 1369 get requests, put_count=4381 evicted_count=3000 eviction_rate=0.684775 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 954 get requests, put_count=2970 evicted_count=2000 eviction_rate=0.673401 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 481 get requests, put_count=1502 evicted_count=1000 eviction_rate=0.665779 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 9491 get requests, put_count=9996 evicted_count=4000 eviction_rate=0.40016 and unsatisfied allocation rate=0.370878
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 281 to 309
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 8888 get requests, put_count=8321 evicted_count=3000 eviction_rate=0.360534 and unsatisfied allocation rate=0.405041
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 372 to 409
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 9131 get requests, put_count=8867 evicted_count=3000 eviction_rate=0.338333 and unsatisfied allocation rate=0.362282
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 493 to 542
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 9135 get requests, put_count=9048 evicted_count=3000 eviction_rate=0.331565 and unsatisfied allocation rate=0.34439
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 655 to 720
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 514 get requests, put_count=1601 evicted_count=1000 eviction_rate=0.62461 and unsatisfied allocation rate=0
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 9014 get requests, put_count=8581 evicted_count=2000 eviction_rate=0.233073 and unsatisfied allocation rate=0.282671
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:256] Raising pool_size_limit_ from 1273 to 1400
+I tensorflow/core/common_runtime/gpu/pool_allocator.cc:244] PoolAllocator: After 492 get requests, put_count=1678 evicted_count=1000 eviction_rate=0.595948 and unsatisfied allocation rate=0
+Creating model with...
+Number of hidden layers: 1
+Number of units per layer: 50
+Dropout: 0.5
+Vocab size is: 44988
+init DataHandler with path:../data/processed/, batch_size:200, training fraction 0.7, max number of examples:-1
+ Train size is: 35000, splitting into 175 batches
+ Test  size is: 14800, splitting into 74 batches
+
+Beggining training...
+Maximum number of epochs to train for: 200
+Batch size: 200
+Starting learning rate: 0.01
+Learning rate decay factor: 0.97
+global step 50 learning rate 0.0100000 step-time 0.26 loss 0.7062
+Running test set
+Avg Test Loss: 0.6979243223731583, Avg Test Accuracy: 0.5111486267399143
+-------Step 50/35000------
+global step 100 learning rate 0.0100000 step-time 0.20 loss 0.7018
+Running test set
+Avg Test Loss: 0.6989543011059632, Avg Test Accuracy: 0.5091215980214041
+-------Step 100/35000------
+global step 150 learning rate 0.0100000 step-time 0.21 loss 0.6984
+Running test set
+Avg Test Loss: 0.7007745093590504, Avg Test Accuracy: 0.5047297107206808
+-------Step 150/35000------
+global step 200 learning rate 0.0100000 step-time 0.21 loss 0.6978
+Running test set
+Avg Test Loss: 0.7010075804349538, Avg Test Accuracy: 0.510945924633258
+-------Step 200/35000------
+global step 250 learning rate 0.0100000 step-time 0.21 loss 0.6987
+Running test set
+Avg Test Loss: 0.6976595440426389, Avg Test Accuracy: 0.5060810591723468
+-------Step 250/35000------
+global step 300 learning rate 0.0100000 step-time 0.21 loss 0.7003
+Running test set
+Avg Test Loss: 0.6961242322986191, Avg Test Accuracy: 0.5127702480232393
+-------Step 300/35000------
+global step 350 learning rate 0.0097000 step-time 0.22 loss 0.6969
+Running test set
+Avg Test Loss: 0.6951564647055961, Avg Test Accuracy: 0.5214864639817057
+-------Step 350/35000------
+global step 400 learning rate 0.0097000 step-time 0.21 loss 0.6949
+Running test set
+Avg Test Loss: 0.69620456888869, Avg Test Accuracy: 0.5159459218785569
+-------Step 400/35000------
+global step 450 learning rate 0.0097000 step-time 0.21 loss 0.6943
+Running test set
+Avg Test Loss: 0.6948840908102087, Avg Test Accuracy: 0.5233783532638807
+-------Step 450/35000------
+global step 500 learning rate 0.0097000 step-time 0.21 loss 0.6971
+Running test set
+Avg Test Loss: 0.6939708671054324, Avg Test Accuracy: 0.5185134869975012
+-------Step 500/35000------
+global step 550 learning rate 0.0094090 step-time 0.21 loss 0.6937
+Running test set
+Avg Test Loss: 0.6981997755733697, Avg Test Accuracy: 0.515810788483233
+-------Step 550/35000------
+global step 600 learning rate 0.0094090 step-time 0.20 loss 0.6925
+Running test set
+Avg Test Loss: 0.6913760320560353, Avg Test Accuracy: 0.5347972725694244
+-------Step 600/35000------
+global step 650 learning rate 0.0094090 step-time 0.21 loss 0.6917
+Running test set
+Avg Test Loss: 0.6965668861930435, Avg Test Accuracy: 0.5300675401011029
+-------Step 650/35000------
+global step 700 learning rate 0.0094090 step-time 0.21 loss 0.6905
+Running test set
+Avg Test Loss: 0.6933468072801023, Avg Test Accuracy: 0.5282432179193239
+-------Step 700/35000------
+global step 750 learning rate 0.0094090 step-time 0.21 loss 0.6833
+Running test set
+Avg Test Loss: 0.687968149378493, Avg Test Accuracy: 0.5472972662867727
+-------Step 750/35000------
+global step 800 learning rate 0.0094090 step-time 0.21 loss 0.6838
+Running test set
+Avg Test Loss: 0.6836006045341492, Avg Test Accuracy: 0.5552026722076777
+-------Step 800/35000------
+global step 850 learning rate 0.0094090 step-time 0.21 loss 0.6726
+Running test set
+Avg Test Loss: 0.6694975382572895, Avg Test Accuracy: 0.5846621426376136
+-------Step 850/35000------
+global step 900 learning rate 0.0094090 step-time 0.21 loss 0.6533
+Running test set
+Avg Test Loss: 0.6420457459784843, Avg Test Accuracy: 0.6327026824693422
+-------Step 900/35000------
+global step 950 learning rate 0.0094090 step-time 0.21 loss 0.6106
+Running test set
+Avg Test Loss: 0.6092666999713795, Avg Test Accuracy: 0.67155403543163
+-------Step 950/35000------
+global step 1000 learning rate 0.0094090 step-time 0.21 loss 0.5997
+Running test set
+Avg Test Loss: 0.5838472239069037, Avg Test Accuracy: 0.6986486323781915
+-------Step 1000/35000------
+global step 1050 learning rate 0.0094090 step-time 0.21 loss 0.5674
+Running test set
+Avg Test Loss: 0.5647356731666101, Avg Test Accuracy: 0.7121621507245142
+-------Step 1050/35000------
+global step 1100 learning rate 0.0094090 step-time 0.20 loss 0.5325
+Running test set
+Avg Test Loss: 0.5435543229451051, Avg Test Accuracy: 0.7312837774689133
+-------Step 1100/35000------
+global step 1150 learning rate 0.0094090 step-time 0.21 loss 0.5244
+Running test set
+Avg Test Loss: 0.5454200252487853, Avg Test Accuracy: 0.732702691812773
+-------Step 1150/35000------
+global step 1200 learning rate 0.0094090 step-time 0.21 loss 0.5217
+Running test set
+Avg Test Loss: 0.5291416878635818, Avg Test Accuracy: 0.7362837767278826
+-------Step 1200/35000------
+global step 1250 learning rate 0.0094090 step-time 0.21 loss 0.4772
+Running test set
+Avg Test Loss: 0.5123647672904504, Avg Test Accuracy: 0.760067562799196
+-------Step 1250/35000------
+global step 1300 learning rate 0.0094090 step-time 0.22 loss 0.4730
+Running test set
+Avg Test Loss: 0.502131046878325, Avg Test Accuracy: 0.7695270188756891
+-------Step 1300/35000------
+global step 1350 learning rate 0.0094090 step-time 0.21 loss 0.4581
+Running test set
+Avg Test Loss: 0.49681563917044047, Avg Test Accuracy: 0.7663513389793603
+-------Step 1350/35000------
+global step 1400 learning rate 0.0094090 step-time 0.21 loss 0.4475
+Running test set
+Avg Test Loss: 0.47662788790625493, Avg Test Accuracy: 0.77608107553946
+-------Step 1400/35000------
+global step 1450 learning rate 0.0094090 step-time 0.21 loss 0.4198
+Running test set
+Avg Test Loss: 0.46487884022094106, Avg Test Accuracy: 0.7884459374724208
+-------Step 1450/35000------
+global step 1500 learning rate 0.0094090 step-time 0.21 loss 0.4068
+Running test set
+Avg Test Loss: 0.4522520251370765, Avg Test Accuracy: 0.7876351226020504
+-------Step 1500/35000------
+global step 1550 learning rate 0.0094090 step-time 0.21 loss 0.4150
+Running test set
+Avg Test Loss: 0.45542438650453415, Avg Test Accuracy: 0.790202689331931
+-------Step 1550/35000------
+global step 1600 learning rate 0.0094090 step-time 0.21 loss 0.3944
+Running test set
+Avg Test Loss: 0.4428289391704508, Avg Test Accuracy: 0.8010134954710264
+-------Step 1600/35000------
+global step 1650 learning rate 0.0094090 step-time 0.20 loss 0.3799
+Running test set
+Avg Test Loss: 0.44929523564673757, Avg Test Accuracy: 0.7989189028739929
+-------Step 1650/35000------
+global step 1700 learning rate 0.0094090 step-time 0.20 loss 0.3733
+Running test set
+Avg Test Loss: 0.4413170468162846, Avg Test Accuracy: 0.8050675569353877
+-------Step 1700/35000------
+global step 1750 learning rate 0.0094090 step-time 0.21 loss 0.3670
+Running test set
+Avg Test Loss: 0.42669242902382, Avg Test Accuracy: 0.8037837695431065
+-------Step 1750/35000------
+global step 1800 learning rate 0.0094090 step-time 0.21 loss 0.3564
+Running test set
+Avg Test Loss: 0.4562574975393914, Avg Test Accuracy: 0.803581066228248
+-------Step 1800/35000------
+global step 1850 learning rate 0.0094090 step-time 0.20 loss 0.3399
+Running test set
+Avg Test Loss: 0.41630695921343724, Avg Test Accuracy: 0.8120270129796621
+-------Step 1850/35000------
+global step 1900 learning rate 0.0094090 step-time 0.21 loss 0.3573
+Running test set
+Avg Test Loss: 0.4179247279424925, Avg Test Accuracy: 0.8124999814742321
+-------Step 1900/35000------
+global step 1950 learning rate 0.0094090 step-time 0.21 loss 0.3402
+Running test set
+Avg Test Loss: 0.4179484244133975, Avg Test Accuracy: 0.8160135004971478
+-------Step 1950/35000------
+global step 2000 learning rate 0.0094090 step-time 0.22 loss 0.3282
+Running test set
+Avg Test Loss: 0.40964568587573796, Avg Test Accuracy: 0.817905385751982
+-------Step 2000/35000------
+global step 2050 learning rate 0.0094090 step-time 0.22 loss 0.3226
+Running test set
+Avg Test Loss: 0.4221164688870713, Avg Test Accuracy: 0.8206756557967212
+-------Step 2050/35000------
+global step 2100 learning rate 0.0094090 step-time 0.21 loss 0.3425
+Running test set
+Avg Test Loss: 0.4090701369820414, Avg Test Accuracy: 0.8226351093601536
+-------Step 2100/35000------
+global step 2150 learning rate 0.0091267 step-time 0.21 loss 0.3076
+Running test set
+Avg Test Loss: 0.4151325382896372, Avg Test Accuracy: 0.8232432160828564
+-------Step 2150/35000------
+global step 2200 learning rate 0.0091267 step-time 0.20 loss 0.3117
+Running test set
+Avg Test Loss: 0.3958055308541736, Avg Test Accuracy: 0.8312837618428308
+-------Step 2200/35000------
+global step 2250 learning rate 0.0091267 step-time 0.21 loss 0.3044
+Running test set
+Avg Test Loss: 0.39918563615631414, Avg Test Accuracy: 0.826486461065911
+-------Step 2250/35000------
+global step 2300 learning rate 0.0091267 step-time 0.21 loss 0.3051
+Running test set
+Avg Test Loss: 0.38699772591526443, Avg Test Accuracy: 0.8287837706707619
+-------Step 2300/35000------
+global step 2350 learning rate 0.0091267 step-time 0.20 loss 0.3044
+Running test set
+Avg Test Loss: 0.38939184192064646, Avg Test Accuracy: 0.8297972816067773
+-------Step 2350/35000------
+global step 2400 learning rate 0.0091267 step-time 0.20 loss 0.2949
+Running test set
+Avg Test Loss: 0.40272824144041214, Avg Test Accuracy: 0.829999976866954
+-------Step 2400/35000------
+global step 2450 learning rate 0.0091267 step-time 0.21 loss 0.2971
+Running test set
+Avg Test Loss: 0.40034111448236415, Avg Test Accuracy: 0.8299999760614859
+-------Step 2450/35000------
+global step 2500 learning rate 0.0091267 step-time 0.19 loss 0.2782
+Running test set
+Avg Test Loss: 0.407985242234694, Avg Test Accuracy: 0.8367567416783925
+-------Step 2500/35000------
+global step 2550 learning rate 0.0091267 step-time 0.22 loss 0.2863
+Running test set
+Avg Test Loss: 0.39348088889508637, Avg Test Accuracy: 0.832567544402303
+-------Step 2550/35000------
+global step 2600 learning rate 0.0091267 step-time 0.21 loss 0.2823
+Running test set
+Avg Test Loss: 0.4103452261235263, Avg Test Accuracy: 0.834391862154007
+-------Step 2600/35000------
+global step 2650 learning rate 0.0091267 step-time 0.21 loss 0.2756
+Running test set
+Avg Test Loss: 0.3849314644530013, Avg Test Accuracy: 0.8394594369707881
+-------Step 2650/35000------
+global step 2700 learning rate 0.0091267 step-time 0.21 loss 0.2705
+Running test set
+Avg Test Loss: 0.3917914262494525, Avg Test Accuracy: 0.8333107974078204
+-------Step 2700/35000------
+global step 2750 learning rate 0.0091267 step-time 0.21 loss 0.2646
+Running test set
+Avg Test Loss: 0.3970124471831966, Avg Test Accuracy: 0.8411486253545091
+-------Step 2750/35000------
+global step 2800 learning rate 0.0091267 step-time 0.22 loss 0.2649
+Running test set
+Avg Test Loss: 0.3919829275157001, Avg Test Accuracy: 0.8402026835325602
+-------Step 2800/35000------
+global step 2850 learning rate 0.0091267 step-time 0.21 loss 0.2505
+Running test set
+Avg Test Loss: 0.3944760710000992, Avg Test Accuracy: 0.8381756608550613
+-------Step 2850/35000------
+global step 2900 learning rate 0.0091267 step-time 0.21 loss 0.2605
+Running test set
+Avg Test Loss: 0.3809591366632565, Avg Test Accuracy: 0.8398648468223778
+-------Step 2900/35000------
+global step 2950 learning rate 0.0091267 step-time 0.22 loss 0.2553
+Running test set
+Avg Test Loss: 0.39690483985720454, Avg Test Accuracy: 0.8410810691279333
+-------Step 2950/35000------
+global step 3000 learning rate 0.0091267 step-time 0.20 loss 0.2462
+Running test set
+Avg Test Loss: 0.41146571330122045, Avg Test Accuracy: 0.8434459269046783
+-------Step 3000/35000------
+global step 3050 learning rate 0.0091267 step-time 0.21 loss 0.2439
+Running test set
+Avg Test Loss: 0.3838999641908182, Avg Test Accuracy: 0.8397972785137795
+-------Step 3050/35000------
+global step 3100 learning rate 0.0091267 step-time 0.21 loss 0.2360
+Running test set
+Avg Test Loss: 0.3897977757292825, Avg Test Accuracy: 0.8416216067365698
+-------Step 3100/35000------
+global step 3150 learning rate 0.0091267 step-time 0.21 loss 0.2484
+Running test set
+Avg Test Loss: 0.36797470820916667, Avg Test Accuracy: 0.8447972866328987
+-------Step 3150/35000------
+global step 3200 learning rate 0.0088529 step-time 0.21 loss 0.2220
+Running test set
+Avg Test Loss: 0.3822131269686931, Avg Test Accuracy: 0.8413513294748358
+-------Step 3200/35000------
+global step 3250 learning rate 0.0088529 step-time 0.20 loss 0.2359
+Running test set
+Avg Test Loss: 0.39197358005755656, Avg Test Accuracy: 0.8451351201212084
+-------Step 3250/35000------
+global step 3300 learning rate 0.0088529 step-time 0.21 loss 0.2468
+Running test set
+Avg Test Loss: 0.38934752345085144, Avg Test Accuracy: 0.843986465318783
+-------Step 3300/35000------
+global step 3350 learning rate 0.0088529 step-time 0.21 loss 0.2296
+Running test set
+Avg Test Loss: 0.3884744470989382, Avg Test Accuracy: 0.8420270037006687
+-------Step 3350/35000------
+global step 3400 learning rate 0.0088529 step-time 0.20 loss 0.2266
+Running test set
+Avg Test Loss: 0.4095618837588542, Avg Test Accuracy: 0.8406080756638501
+-------Step 3400/35000------
+global step 3450 learning rate 0.0088529 step-time 0.20 loss 0.2239
+Running test set
+Avg Test Loss: 0.3712038945507359, Avg Test Accuracy: 0.8435134887695312
+-------Step 3450/35000------
+global step 3500 learning rate 0.0088529 step-time 0.21 loss 0.2352
+Running test set
+Avg Test Loss: 0.37552951397122564, Avg Test Accuracy: 0.8450675453688647
+-------Step 3500/35000------
+global step 3550 learning rate 0.0085873 step-time 0.21 loss 0.2200
+Running test set
+Avg Test Loss: 0.40574550668935516, Avg Test Accuracy: 0.8460135016892407
+-------Step 3550/35000------
+global step 3600 learning rate 0.0085873 step-time 0.21 loss 0.2128
+Running test set
+Avg Test Loss: 0.4019093412805248, Avg Test Accuracy: 0.849527013462943
+-------Step 3600/35000------
+global step 3650 learning rate 0.0085873 step-time 0.21 loss 0.2084
+Running test set
+Avg Test Loss: 0.3996276348023801, Avg Test Accuracy: 0.8485134944722459
+-------Step 3650/35000------
+global step 3700 learning rate 0.0085873 step-time 0.21 loss 0.2007
+Running test set
+Avg Test Loss: 0.39585572158968124, Avg Test Accuracy: 0.8523648477889396
+-------Step 3700/35000------
+global step 3750 learning rate 0.0085873 step-time 0.21 loss 0.2027
+Running test set
+Avg Test Loss: 0.38738684275665797, Avg Test Accuracy: 0.8519594451865634
+-------Step 3750/35000------
+global step 3800 learning rate 0.0085873 step-time 0.21 loss 0.2114
+Running test set
+Avg Test Loss: 0.3895387315266841, Avg Test Accuracy: 0.8502026812450306
+-------Step 3800/35000------
+global step 3850 learning rate 0.0083297 step-time 0.21 loss 0.2091
+Running test set
+Avg Test Loss: 0.42809439228998647, Avg Test Accuracy: 0.8479729576690777
+-------Step 3850/35000------
+global step 3900 learning rate 0.0083297 step-time 0.21 loss 0.2092
+Running test set
+Avg Test Loss: 0.3812220322119223, Avg Test Accuracy: 0.8490540328863505
+-------Step 3900/35000------
+global step 3950 learning rate 0.0083297 step-time 0.20 loss 0.1943
+Running test set
+Avg Test Loss: 0.4034915828221553, Avg Test Accuracy: 0.8508783611091407
+-------Step 3950/35000------
+global step 4000 learning rate 0.0083297 step-time 0.20 loss 0.1978
+Running test set
+Avg Test Loss: 0.38231443392263875, Avg Test Accuracy: 0.8474999843416987
+-------Step 4000/35000------
+global step 4050 learning rate 0.0083297 step-time 0.21 loss 0.1928
+Running test set
+Avg Test Loss: 0.391656490193831, Avg Test Accuracy: 0.8506756577942822
+-------Step 4050/35000------
+global step 4100 learning rate 0.0083297 step-time 0.20 loss 0.1992
+Running test set
+Avg Test Loss: 0.38539747853536865, Avg Test Accuracy: 0.8502026868833078
+-------Step 4100/35000------
+global step 4150 learning rate 0.0080798 step-time 0.21 loss 0.1919
+Running test set
+Avg Test Loss: 0.3918820007427319, Avg Test Accuracy: 0.848175660178468
+-------Step 4150/35000------
+global step 4200 learning rate 0.0080798 step-time 0.20 loss 0.1907
+Running test set
+Avg Test Loss: 0.40100196446921377, Avg Test Accuracy: 0.8480405195339306
+-------Step 4200/35000------
+global step 4250 learning rate 0.0080798 step-time 0.20 loss 0.1785
+Running test set
+Avg Test Loss: 0.4069813880566004, Avg Test Accuracy: 0.8510134953099329
+-------Step 4250/35000------
+global step 4300 learning rate 0.0080798 step-time 0.21 loss 0.1824
+Running test set
+Avg Test Loss: 0.41823318842295054, Avg Test Accuracy: 0.8486486230347607
+-------Step 4300/35000------
+global step 4350 learning rate 0.0080798 step-time 0.21 loss 0.1925
+Running test set
+Avg Test Loss: 0.3748536420029563, Avg Test Accuracy: 0.84939188409496
+-------Step 4350/35000------
+global step 4400 learning rate 0.0078374 step-time 0.20 loss 0.1799
+Running test set
+Avg Test Loss: 0.38208995477573293, Avg Test Accuracy: 0.8501351137419004
+-------Step 4400/35000------
+global step 4450 learning rate 0.0078374 step-time 0.21 loss 0.1721
+Running test set
+Avg Test Loss: 0.40339543368365316, Avg Test Accuracy: 0.8510810692568083
+-------Step 4450/35000------
+global step 4500 learning rate 0.0078374 step-time 0.22 loss 0.1751
+Running test set
+Avg Test Loss: 0.3878012235100205, Avg Test Accuracy: 0.8504729472302102
+-------Step 4500/35000------
+global step 4550 learning rate 0.0078374 step-time 0.21 loss 0.1856
+Running test set
+Avg Test Loss: 0.39715643468740824, Avg Test Accuracy: 0.8520270078568846
+-------Step 4550/35000------
+global step 4600 learning rate 0.0076023 step-time 0.21 loss 0.1724
+Running test set
+Avg Test Loss: 0.39394266420119517, Avg Test Accuracy: 0.8556081008266758
+-------Step 4600/35000------
+global step 4650 learning rate 0.0076023 step-time 0.21 loss 0.1618
+Running test set
+Avg Test Loss: 0.395782484798818, Avg Test Accuracy: 0.8566216020970732
+-------Step 4650/35000------
+global step 4700 learning rate 0.0076023 step-time 0.21 loss 0.1653
+Running test set
+Avg Test Loss: 0.4334466384874808, Avg Test Accuracy: 0.852702684499122
+-------Step 4700/35000------
+global step 4750 learning rate 0.0076023 step-time 0.21 loss 0.1791
+Running test set
+Avg Test Loss: 0.4162446047003205, Avg Test Accuracy: 0.8535810676780907
+-------Step 4750/35000------
+global step 4800 learning rate 0.0073742 step-time 0.21 loss 0.1696
+Running test set
+Avg Test Loss: 0.3957622518410554, Avg Test Accuracy: 0.8546621477281725
+-------Step 4800/35000------
+global step 4850 learning rate 0.0073742 step-time 0.21 loss 0.1707
+Running test set
+Avg Test Loss: 0.37533967841315913, Avg Test Accuracy: 0.8518918712396879
+-------Step 4850/35000------
+global step 4900 learning rate 0.0073742 step-time 0.22 loss 0.1656
+Running test set
+Avg Test Loss: 0.4071141747204033, Avg Test Accuracy: 0.8502026876887759
+-------Step 4900/35000------
+global step 4950 learning rate 0.0073742 step-time 0.21 loss 0.1549
+Running test set
+Avg Test Loss: 0.39872506985793243, Avg Test Accuracy: 0.8528378243381912
+-------Step 4950/35000------
+global step 5000 learning rate 0.0073742 step-time 0.20 loss 0.1646
+Running test set
+Avg Test Loss: 0.3807528614997864, Avg Test Accuracy: 0.853108091128839
+-------Step 5000/35000------
+global step 5050 learning rate 0.0073742 step-time 0.20 loss 0.1631
+Running test set
+Avg Test Loss: 0.4072236040154019, Avg Test Accuracy: 0.8529729633717924
+-------Step 5050/35000------
+global step 5100 learning rate 0.0073742 step-time 0.20 loss 0.1568
+Running test set
+Avg Test Loss: 0.4152495228760951, Avg Test Accuracy: 0.854864859903181
+-------Step 5100/35000------
+global step 5150 learning rate 0.0073742 step-time 0.21 loss 0.1571
+Running test set
+Avg Test Loss: 0.37895649893058314, Avg Test Accuracy: 0.8510134953099329
+-------Step 5150/35000------
+global step 5200 learning rate 0.0073742 step-time 0.21 loss 0.1535
+Running test set
+Avg Test Loss: 0.41504973193278183, Avg Test Accuracy: 0.8512162010411959
+-------Step 5200/35000------
+global step 5250 learning rate 0.0073742 step-time 0.22 loss 0.1457
+Running test set
+Avg Test Loss: 0.41653261192747065, Avg Test Accuracy: 0.8552702608946208
+-------Step 5250/35000------
+global step 5300 learning rate 0.0073742 step-time 0.21 loss 0.1480
+Running test set
+Avg Test Loss: 0.4185935726036897, Avg Test Accuracy: 0.8503378291387815
+-------Step 5300/35000------
+global step 5350 learning rate 0.0073742 step-time 0.21 loss 0.1459
+Running test set
+Avg Test Loss: 0.4164596208044001, Avg Test Accuracy: 0.8560135074563928
+-------Step 5350/35000------
+global step 5400 learning rate 0.0073742 step-time 0.21 loss 0.1541
+Running test set
+Avg Test Loss: 0.40494964251647125, Avg Test Accuracy: 0.8541891776226662
+-------Step 5400/35000------
+global step 5450 learning rate 0.0071530 step-time 0.21 loss 0.1465
+Running test set
+Avg Test Loss: 0.4383231586701161, Avg Test Accuracy: 0.856216199494697
+-------Step 5450/35000------
+global step 5500 learning rate 0.0071530 step-time 0.22 loss 0.1520
+Running test set
+Avg Test Loss: 0.40888221803549174, Avg Test Accuracy: 0.8529729593444515
+-------Step 5500/35000------
+global step 5550 learning rate 0.0071530 step-time 0.21 loss 0.1403
+Running test set
+Avg Test Loss: 0.40046464792779973, Avg Test Accuracy: 0.8533783659741685
+-------Step 5550/35000------
+global step 5600 learning rate 0.0071530 step-time 0.21 loss 0.1434
+Running test set
+Avg Test Loss: 0.4389762640804858, Avg Test Accuracy: 0.8562162075493787
+-------Step 5600/35000------
+global step 5650 learning rate 0.0071530 step-time 0.21 loss 0.1340
+Running test set
+Avg Test Loss: 0.42787615672962087, Avg Test Accuracy: 0.856689182487694
+-------Step 5650/35000------
+global step 5700 learning rate 0.0071530 step-time 0.21 loss 0.1459
+Running test set
+Avg Test Loss: 0.40398143513782603, Avg Test Accuracy: 0.8531080838796254
+-------Step 5700/35000------
+global step 5750 learning rate 0.0069384 step-time 0.20 loss 0.1377
+Running test set
+Avg Test Loss: 0.4214995660491892, Avg Test Accuracy: 0.8530405228202408
+-------Step 5750/35000------
+global step 5800 learning rate 0.0069384 step-time 0.21 loss 0.1432
+Running test set
+Avg Test Loss: 0.428999835172215, Avg Test Accuracy: 0.8549324209625656
+-------Step 5800/35000------
+global step 5850 learning rate 0.0069384 step-time 0.20 loss 0.1357
+Running test set
+Avg Test Loss: 0.3963868426712784, Avg Test Accuracy: 0.8552026893641498
+-------Step 5850/35000------
+global step 5900 learning rate 0.0069384 step-time 0.20 loss 0.1339
+Running test set
+Avg Test Loss: 0.4314445460567603, Avg Test Accuracy: 0.8544594428023776
+-------Step 5900/35000------
+global step 5950 learning rate 0.0069384 step-time 0.21 loss 0.1308
+Running test set
+Avg Test Loss: 0.4332550300939663, Avg Test Accuracy: 0.8524999884334771
+-------Step 5950/35000------
+global step 6000 learning rate 0.0069384 step-time 0.21 loss 0.1287
+Running test set
+Avg Test Loss: 0.4356735207744547, Avg Test Accuracy: 0.8546621493391089
+-------Step 6000/35000------
+global step 6050 learning rate 0.0069384 step-time 0.20 loss 0.1279
+Running test set
+Avg Test Loss: 0.42390688730252757, Avg Test Accuracy: 0.8534459310608942
+-------Step 6050/35000------
+global step 6100 learning rate 0.0069384 step-time 0.21 loss 0.1238
+Running test set
+Avg Test Loss: 0.47303147694549047, Avg Test Accuracy: 0.851013491282592
+-------Step 6100/35000------
+global step 6150 learning rate 0.0069384 step-time 0.21 loss 0.1286
+Running test set
+Avg Test Loss: 0.45899847794223475, Avg Test Accuracy: 0.8564864783673674
+-------Step 6150/35000------
+global step 6200 learning rate 0.0069384 step-time 0.20 loss 0.1346
+Running test set
+Avg Test Loss: 0.4359101004697181, Avg Test Accuracy: 0.8549999957149094
+-------Step 6200/35000------
+global step 6250 learning rate 0.0067303 step-time 0.21 loss 0.1304
+Running test set
+Avg Test Loss: 0.45949492019575994, Avg Test Accuracy: 0.8541215972320454
+-------Step 6250/35000------
+global step 6300 learning rate 0.0067303 step-time 0.21 loss 0.1239
+Running test set
+Avg Test Loss: 0.41952272021287196, Avg Test Accuracy: 0.8547972915945826
+-------Step 6300/35000------
+global step 6350 learning rate 0.0067303 step-time 0.22 loss 0.1160
+Running test set
+Avg Test Loss: 0.4408775749238762, Avg Test Accuracy: 0.856216199494697
+-------Step 6350/35000------
+global step 6400 learning rate 0.0067303 step-time 0.21 loss 0.1202
+Running test set
+Avg Test Loss: 0.4434082544333226, Avg Test Accuracy: 0.8560810644884367
+-------Step 6400/35000------
+global step 6450 learning rate 0.0067303 step-time 0.21 loss 0.1279
+Running test set
+Avg Test Loss: 0.44672657629928075, Avg Test Accuracy: 0.8542567467367327
+-------Step 6450/35000------
+global step 6500 learning rate 0.0065284 step-time 0.21 loss 0.1222
+Running test set
+Avg Test Loss: 0.4518746274548608, Avg Test Accuracy: 0.8552026917805543
+-------Step 6500/35000------
+global step 6550 learning rate 0.0065284 step-time 0.22 loss 0.1114
+Running test set
+Avg Test Loss: 0.4696622225078377, Avg Test Accuracy: 0.8514189148271406
+-------Step 6550/35000------
+global step 6600 learning rate 0.0065284 step-time 0.22 loss 0.1187
+Running test set
+Avg Test Loss: 0.4468254221452249, Avg Test Accuracy: 0.8549999876602276
+-------Step 6600/35000------
+global step 6650 learning rate 0.0065284 step-time 0.20 loss 0.1193
+Running test set
+Avg Test Loss: 0.45578097048643473, Avg Test Accuracy: 0.854324310212522
+-------Step 6650/35000------
+global step 6700 learning rate 0.0065284 step-time 0.20 loss 0.1094
+Running test set
+Avg Test Loss: 0.4374830650316702, Avg Test Accuracy: 0.8564189060314281
+-------Step 6700/35000------
+global step 6750 learning rate 0.0065284 step-time 0.21 loss 0.1181
+Running test set
+Avg Test Loss: 0.45393503960725423, Avg Test Accuracy: 0.8539189059992094
+-------Step 6750/35000------
+global step 6800 learning rate 0.0065284 step-time 0.21 loss 0.1093
+Running test set
+Avg Test Loss: 0.4758110296081852, Avg Test Accuracy: 0.84993242009266
+-------Step 6800/35000------
+global step 6850 learning rate 0.0065284 step-time 0.21 loss 0.1141
+Running test set
+Avg Test Loss: 0.49563424007312673, Avg Test Accuracy: 0.8536486271265391
+-------Step 6850/35000------
+global step 6900 learning rate 0.0065284 step-time 0.21 loss 0.1143
+Running test set
+Avg Test Loss: 0.49146266885705897, Avg Test Accuracy: 0.8541891808445389
+-------Step 6900/35000------
+global step 6950 learning rate 0.0065284 step-time 0.21 loss 0.1072
+Running test set
+Avg Test Loss: 0.4960960572635805, Avg Test Accuracy: 0.8495945809660731
+-------Step 6950/35000------
+global step 7000 learning rate 0.0065284 step-time 0.21 loss 0.1204
+Running test set
+Avg Test Loss: 0.4499994898970063, Avg Test Accuracy: 0.8507432349630304
+-------Step 7000/35000------
+global step 7050 learning rate 0.0063325 step-time 0.21 loss 0.1172
+Running test set
+Avg Test Loss: 0.4396818521860483, Avg Test Accuracy: 0.8554729545438612
+-------Step 7050/35000------
+global step 7100 learning rate 0.0063325 step-time 0.21 loss 0.0990
+Running test set
+Avg Test Loss: 0.5166395906661008, Avg Test Accuracy: 0.8531756594374373
+-------Step 7100/35000------
+global step 7150 learning rate 0.0063325 step-time 0.21 loss 0.1090
+Running test set
+Avg Test Loss: 0.4525694774614798, Avg Test Accuracy: 0.8543243061851811
+-------Step 7150/35000------
+global step 7200 learning rate 0.0063325 step-time 0.21 loss 0.1092
+Running test set
+Avg Test Loss: 0.44407683892829997, Avg Test Accuracy: 0.8553378251758782
+-------Step 7200/35000------
+global step 7250 learning rate 0.0063325 step-time 0.21 loss 0.1084
+Running test set
+Avg Test Loss: 0.4514280942243499, Avg Test Accuracy: 0.856013503429052
+-------Step 7250/35000------
+global step 7300 learning rate 0.0063325 step-time 0.21 loss 0.1088
+Running test set
+Avg Test Loss: 0.4729292116857864, Avg Test Accuracy: 0.8559459294821765
+-------Step 7300/35000------
+global step 7350 learning rate 0.0063325 step-time 0.21 loss 0.1064
+Running test set
+Avg Test Loss: 0.4640935486232912, Avg Test Accuracy: 0.8536486295429436
+-------Step 7350/35000------
+global step 7400 learning rate 0.0063325 step-time 0.22 loss 0.1032
+Running test set
+Avg Test Loss: 0.5056854506602159, Avg Test Accuracy: 0.8556756594696561
+-------Step 7400/35000------
+global step 7450 learning rate 0.0063325 step-time 0.20 loss 0.1042
+Running test set
+Avg Test Loss: 0.47393349256064443, Avg Test Accuracy: 0.8532432349952491
+-------Step 7450/35000------
+global step 7500 learning rate 0.0063325 step-time 0.20 loss 0.1059
+Running test set
+Avg Test Loss: 0.45775287819875254, Avg Test Accuracy: 0.8517567442881094
+-------Step 7500/35000------
+global step 7550 learning rate 0.0063325 step-time 0.21 loss 0.0989
+Running test set
+Avg Test Loss: 0.5098796301596874, Avg Test Accuracy: 0.8554053910680719
+-------Step 7550/35000------
+global step 7600 learning rate 0.0063325 step-time 0.21 loss 0.1005
+Running test set
+Avg Test Loss: 0.4748046982127267, Avg Test Accuracy: 0.8514864702482481
+-------Step 7600/35000------
+global step 7650 learning rate 0.0063325 step-time 0.21 loss 0.1035
+Running test set
+Avg Test Loss: 0.46747721530295705, Avg Test Accuracy: 0.8530405365131997
+-------Step 7650/35000------
+global step 7700 learning rate 0.0063325 step-time 0.21 loss 0.1026
+Running test set
+Avg Test Loss: 0.4777178256898313, Avg Test Accuracy: 0.8556080984102713
+-------Step 7700/35000------
+global step 7750 learning rate 0.0063325 step-time 0.21 loss 0.0957
+Running test set
+Avg Test Loss: 0.5264686313835351, Avg Test Accuracy: 0.8521621509178264
+-------Step 7750/35000------
+global step 7800 learning rate 0.0063325 step-time 0.21 loss 0.0924
+Running test set
+Avg Test Loss: 0.47234351570541794, Avg Test Accuracy: 0.8543918833539292
+-------Step 7800/35000------
+global step 7850 learning rate 0.0063325 step-time 0.20 loss 0.1006
+Running test set
+Avg Test Loss: 0.5139232680604264, Avg Test Accuracy: 0.8523648485944078
+-------Step 7850/35000------
+global step 7900 learning rate 0.0063325 step-time 0.20 loss 0.0914
+Running test set
+Avg Test Loss: 0.5129580417194882, Avg Test Accuracy: 0.8531756666866509
+-------Step 7900/35000------
+global step 7950 learning rate 0.0063325 step-time 0.21 loss 0.1015
+Running test set
+Avg Test Loss: 0.48091890240037766, Avg Test Accuracy: 0.8545270095000396
+-------Step 7950/35000------
+global step 8000 learning rate 0.0061425 step-time 0.21 loss 0.1031
+Running test set
+Avg Test Loss: 0.5244456630300831, Avg Test Accuracy: 0.8531080943507117
+-------Step 8000/35000------
+global step 8050 learning rate 0.0059583 step-time 0.21 loss 0.0848
+Running test set
+Avg Test Loss: 0.5332506444003131, Avg Test Accuracy: 0.8522972859240867
+-------Step 8050/35000------
+global step 8100 learning rate 0.0059583 step-time 0.21 loss 0.0893
+Running test set
+Avg Test Loss: 0.5065688434484843, Avg Test Accuracy: 0.8525675535202026
+-------Step 8100/35000------
+global step 8150 learning rate 0.0059583 step-time 0.21 loss 0.0885
+Running test set
+Avg Test Loss: 0.5094600722596452, Avg Test Accuracy: 0.8533107952491658
+-------Step 8150/35000------
+global step 8200 learning rate 0.0059583 step-time 0.21 loss 0.1012
+Running test set
+Avg Test Loss: 0.4556632988356255, Avg Test Accuracy: 0.8577026902018366
+-------Step 8200/35000------
+global step 8250 learning rate 0.0057795 step-time 0.21 loss 0.0835
+Running test set
+Avg Test Loss: 0.5389749520533794, Avg Test Accuracy: 0.8520945793873554
+-------Step 8250/35000------
+global step 8300 learning rate 0.0057795 step-time 0.22 loss 0.0926
+Running test set
+Avg Test Loss: 0.4908956357756177, Avg Test Accuracy: 0.8562162011056333
+-------Step 8300/35000------
+global step 8350 learning rate 0.0057795 step-time 0.21 loss 0.0950
+Running test set
+Avg Test Loss: 0.5153412903482849, Avg Test Accuracy: 0.8551351242774242
+-------Step 8350/35000------
+global step 8400 learning rate 0.0057795 step-time 0.21 loss 0.0854
+Running test set
+Avg Test Loss: 0.5156472623348236, Avg Test Accuracy: 0.8554729577657338
+-------Step 8400/35000------
+global step 8450 learning rate 0.0057795 step-time 0.20 loss 0.0833
+Running test set
+Avg Test Loss: 0.5697752696436804, Avg Test Accuracy: 0.8522972786748731
+-------Step 8450/35000------
+global step 8500 learning rate 0.0057795 step-time 0.20 loss 0.0880
+Running test set
+Avg Test Loss: 0.544459492773623, Avg Test Accuracy: 0.8524999811842635
+-------Step 8500/35000------
+global step 8550 learning rate 0.0057795 step-time 0.21 loss 0.0848
+Running test set
+Avg Test Loss: 0.5424287097679602, Avg Test Accuracy: 0.8531080951561799
+-------Step 8550/35000------
+global step 8600 learning rate 0.0057795 step-time 0.20 loss 0.0981
+Running test set
+Avg Test Loss: 0.5038582344312925, Avg Test Accuracy: 0.8537837693820128
+-------Step 8600/35000------
+global step 8650 learning rate 0.0056061 step-time 0.21 loss 0.0791
+Running test set
+Avg Test Loss: 0.5564422683941351, Avg Test Accuracy: 0.857027012754131
+-------Step 8650/35000------
+global step 8700 learning rate 0.0056061 step-time 0.21 loss 0.0879
+Running test set
+Avg Test Loss: 0.5651482480603296, Avg Test Accuracy: 0.8516216100873174
+-------Step 8700/35000------
+global step 8750 learning rate 0.0056061 step-time 0.20 loss 0.0968
+Running test set
+Avg Test Loss: 0.5113094537644773, Avg Test Accuracy: 0.8535810628452817
+-------Step 8750/35000------
+global step 8800 learning rate 0.0056061 step-time 0.21 loss 0.0856
+Running test set
+Avg Test Loss: 0.5214810129758474, Avg Test Accuracy: 0.8527702576405293
+-------Step 8800/35000------
+global step 8850 learning rate 0.0056061 step-time 0.21 loss 0.0856
+Running test set
+Avg Test Loss: 0.5048702983437358, Avg Test Accuracy: 0.8535810636507498
+-------Step 8850/35000------
+global step 8900 learning rate 0.0056061 step-time 0.20 loss 0.0833
+Running test set
+Avg Test Loss: 0.5450480125240378, Avg Test Accuracy: 0.8545270223875303
+-------Step 8900/35000------
+global step 8950 learning rate 0.0056061 step-time 0.20 loss 0.0767
+Running test set
+Avg Test Loss: 0.5411935275470888, Avg Test Accuracy: 0.8547297184531754
+-------Step 8950/35000------
+global step 9000 learning rate 0.0056061 step-time 0.21 loss 0.0762
+Running test set
+Avg Test Loss: 0.5487276368044518, Avg Test Accuracy: 0.8552702633110253
+-------Step 9000/35000------
+global step 9050 learning rate 0.0056061 step-time 0.21 loss 0.0862
+Running test set
+Avg Test Loss: 0.5355543659345524, Avg Test Accuracy: 0.8543918736883112
+-------Step 9050/35000------
+global step 9100 learning rate 0.0054379 step-time 0.20 loss 0.0728
+Running test set
+Avg Test Loss: 0.5884269363171345, Avg Test Accuracy: 0.8516891695357658
+-------Step 9100/35000------
+global step 9150 learning rate 0.0054379 step-time 0.21 loss 0.0763
+Running test set
+Avg Test Loss: 0.5772288498040792, Avg Test Accuracy: 0.8526351242452055
+-------Step 9150/35000------
+global step 9200 learning rate 0.0054379 step-time 0.21 loss 0.0834
+Running test set
+Avg Test Loss: 0.6089099738243464, Avg Test Accuracy: 0.8534459391155759
+-------Step 9200/35000------
+global step 9250 learning rate 0.0054379 step-time 0.21 loss 0.0759
+Running test set
+Avg Test Loss: 0.5367335403287733, Avg Test Accuracy: 0.8528378219217867
+-------Step 9250/35000------
+global step 9300 learning rate 0.0054379 step-time 0.20 loss 0.0875
+Running test set
+Avg Test Loss: 0.5246757800514633, Avg Test Accuracy: 0.8556756675243378
+-------Step 9300/35000------
+global step 9350 learning rate 0.0052748 step-time 0.20 loss 0.0737
+Running test set
+Avg Test Loss: 0.5906377974394206, Avg Test Accuracy: 0.850337821889568
+-------Step 9350/35000------
+global step 9400 learning rate 0.0052748 step-time 0.21 loss 0.0812
+Running test set
+Avg Test Loss: 0.5613493854935104, Avg Test Accuracy: 0.8562837726361042
+-------Step 9400/35000------
+global step 9450 learning rate 0.0052748 step-time 0.21 loss 0.0781
+Running test set
+Avg Test Loss: 0.5356309035339871, Avg Test Accuracy: 0.8562162067439105
+-------Step 9450/35000------
+global step 9500 learning rate 0.0052748 step-time 0.20 loss 0.0692
+Running test set
+Avg Test Loss: 0.5913013682977574, Avg Test Accuracy: 0.855337829203219
+-------Step 9500/35000------
+global step 9550 learning rate 0.0052748 step-time 0.21 loss 0.0849
+Running test set
+Avg Test Loss: 0.5283039341101775, Avg Test Accuracy: 0.8486486246456971
+-------Step 9550/35000------
+global step 9600 learning rate 0.0051166 step-time 0.21 loss 0.0740
+Running test set
+Avg Test Loss: 0.5317330525533573, Avg Test Accuracy: 0.8505405219825538
+-------Step 9600/35000------
+global step 9650 learning rate 0.0051166 step-time 0.21 loss 0.0701
+Running test set
+Avg Test Loss: 0.5426126267458942, Avg Test Accuracy: 0.8534459358937031
+-------Step 9650/35000------
+global step 9700 learning rate 0.0051166 step-time 0.21 loss 0.0748
+Running test set
+Avg Test Loss: 0.5665236196002444, Avg Test Accuracy: 0.8547972754852192
+-------Step 9700/35000------
+global step 9750 learning rate 0.0051166 step-time 0.21 loss 0.0758
+Running test set
+Avg Test Loss: 0.5693730393777022, Avg Test Accuracy: 0.8503378259169089
+-------Step 9750/35000------
+global step 9800 learning rate 0.0049631 step-time 0.20 loss 0.0660
+Running test set
+Avg Test Loss: 0.6212815251704809, Avg Test Accuracy: 0.852905390230385
+-------Step 9800/35000------
+global step 9850 learning rate 0.0049631 step-time 0.20 loss 0.0717
+Running test set
+Avg Test Loss: 0.5663953951081714, Avg Test Accuracy: 0.8520270134951617
+-------Step 9850/35000------
+global step 9900 learning rate 0.0049631 step-time 0.20 loss 0.0758
+Running test set
+Avg Test Loss: 0.5884744327616047, Avg Test Accuracy: 0.8549324185461611
+-------Step 9900/35000------
+global step 9950 learning rate 0.0049631 step-time 0.21 loss 0.0697
+Running test set
+Avg Test Loss: 0.5780045168625342, Avg Test Accuracy: 0.8545945866687877
+-------Step 9950/35000------
+global step 10000 learning rate 0.0049631 step-time 0.20 loss 0.0737
+Running test set
+Avg Test Loss: 0.5425930373572014, Avg Test Accuracy: 0.8554053942899447
+-------Step 10000/35000------
+global step 10050 learning rate 0.0049631 step-time 0.21 loss 0.0732
+Running test set
+Avg Test Loss: 0.5774436532645613, Avg Test Accuracy: 0.8514864670263754
+-------Step 10050/35000------
+global step 10100 learning rate 0.0049631 step-time 0.21 loss 0.0645
+Running test set
+Avg Test Loss: 0.601968153505712, Avg Test Accuracy: 0.8509459382778889
+-------Step 10100/35000------
+global step 10150 learning rate 0.0049631 step-time 0.21 loss 0.0692
+Running test set
+Avg Test Loss: 0.5967921248158893, Avg Test Accuracy: 0.8556080984102713
+-------Step 10150/35000------
