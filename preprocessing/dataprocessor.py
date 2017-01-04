@@ -233,7 +233,7 @@ class DataProcessor(object):
         for dir in dirs:
             print("\tNow processing folder: " + dir)
 
-            for f in os.listdir(dir):
+            for f in os.listdir(dir) as review:
                 review_tkn = tokenizer(review.read(), remove_puct, remove_stopwords)
                 corpus += " ".join(review_tkn) + "\n"
 
