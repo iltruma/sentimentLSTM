@@ -7,7 +7,7 @@ dic = {'the': 0, 'a': 1, 'is' : 2, ..., <UNK>: max_vocab_size, <PAD>: max_vocab_
 where the words are ordered from the most frequent to the last.
 '''
 class VocabMapping(object):
-    def __init__(self, path, glove=False):
+    def __init__(self, path, glove=True):
         with open(path, "rb") as handle:
             if glove:
                 dic = {}
@@ -18,7 +18,6 @@ class VocabMapping(object):
                     s = re.match('^\S*', line).group(0)
                     dic[s] = line_num
                     line_num += 1
-
 
                 dic['<UNK>'] = line_num
                 dic['<PAD>'] = line_num + 1
