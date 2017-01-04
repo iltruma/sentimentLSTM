@@ -214,17 +214,17 @@ class DataProcessor(object):
                             dic[t] += 1
         d = {}
         counter = 0
-        for w in sorted(dic, key=dic.get, reverse=True):
-            # take word more frequent than min_count
-            if dic[w] < min_count: break
+        with open(self.dataDir + 'vocab.txt', 'a') as v:
+            for w in sorted(dic, key=dic.get, reverse=True):
+                # take word more frequent than min_count
+                if dic[w] < min_count: break
 
-            with open(self.dataDir + 'glove_vocab.txt', 'w') as v:
-                v.write(w + " " + dic[w] + "\n")
+                v.write(w + " " + dic[w])
 
-            d[w] = counter
-            counter += 1
-            # take most frequent max_vocab_size tokens
-            if max_vocab_size > -1 and counter >= max_vocab_size: break
+                d[w] = counter
+                counter += 1
+                # take most frequent max_vocab_size tokens
+                if max_vocab_size > -1 and counter >= max_vocab_size: break
 
         # add out of vocab token and pad token
         d["<UNK>"] = counter
