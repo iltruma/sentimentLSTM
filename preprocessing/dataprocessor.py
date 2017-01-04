@@ -21,7 +21,7 @@ I decided to split the task in n processes, where n is the number of directories
 Each of the four (test/pos, test/neg, train/pos, train/neg) directory are processed in the same way specified below
 '''
 class DataProcessor(object):
-    def __init__(self, dataDirectory="../data/"):
+    def __init__(self, dataDirectory="../data/", remove_punct=True, remove_stopwords=False):
         self.dataDir = dataDirectory
         self.vocabDirs = [self.dataDir + "aclImdb/train/unsup", \
                 self.dataDir + "aclImdb/train/pos", self.dataDir + "aclImdb/train/neg"]
@@ -29,8 +29,8 @@ class DataProcessor(object):
                 self.dataDir + "aclImdb/train/pos", self.dataDir + "aclImdb/train/neg"]
         self.url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
         self.vocab_name = "vocab.txt"
-        self.remove_punct = True
-        self.remove_stopwords = False
+        self.remove_punct = remove_punct
+        self.remove_stopwords = remove_stopwords
 
 
     def run(self, max_seq_length, max_vocab_size, min_count):
