@@ -1,4 +1,5 @@
 tensorflow >= 0.10
 nltk
+bs4
 
 # after installing nltk you must run python -> import nltk -> nltk.download() then hit b and then punkt
