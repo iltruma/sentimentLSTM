@@ -32,7 +32,7 @@ def glove_converter(dataDir, outDir):
         pickle.dump(dic, nf)
         nf.close()
 
-    print("Converting vectors file into npy array...")
+    print("Converting vectors file into numpy array...")
 
     with open(outDir + "temp_vectors.txt", "w") as nf:
         with open(outDir + "vectors.txt", "r") as f:
