@@ -27,7 +27,9 @@ class DataProcessor(object):
         self.url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
 
 
-    def run(self, max_seq_length, max_vocab_size, min_count):
+    def run(self, max_seq_length, max_vocab_size, min_count, glove_vocab=False):
+        vocab_name = "vocab.txt"
+        if glove_vocab: vocab_name = "glove_vocab.txt"
 
         if not os.path.exists(self.dataDir):
             print('%s directory not found!' % self.dataDir)
@@ -42,7 +44,7 @@ class DataProcessor(object):
             print("Extracting dataset...")
             tfile.extractall(self.dataDir)
             tfile.close()
-        if os.path.exists(self.dataDir + "vocab.txt"):
+        if os.path.exists(self.dataDir + vocab_name):
             print("vocab mapping found...")
         else:
             print("no vocab mapping found, running preprocessor...")
@@ -54,7 +56,7 @@ class DataProcessor(object):
             print("Processed data files found: delete " + self.dataDir + "processed  to redo them")
             return
         import preprocessing.vocabmapping as vocabmapping
-        vocab = vocabmapping.VocabMapping(self.dataDir + "vocab.txt")
+        vocab = vocabmapping.VocabMapping(self.dataDir + vocab_name)
         dirCount = 0
         processes = []
         lock = Lock()
