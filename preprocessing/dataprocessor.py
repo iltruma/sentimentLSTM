@@ -29,6 +29,8 @@ class DataProcessor(object):
                 self.dataDir + "aclImdb/train/pos", self.dataDir + "aclImdb/train/neg"]
         self.url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
         self.vocab_name = "vocab.txt"
+        self.remove_punct = True
+        self.remove_stopwords = False
 
 
     def run(self, max_seq_length, max_vocab_size, min_count):
@@ -61,7 +63,7 @@ class DataProcessor(object):
             print("No glove corpus data files found, running preprocessor...")
             self.createCorpus()
         else:
-            print("Processed glove files found: delete " + self.dataDir + "p  to redo them")
+            print("Processed glove corpus found: delete " + self.dataDir + "corpus to redo it")
 
 
 
@@ -111,7 +113,7 @@ class DataProcessor(object):
                 print("Processing: " + f + " the " + str(count) + "th file... on process: " + str(pid))
                 lock.release()
             with open(os.path.join(directory, f), 'r') as review:
-                tokens = tokenizer.tokenize(review.read().lower())
+                tokens = tokenizer.tokenize(review.read().lower(), self.remove_punct, self.remove_stopwords)
                 numTokens = len(tokens)
                 indices = [vocab_mapping.getIndex(j) for j in tokens]
                 # pad sequence to max length
@@ -185,7 +187,7 @@ class DataProcessor(object):
             indices = []
             for f in os.listdir(d):
                 with open(os.path.join(d, f), 'r') as review:
-                    tokens = tokenizer.tokenize(review.read().lower())
+                    tokens = tokenizer.tokenize(review.read().lower(), self.remove_punct, self.remove_stopwords)
                     for t in tokens:
                         if t not in dic:
                             dic[t] = 1
@@ -216,7 +218,7 @@ class DataProcessor(object):
             indices = []
             for f in os.listdir(d):
                 with open(os.path.join(d, f), 'r') as review:
-                    tokens = tokenizer.tokenize(review.read().lower())
+                    tokens = tokenizer.tokenize(review.read().lower(), self.remove_punct, self.remove_stopwords)
                     for t in tokens:
                         if t not in dic:
                             dic[t] = 1
@@ -236,14 +238,14 @@ class DataProcessor(object):
                 # take most frequent max_vocab_size tokens
                 if max_vocab_size > -1 and counter >= max_vocab_size: break
 
-    def createCorpus(self, remove_punct=True, remove_stopwords=False):
+    def createCorpus(self):
         corpus = ""
         for dir in self.vocabDirs:
             print("\tNow processing folder: " + dir)
 
             for f in os.listdir(dir):
                 with open(os.path.join(dir, f), 'r') as review:
-                    review_tkn = tokenizer.tokenize(review.read(), remove_punct, remove_stopwords)
+                    review_tkn = tokenizer.tokenize(review.read(), self.remove_punct, self.remove_stopwords)
                     corpus += " ".join(review_tkn) + "\n"
 
         #name_corpus = "corpus{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else "")
@@ -258,7 +260,6 @@ def main():
     min_count = 5 # discard word with low frequency
     dataP = DataProcessor(dataDir)
     dataP.run(max_seq_length, max_vocab_size, min_count)
-    dataP.createCorpus()
 
 
 if __name__ == '__main__':
