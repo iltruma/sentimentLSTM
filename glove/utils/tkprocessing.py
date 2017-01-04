@@ -3,10 +3,11 @@ import nltk
 from nltk.corpus import stopwords
 import re
 from bs4 import BeautifulSoup
+import argparse
 
 corpus = ""
-dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
-#dataDirs = ["../../data/aclImdb/train/unsup"]
+#dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
+dataDirs = ["../../data/aclImdb/train/pos"]
 #dataDirs = ["input"]
 
 print("Tokenizer started")
@@ -33,16 +34,21 @@ def new_tokenizer(review, punct, stop):
 
 if __name__ == '__main__':
     #Tokenize every file of dataDirs and merge them together
+    parser = argparse.ArgumentParser(description='Tokenizer for Glove')
+    parser.add_argument('--punct', action='store_true', help='include punctuation into corpus')
+    parser.add_argument('--stop', action='store_true', help='include stopwords into corpus')
+    args = parser.parse_args()
+
     for dir in dataDirs:
         print("\tNow processing folder: " + dir)
 
         for f in os.listdir(dir):
             with open(os.path.join(dir, f), 'r') as review:
-                review_tkn = new_tokenizer(review.read(), punct=True, stop=True)
+                review_tkn = new_tokenizer(review.read(), args.punct, args.stop)
                 corpus += " ".join(review_tkn) + "\n"
                 review.close()
 
-    with open("../../data/train_glove", "w") as text_file:
+    with open("../../data/train_glove{p}{s}".format(p="_punct" if args.punct else "", s="_stop" if args.stop else ""), "w") as text_file:
         text_file.write(corpus)
         text_file.close()
 
