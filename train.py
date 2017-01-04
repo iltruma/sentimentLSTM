@@ -33,7 +33,8 @@ def main():
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
     processor = dp.DataProcessor(data_dir)
-    processor.run(int(dp_params["max_seq_length"]), int(dp_params["max_vocab_size"]), int(dp_params["min_vocab_count"]))
+    processor.run(int(dp_params["max_seq_length"]), int(dp_params["max_vocab_size"]),
+                  int(dp_params["min_vocab_count"]), dp_params["glove_vocab"] == 'True')
 
     # create model
     net_params = hyper_params["sentiment_network_params"]
