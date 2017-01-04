@@ -23,6 +23,8 @@ Each of the four (test/pos, test/neg, train/pos, train/neg) directory are proces
 class DataProcessor(object):
     def __init__(self, dataDirectory="../data/"):
         self.dataDir = dataDirectory
+        self.vocabDirs = [self.dataDir + "aclImdb/train/unsup", \
+                self.dataDir + "aclImdb/train/pos", self.dataDir + "aclImdb/train/neg"]
         self.dirs = [self.dataDir + "aclImdb/test/pos", self.dataDir + "aclImdb/test/neg", \
                 self.dataDir + "aclImdb/train/pos", self.dataDir + "aclImdb/train/neg"]
         self.url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
@@ -49,7 +51,7 @@ class DataProcessor(object):
             print("vocab mapping found...")
         else:
             print("no vocab mapping found, running preprocessor...")
-            self.createVocab(self.dirs, max_vocab_size, min_count)
+            self.createVocab(self.vocabDirs, max_vocab_size, min_count)
         if not os.path.exists(self.dataDir + "processed"):
             os.makedirs(self.dataDir + "processed/")
             print("No processed data files found, running preprocessor...")

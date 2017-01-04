@@ -8,7 +8,7 @@ where the words are ordered from the most frequent to the last.
 '''
 class VocabMapping(object):
     def __init__(self, path, glove=True):
-        with open(path, "rb") as handle:
+        with open(path, "r") as handle:
             if glove:
                 dic = {}
                 line_num = 0
