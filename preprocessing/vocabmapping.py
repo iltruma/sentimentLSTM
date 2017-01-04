@@ -14,12 +14,11 @@ class VocabMapping(object):
                 line_num = 0
 
                 print("Converting vocab file into binary dictonary...")
-                with open(path, 'r') as f:
-                    for line in f.readlines():
-                        s = re.match('^\S*', line).group(0)
-                        dic[s] = line_num
-                        line_num += 1
-                    f.close()
+                for line in handle.readlines():
+                    s = re.match('^\S*', line).group(0)
+                    dic[s] = line_num
+                    line_num += 1
+
 
                 dic['<UNK>'] = line_num
                 dic['<PAD>'] = line_num + 1
