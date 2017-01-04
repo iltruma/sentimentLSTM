@@ -48,7 +48,7 @@ if __name__ == '__main__':
                 corpus += " ".join(review_tkn) + "\n"
                 review.close()
 
-    with open("../../data/train_glove{p}{s}".format(p="_punct" if args.punct else "", s="_stop" if args.stop else ""), "w") as text_file:
+    with open("../../data/train_glove{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else ""), "w") as text_file:
         text_file.write(corpus)
         text_file.close()
 
