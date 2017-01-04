@@ -168,7 +168,7 @@ class DataProcessor(object):
     where the words are ordered from the most frequent to the last.
     '''
 
-    def createVocab(self, dirs, max_vocab_size, min_count):
+    def createVocab_old(self, dirs, max_vocab_size, min_count):
         print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (max_vocab_size, min_count))
         dic = {}
         for d in dirs:
@@ -199,7 +199,40 @@ class DataProcessor(object):
         with open(self.dataDir + 'vocab.txt', 'wb') as handle:
             pickle.dump(d, handle)
 
+    def createVocab(self, dirs, max_vocab_size, min_count):
+        print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (max_vocab_size, min_count))
+        dic = {}
+        for d in dirs:
+            indices = []
+            for f in os.listdir(d):
+                with open(os.path.join(d, f), 'r') as review:
+                    tokens = tokenizer.tokenize(review.read().lower())
+                    for t in tokens:
+                        if t not in dic:
+                            dic[t] = 1
+                        else:
+                            dic[t] += 1
+        d = {}
+        counter = 0
+        for w in sorted(dic, key=dic.get, reverse=True):
+            # take word more frequent than min_count
+            if dic[w] < min_count: break
 
+            with open(self.dataDir + 'glove_vocab.txt', 'w') as v:
+                v.write(w + " " + dic[w] + "\n")
+
+            d[w] = counter
+            counter += 1
+            # take most frequent max_vocab_size tokens
+            if max_vocab_size > -1 and counter >= max_vocab_size: break
+
+        # add out of vocab token and pad token
+        d["<UNK>"] = counter
+        counter += 1
+        d["<PAD>"] = counter
+        print("vocab mapping created: size: %d discarded: %d" % (len(d), len(dic) - len(d) + 2))
+        with open(self.dataDir + 'vocab.txt', 'wb') as handle:
+            pickle.dump(d, handle)
 
 
 def main():
