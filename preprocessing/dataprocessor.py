@@ -228,7 +228,7 @@ class DataProcessor(object):
                 # take most frequent max_vocab_size tokens
                 if max_vocab_size > -1 and counter >= max_vocab_size: break
 
-    def createCorpus(dirs, remove_puct, remove_stopwords):
+    def createCorpus(self, dirs, remove_puct, remove_stopwords):
         corpus = ""
         for dir in dirs:
             print("\tNow processing folder: " + dir)
@@ -237,9 +237,8 @@ class DataProcessor(object):
                 review_tkn = tokenizer(review.read(), remove_puct, remove_stopwords)
                 corpus += " ".join(review_tkn) + "\n"
 
-        #corpus = "corpus{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else "")
-        corpus = "corpus"
-        with open(self.dataDir + corpus, "w") as text_file:
+        #name_corpus = "corpus{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else "")
+        with open(self.dataDir + "corpus", "w") as text_file:
             text_file.write(corpus)
             text_file.close()
 
