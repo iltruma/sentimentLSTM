@@ -54,7 +54,7 @@ class DataProcessor(object):
         if not os.path.exists(self.dataDir + "processed"):
             os.makedirs(self.dataDir + "processed/")
             print("No processed data files found, running preprocessor...")
-            self.createNetworkInputs(self, max_seq_length)
+            self.createNetworkInputs(max_seq_length)
         else:
             print("Processed data files found: delete " + self.dataDir + "processed  to redo them")
         if not os.path.exists(self.dataDir + "corpus.txt"):
