@@ -20,7 +20,7 @@ X_MAX=100
 
 
 #Create Vocabulary with no limit of dimension
-build/vocab_count -min-count $VOCAB_MIN_COUNT -verbose $VERBOSE < $DATADIR$CORPUS > out/vocab.txt
+#build/vocab_count -min-count $VOCAB_MIN_COUNT -verbose $VERBOSE < $DATADIR$CORPUS > out/vocab.txt
 
 #Create Co-occurrence Matrix
 build/cooccur -memory 4.0 -vocab-file out/vocab.txt -verbose $VERBOSE -symmetric 1 -window-size $WINDOW_SIZE < $DATADIR$CORPUS > out/cooccurrence.bin
