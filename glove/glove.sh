@@ -3,7 +3,8 @@
 # Makes programs, downloads sample data, trains a GloVe model, and then evaluates it.
 # One optional argument can specify the language used for eval script: matlab, octave or [default] python
 
-CORPUS=../data/train-unsup
+CORPUS=train-unsup
+DATADIR=../data/
 VERBOSE=2
 EVALUATE=false
 GRAPH=false
@@ -19,10 +20,10 @@ X_MAX=100
 
 
 #Create Vocabulary with no limit of dimension
-build/vocab_count -min-count $VOCAB_MIN_COUNT -verbose $VERBOSE < $CORPUS > out/vocab.txt
+build/vocab_count -min-count $VOCAB_MIN_COUNT -verbose $VERBOSE < $DATADIR$CORPUS > out/vocab.txt
 
 #Create Co-occurrence Matrix
-build/cooccur -memory 4.0 -vocab-file out/vocab.txt -verbose $VERBOSE -symmetric 1 -window-size $WINDOW_SIZE < $CORPUS > out/cooccurrence.bin
+build/cooccur -memory 4.0 -vocab-file out/vocab.txt -verbose $VERBOSE -symmetric 1 -window-size $WINDOW_SIZE < $DATADIR$CORPUS > out/cooccurrence.bin
 
 #Shuffle Co-occurrence Matrix
 build/shuffle -memory 4.0 -verbose $VERBOSE < out/cooccurrence.bin> out/cooccurrence.shuf.bin

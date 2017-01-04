@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 import argparse
 
 corpus = ""
-#dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
-dataDirs = ["../../data/aclImdb/train/pos"]
+dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
+#dataDirs = ["../../data/aclImdb/train/pos"]
 #dataDirs = ["input"]
 
 print("Tokenizer started")
