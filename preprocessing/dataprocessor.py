@@ -6,6 +6,7 @@ import os
 import nltk
 import pickle
 import urllib
+import preprocessing.tokenizer as tokenizer
 import numpy as np
 from multiprocessing import Process, Lock
 
@@ -100,7 +101,7 @@ class DataProcessor(object):
                 print("Processing: " + f + " the " + str(count) + "th file... on process: " + str(pid))
                 lock.release()
             with open(os.path.join(directory, f), 'r') as review:
-                tokens = self.tokenize(review.read().lower())
+                tokens = tokenizer.tokenize(review.read().lower())
                 numTokens = len(tokens)
                 indices = [vocab_mapping.getIndex(j) for j in tokens]
                 # pad sequence to max length
@@ -174,7 +175,7 @@ class DataProcessor(object):
             indices = []
             for f in os.listdir(d):
                 with open(os.path.join(d, f), 'r') as review:
-                    tokens = self.tokenize(review.read().lower())
+                    tokens = tokenizer.tokenize(review.read().lower())
                     for t in tokens:
                         if t not in dic:
                             dic[t] = 1

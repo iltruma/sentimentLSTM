@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
         for f in os.listdir(dir):
             with open(os.path.join(dir, f), 'r') as review:
-                review_tkn = new_tokenizer(review.read(), args.punct, args.stop)
+                review_tkn = tokenize(review.read(), args.punct, args.stop)
                 corpus += " ".join(review_tkn) + "\n"
                 review.close()
 

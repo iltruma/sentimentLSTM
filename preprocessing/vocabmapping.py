@@ -1,4 +1,5 @@
 import pickle
+import re
 
 '''
 Handler of the vocab.txt file  of the form:
@@ -6,9 +7,25 @@ dic = {'the': 0, 'a': 1, 'is' : 2, ..., <UNK>: max_vocab_size, <PAD>: max_vocab_
 where the words are ordered from the most frequent to the last.
 '''
 class VocabMapping(object):
-    def __init__(self, path):
+    def __init__(self, path, glove=False):
         with open(path, "rb") as handle:
-            self.dic = pickle.loads(handle.read())
+            if glove:
+                dic = {}
+                line_num = 0
+
+                print("Converting vocab file into binary dictonary...")
+                with open(path, 'r') as f:
+                    for line in f.readlines():
+                        s = re.match('^\S*', line).group(0)
+                        dic[s] = line_num
+                        line_num += 1
+                    f.close()
+
+                dic['<UNK>'] = line_num
+                dic['<PAD>'] = line_num + 1
+                self.dic = dic
+            else:
+                self.dic = pickle.loads(handle.read())
 
     def getIndex(self, token):
         try:
