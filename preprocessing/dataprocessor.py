@@ -28,11 +28,10 @@ class DataProcessor(object):
         self.dirs = [self.dataDir + "aclImdb/test/pos", self.dataDir + "aclImdb/test/neg", \
                 self.dataDir + "aclImdb/train/pos", self.dataDir + "aclImdb/train/neg"]
         self.url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
+        self.vocab_name = "vocab.txt"
 
 
-    def run(self, max_seq_length, max_vocab_size, min_count, glove_vocab=False):
-        vocab_name = "vocab.txt"
-        if glove_vocab: vocab_name = "glove_vocab.txt"
+    def run(self, max_seq_length, max_vocab_size, min_count):
 
         if not os.path.exists(self.dataDir):
             print('%s directory not found!' % self.dataDir)
@@ -47,7 +46,7 @@ class DataProcessor(object):
             print("Extracting dataset...")
             tfile.extractall(self.dataDir)
             tfile.close()
-        if os.path.exists(self.dataDir + vocab_name):
+        if os.path.exists(self.dataDir + self.vocab_name):
             print("vocab mapping found...")
         else:
             print("no vocab mapping found, running preprocessor...")
@@ -55,11 +54,20 @@ class DataProcessor(object):
         if not os.path.exists(self.dataDir + "processed"):
             os.makedirs(self.dataDir + "processed/")
             print("No processed data files found, running preprocessor...")
+            self.createNetworkInputs(self, max_seq_length)
         else:
             print("Processed data files found: delete " + self.dataDir + "processed  to redo them")
-            return
+        if not os.path.exists(self.dataDir + "corpus.txt"):
+            print("No glove corpus data files found, running preprocessor...")
+            self.createCorpus()
+        else:
+            print("Processed glove files found: delete " + self.dataDir + "p  to redo them")
+
+
+
+    def createNetworkInputs(self, max_seq_length):
         import vocabmapping as vocabmapping
-        vocab = vocabmapping.VocabMapping(self.dataDir + vocab_name)
+        vocab = vocabmapping.VocabMapping(self.dataDir + self.vocab_name)
         dirCount = 0
         processes = []
         lock = Lock()
@@ -239,7 +247,7 @@ class DataProcessor(object):
                     corpus += " ".join(review_tkn) + "\n"
 
         #name_corpus = "corpus{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else "")
-        with open(self.dataDir + "corpus", "w") as text_file:
+        with open(self.dataDir + "corpus.txt", "w") as text_file:
             text_file.write(corpus)
             text_file.close()
 
