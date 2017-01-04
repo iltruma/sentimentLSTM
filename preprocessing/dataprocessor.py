@@ -228,9 +228,9 @@ class DataProcessor(object):
                 # take most frequent max_vocab_size tokens
                 if max_vocab_size > -1 and counter >= max_vocab_size: break
 
-    def createCorpus(self, dirs, remove_punct=True, remove_stopwords=False):
+    def createCorpus(self, remove_punct=True, remove_stopwords=False):
         corpus = ""
-        for dir in dirs:
+        for dir in self.vocabDirs:
             print("\tNow processing folder: " + dir)
 
             for f in os.listdir(dir):
@@ -250,7 +250,7 @@ def main():
     min_count = 5 # discard word with low frequency
     dataP = DataProcessor(dataDir)
     dataP.run(max_seq_length, max_vocab_size, min_count)
-    dataP.createCorpus(dataP.vocabDirs)
+    dataP.createCorpus()
 
 
 if __name__ == '__main__':
