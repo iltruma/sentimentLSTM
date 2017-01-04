@@ -233,9 +233,10 @@ class DataProcessor(object):
         for dir in dirs:
             print("\tNow processing folder: " + dir)
 
-            for f in os.listdir(dir) as review:
-                review_tkn = tokenizer(review.read(), remove_puct, remove_stopwords)
-                corpus += " ".join(review_tkn) + "\n"
+            for f in os.listdir(dir):
+                with open(os.path.join(dir, f), 'r') as review:
+                    review_tkn = tokenizer(review.read(), remove_puct, remove_stopwords)
+                    corpus += " ".join(review_tkn) + "\n"
 
         #name_corpus = "corpus{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else "")
         with open(self.dataDir + "corpus", "w") as text_file:
