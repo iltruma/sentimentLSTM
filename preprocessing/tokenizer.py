@@ -12,7 +12,7 @@ dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../
 
 print("Tokenizer started")
 
-def tokenize(review, punct, stop):
+def tokenize(review, punct=True, stop=False):
     '''CC
     Tokenize a review:
         - Remove HTML
