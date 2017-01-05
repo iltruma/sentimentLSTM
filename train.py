@@ -27,7 +27,6 @@ flags.DEFINE_string("seed", 1, "seed to randomize data")
 flags.DEFINE_string("train_seed", 2, "seed to randomize training")
 
 
-
 def main():
     hyper_params = read_config_file()
     data_dir = hyper_params["general"]["data_dir"]
@@ -41,8 +40,8 @@ def main():
     processor.run()
     train_nn(data_dir, hyper_params["sentiment_network_params"])
 
-def train_nn(data_dir, net_params):
 
+def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False):
     # create model
     print("Creating model with...")
     print("Number of hidden layers: {0}".format(net_params["num_layers"]))
@@ -60,10 +59,9 @@ def train_nn(data_dir, net_params):
         np.random.seed(FLAGS.seed)
         tf.set_random_seed(FLAGS.seed)
 
-        model = create_model(sess, net_params, vocab_size)
+        model = create_model(sess, net_params, vocab_size, embedding_matrix)
         model.initData(path, float(net_params["train_frac"]), -1, True, FLAGS.train_seed)
         writer = tf.train.SummaryWriter("/tmp/tb_logs", sess.graph)
-
 
         print("Beggining training...")
         print("Maximum number of epochs to train for: {0}".format(net_params["max_epoch"]))
@@ -116,11 +114,11 @@ def train_nn(data_dir, net_params):
                 print(
                     "Avg Test Loss: {0}, Avg Test Accuracy: {1}".format(norm_test_loss, norm_test_accuracy))
                 print("-------Step {0}/{1}------".format(step, tot_steps))
-                loss = 0.0 # loss reset
+                loss = 0.0  # loss reset
                 sys.stdout.flush()
 
 
-def create_model(session, hyper_params, vocab_size):
+def create_model(session, hyper_params, vocab_size, embedding_matrix=None, train_embedding=False):
     model = sentiment.SentimentModel(vocab_size,
                                      int(hyper_params["hidden_size"]),
                                      int(hyper_params["num_rec_units"]),
@@ -130,7 +128,9 @@ def create_model(session, hyper_params, vocab_size):
                                      int(hyper_params["max_seq_length"]),
                                      float(hyper_params["learning_rate"]),
                                      float(hyper_params["lr_decay_factor"]),
-                                     int(hyper_params["batch_size"]))
+                                     int(hyper_params["batch_size"]),
+                                     embedding_matrix=embedding_matrix,
+                                     train_embedding=train_embedding)
     session.run(tf.initialize_all_variables())
     return model
 

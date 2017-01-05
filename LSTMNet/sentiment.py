@@ -7,7 +7,7 @@ from LSTMNet import datahandler as dh
 class SentimentModel(object):
     def __init__(self, vocab_size, hidden_size, num_rec_units, dropout,
                  num_layers, max_gradient_norm, max_seq_length,
-                 learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None):
+                 learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None, train_embedding=False):
         self.num_classes = 2
         self.vocab_size = vocab_size
         self.learning_rate = tf.Variable(float(learning_rate), trainable=False)
@@ -38,7 +38,7 @@ class SentimentModel(object):
         self.dropout_keep_prob_lstm_output = tf.constant(self.dropout)
 
         # embedding weights
-        embedded_tokens_drop = self.embedding_layer(embedding_matrix)
+        embedded_tokens_drop = self.embedding_layer(embedding_matrix, train_embedding)
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
@@ -83,10 +83,10 @@ class SentimentModel(object):
     def initData(self, data_path, train_frac, max_examples=-1, shuffle_each_pass=True, train_seed=None):
         self.dataH = dh.DataHandler(data_path, self.batch_size, train_frac, max_examples, shuffle_each_pass, train_seed)
 
-    def embedding_layer(self, pre_W):
+    def embedding_layer(self, pre_W, train_embedding = True):
         with tf.variable_scope("embedding"), tf.device("/cpu:0"):
             if pre_W is not None:
-                W = tf.Variable(pre_W, dtype=tf.float32)
+                W = tf.Variable(pre_W, trainable=train_embedding, dtype=tf.float32)
             else:
                 W = tf.get_variable(
                     "W",
