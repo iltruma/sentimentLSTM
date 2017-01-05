@@ -44,17 +44,21 @@ def test_net_with_glove():
 
     params = hyp.read_config_file("config.ini")
     data_dir = params["general"]["data_dir"]
+    embedding_matrix_path = data_dir + "embedding_matrix.npy"
+
 
     # Generate all the necessary data for training
-    dp.process_data(data_dir, params["dataprocessor_params"])
+    processor = dp.process_data(data_dir, params["dataprocessor_params"])
+    changed_signature = processor.changed_signature
 
-    # Train glove embedding matrix
-    glove.glove_train_embedding(data_dir, params["glove_params"])
+    if changed_signature or not os.path.exists(embedding_matrix_path):
+        # Train glove embedding matrix
+        glove.glove_train_embedding(data_dir, params["glove_params"])
 
-    # Convert the embedding matrix to be used with
-    embedding_matrix_path = glove.convert_gv_to_embedding_matrix(data_dir)
+        # Convert the embedding matrix to be used with
+        glove.convert_gv_to_embedding_matrix(data_dir)
+
     embedding_matrix = np.load(embedding_matrix_path)
-
     # Train the Neural net with the embedding matrix given by glove
     train_nn(data_dir, params["sentiment_network_params"], embedding_matrix, train_embedding=False)
 
