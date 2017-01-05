@@ -39,6 +39,7 @@ class DataProcessor(object):
 
 
     def run(self):
+        self.printState()
         cs = self.changed_signature
 
         if not os.path.exists(self.dataDir):
@@ -276,6 +277,11 @@ class DataProcessor(object):
                 self.changed_signature = True
         else:
             self.changed_signature = False
+
+    def printState(self):
+        print("dataprocessor state is max_seq_length={}, max_vocab_size={}, min_count={}, remove_punct={},"
+              " remove_stopwords={}".format(self.max_seq_length, self.max_vocab_size, self.min_count,
+                                            self.remove_punct, self.remove_stopwords))
 
 
 """process data given the directory datadir and parameters in dp_params and returns the processor"""
