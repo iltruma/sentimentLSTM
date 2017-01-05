@@ -4,6 +4,14 @@ of hyperparameters (for use in checkpoint restoration and sampling)
 '''
 import os
 import pickle
+import configparser
+
+
+def read_config_file(path):
+    config = configparser.ConfigParser()
+    config.read(path)
+    return config
+
 
 class HyperParameterHandler(object):
     def __init__(self, path):

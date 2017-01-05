@@ -278,6 +278,17 @@ class DataProcessor(object):
             self.changed_signature = False
 
 
+"""process data given the directory datadir and parameters in dp_params"""
+def process_data(data_dir, dp_params):
+    processor = DataProcessor(data_dir,
+                                 int(dp_params["max_seq_length"]),
+                                 int(dp_params["max_vocab_size"]),
+                                 int(dp_params["min_vocab_count"]),
+                                 dp_params["remove_stopwords"],
+                                 dp_params["remove_punct"])
+    processor.run()
+
+
 def main():
     dataDir = "../data/"
     max_seq_length = 200  # max sequence dimension

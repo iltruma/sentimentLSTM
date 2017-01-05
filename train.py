@@ -11,11 +11,11 @@ import numpy as np
 import sys
 import os
 import time
-import configparser
 from LSTMNet import sentiment
 from preprocessing import dataprocessor as dp
-from util import hyperparams as hyperparams
+from util import hyperparams as hyp
 import preprocessing.vocabmapping as vmapping
+
 
 # Defaults for network parameters
 
@@ -28,17 +28,17 @@ flags.DEFINE_string("train_seed", 2, "seed to randomize training")
 
 
 def main():
-    hyper_params = read_config_file()
+    hyper_params = hyp.read_config_file(FLAGS.config_file)
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
-    processor = dp.DataProcessor(data_dir,
-                                 int(dp_params["max_seq_length"]),
-                                 int(dp_params["max_vocab_size"]),
-                                 int(dp_params["min_vocab_count"]),
-                                 dp_params["remove_stopwords"],
-                                 dp_params["remove_punct"])
-    processor.run()
+
+    #generate all the necessary data for training
+    dp.process_data(data_dir, dp_params)
+
+    # trains the neural net with the config.ini hyperparameters and the data already generated
     train_nn(data_dir, hyper_params["sentiment_network_params"])
+
+
 
 
 def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False):
@@ -135,10 +135,6 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None, train
     return model
 
 
-def read_config_file():
-    config = configparser.ConfigParser()
-    config.read(FLAGS.config_file)
-    return config
 
 
 if __name__ == '__main__':
