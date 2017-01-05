@@ -1,6 +1,7 @@
 data
 data/*
 
+glove/build/*
 glove/out/*
 
 __pycache__
