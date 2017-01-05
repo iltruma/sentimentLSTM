@@ -43,7 +43,7 @@ def test_net_with_glove():
     import train_glove as glove
 
     params = hyp.read_config_file("config.ini")
-    if params["glove_params"]["vector_size"] != params["sentiment_network_params"]["hidden_size"]:
+    if params["glove_params"]["vector_size"] != params["sentiment_network_params"]["embedding_dim"]:
         print("ERROR: glove vector size and nn embedding size are different! change them to be equal in config.ini")
         return
 
@@ -144,10 +144,11 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
 
 def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
     model = sentiment.SentimentModel(vocab_size,
-                                     int(hyper_params["hidden_size"]),
+                                     int(hyper_params["embedding_dim"]),
                                      int(hyper_params["num_rec_units"]),
+                                     int(hyper_params["hidden_dim"]),
                                      float(hyper_params["dropout"]),
-                                     int(hyper_params["num_layers"]),
+                                     int(hyper_params["num_rec_layers"]),
                                      float(hyper_params["grad_clip"]),
                                      int(hyper_params["max_seq_length"]),
                                      float(hyper_params["learning_rate"]),

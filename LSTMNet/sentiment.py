@@ -5,8 +5,8 @@ from LSTMNet import datahandler as dh
 
 
 class SentimentModel(object):
-    def __init__(self, vocab_size, hidden_size, num_rec_units, dropout,
-                 num_layers, max_gradient_norm, max_seq_length,
+    def __init__(self, vocab_size, embedding_dim, num_rec_units, hidden_dim, dropout,
+                 num_rec_layers, max_gradient_norm, max_seq_length,
                  learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None, train_embedding=False):
         self.num_classes = 2
         self.vocab_size = vocab_size
@@ -17,8 +17,9 @@ class SentimentModel(object):
         self.seq_input = []
         self.batch_size = batch_size
         self.seq_lengths = []
-        self.hidden_size = hidden_size
+        self.embedding_dim = embedding_dim
         self.num_rec_units = num_rec_units
+        self.hidden_dim = hidden_dim
         self.dropout = dropout
         self.max_gradient_norm = max_gradient_norm
         self.global_step = tf.Variable(0, trainable=False)
@@ -42,18 +43,30 @@ class SentimentModel(object):
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
-        rnn_output, rnn_state = self.lstm_layers(lstm_input, num_layers)
+        rnn_output, rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+
+        # hidden layer as in the adversarial paper
+        with tf.variable_scope("hidden_layer"):
+            W = tf.get_variable(
+                "W",
+                [self.num_rec_units, self.hidden_dim],
+                initializer=tf.truncated_normal_initializer(stddev=0.1))
+            b = tf.get_variable(
+                "b",
+                [self.hidden_dim],
+                initializer=tf.constant_initializer(0.1))
+            self.hidden_output = tf.nn.xw_plus_b(rnn_state[-1][0], W, b)
 
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
                 "W",
-                [self.num_rec_units, self.num_classes],
+                [self.hidden_dim, self.num_classes],
                 initializer=tf.truncated_normal_initializer(stddev=0.1))
             b = tf.get_variable(
                 "b",
                 [self.num_classes],
                 initializer=tf.constant_initializer(0.1))
-            self.scores = tf.nn.xw_plus_b(rnn_state[-1][0], W, b)
+            self.scores = tf.nn.xw_plus_b(self.hidden_output, W, b)
             self.y = tf.nn.softmax(self.scores)
             self.predictions = tf.argmax(self.scores, 1)
 
@@ -90,12 +103,12 @@ class SentimentModel(object):
             else:
                 W = tf.get_variable(
                     "W",
-                    [self.vocab_size, self.hidden_size],
+                    [self.vocab_size, self.embedding_dim],
                     initializer=tf.random_uniform_initializer(-1.0, 1.0))
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
             return tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
 
-    def lstm_layers(self, lstm_input, num_layers):
+    def lstm_layers(self, lstm_input, num_rec_layers):
         with tf.variable_scope("lstm"):
             single_cell = rnn_cell.DropoutWrapper(
                 rnn_cell.LSTMCell(self.num_rec_units,
@@ -103,7 +116,7 @@ class SentimentModel(object):
                                   state_is_tuple=True),
                 input_keep_prob=self.dropout_keep_prob_lstm_input,
                 output_keep_prob=self.dropout_keep_prob_lstm_output)
-            cell = rnn_cell.MultiRNNCell([single_cell] * num_layers, state_is_tuple=True)
+            cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
 
             initial_state = cell.zero_state(self.batch_size, tf.float32)
 
@@ -179,8 +192,8 @@ def test():
     np.random.seed(seed)
     tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
-    model = SentimentModel(vocab_size=vocab_size, hidden_size=50, num_rec_units=100, dropout=0.5,
-                           num_layers=2, max_gradient_norm=5, max_seq_length=200,
+    model = SentimentModel(vocab_size=vocab_size, embedding_dim=50, num_rec_units=100, hidden_dim=30, dropout=0.5,
+                           num_rec_layers=2, max_gradient_norm=5, max_seq_length=200,
                            learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
                            embedding_matrix=np.random.rand(vocab_size, 50))
     print("Created model")
