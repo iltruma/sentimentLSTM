@@ -27,7 +27,7 @@ flags.DEFINE_string("seed", 1, "seed to randomize data")
 flags.DEFINE_string("train_seed", 2, "seed to randomize training")
 
 
-def main():
+def test_net():
     hyper_params = hyp.read_config_file(FLAGS.config_file)
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
@@ -38,6 +38,25 @@ def main():
     # trains the neural net with the config.ini hyperparameters and the data already generated
     train_nn(data_dir, hyper_params["sentiment_network_params"])
 
+
+def test_net_with_glove():
+    import train_glove as glove
+
+    params = hyp.read_config_file("config.ini")
+    data_dir = params["general"]["data_dir"]
+
+    # Generate all the necessary data for training
+    dp.process_data(data_dir, params["dataprocessor_params"])
+
+    # Train glove embedding matrix
+    glove.glove_train_embedding(data_dir, params["glove_params"])
+
+    # Convert the embedding matrix to be used with
+    embedding_matrix_path = glove.convert_gv_to_embedding_matrix(data_dir)
+    embedding_matrix = np.load(embedding_matrix_path)
+
+    # Train the Neural net with the embedding matrix given by glove
+    train_nn(data_dir, params["sentiment_network_params"], embedding_matrix, train_embedding=False)
 
 
 
@@ -138,4 +157,4 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None, train
 
 
 if __name__ == '__main__':
-    main()
+    test_net_with_glove()
