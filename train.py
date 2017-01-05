@@ -61,7 +61,6 @@ def test_net_with_glove():
         print("embedding_matrix already found...")
 
     embedding_matrix = np.load(embedding_matrix_path)
-    print(embedding_matrix.shape)
     if len(embedding_matrix.transpose()) != int(params["glove_params"]["vector_size"]):
         print("matrix must be made again due to inconsistent embedding dimension")
         # Train glove embedding matrix and convert it
