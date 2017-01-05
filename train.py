@@ -69,7 +69,7 @@ def test_net_with_glove():
 
 
     # Train the Neural net with the embedding matrix given by glove
-    train_nn(data_dir, params["sentiment_network_params"], embedding_matrix, train_embedding=False)
+    train_nn(data_dir, params["sentiment_network_params"], embedding_matrix)
 
 
 
@@ -150,7 +150,7 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
                 sys.stdout.flush()
 
 
-def create_model(session, hyper_params, vocab_size, embedding_matrix=None, train_embedding=False):
+def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
     model = sentiment.SentimentModel(vocab_size,
                                      int(hyper_params["hidden_size"]),
                                      int(hyper_params["num_rec_units"]),
@@ -162,7 +162,7 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None, train
                                      float(hyper_params["lr_decay_factor"]),
                                      int(hyper_params["batch_size"]),
                                      embedding_matrix=embedding_matrix,
-                                     train_embedding=train_embedding)
+                                     train_embedding=hyper_params["train_embedding"] == 'True')
     session.run(tf.initialize_all_variables())
     return model
 
