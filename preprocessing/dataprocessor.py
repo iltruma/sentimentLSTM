@@ -21,7 +21,7 @@ Each of the four (test/pos, test/neg, train/pos, train/neg) directory are proces
 
 
 class DataProcessor(object):
-    def __init__(self, datadir="../data/", remove_punct=True, remove_stopwords=False):
+    def __init__(self, datadir="../data/", max_seq_length=200, max_vocab_size=-1, min_count=5, remove_punct=True, remove_stopwords=False):
         self.dataDir = datadir
         self.vocabDirs = [self.dataDir + "aclImdb/train/unsup",
                           self.dataDir + "aclImdb/train/pos", self.dataDir + "aclImdb/train/neg"]
@@ -31,10 +31,14 @@ class DataProcessor(object):
         self.vocab_name = "vocab.txt"
         self.remove_punct = remove_punct
         self.remove_stopwords = remove_stopwords
+        self.max_seq_length=max_seq_length
+        self.max_vocab_size = max_vocab_size
+        self.min_count = min_count
         self.changed_signature = True
+        self.check_signature()
 
-    def run(self, max_seq_length, max_vocab_size, min_count):
-        self.check_signature(max_seq_length, max_vocab_size, min_count)
+
+    def run(self):
         cs = self.changed_signature
 
         if not os.path.exists(self.dataDir):
@@ -54,21 +58,21 @@ class DataProcessor(object):
             print("vocab mapping found...")
         else:
             print("no vocab mapping found, running preprocessor...")
-            self.createVocab(self.vocabDirs, max_vocab_size, min_count)
+            self.createVocab(self.vocabDirs)
         if not cs and os.path.exists(self.dataDir + "processed"):
             print("Processed data files found: delete " + self.dataDir + "processed  to redo them")
         else:
             if cs: shutil.rmtree(self.dataDir + "processed")
             os.makedirs(self.dataDir + "processed/")
             print("No processed data files found, running preprocessor...")
-            self.createNetworkInputs(max_seq_length)
+            self.createNetworkInputs()
         if not cs and os.path.exists(self.dataDir + "corpus.txt"):
             print("Processed glove corpus found: delete " + self.dataDir + "corpus to redo it")
         else:
             print("No glove corpus data files found, running preprocessor...")
             self.createCorpus()
 
-    def createNetworkInputs(self, max_seq_length):
+    def createNetworkInputs(self):
         import vocabmapping as vocabmapping
         vocab = vocabmapping.VocabMapping(self.dataDir + self.vocab_name)
         dirCount = 0
@@ -76,7 +80,7 @@ class DataProcessor(object):
         lock = Lock()
         for d in self.dirs:
             print("Procesing data with process: " + str(dirCount))
-            p = Process(target=self.createProcessedDataFile, args=(vocab, d, dirCount, max_seq_length, lock))
+            p = Process(target=self.createProcessedDataFile, args=(vocab, d, dirCount, self.max_seq_length, lock))
             p.start()
             processes.append(p)
             dirCount += 1
@@ -181,8 +185,8 @@ class DataProcessor(object):
     where the words are ordered from the most frequent to the last.
     '''
 
-    def createVocab_old(self, dirs, max_vocab_size, min_count):
-        print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (max_vocab_size, min_count))
+    def createVocab_old(self, dirs):
+        print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (self.max_vocab_size, self.min_count))
         dic = {}
         for d in dirs:
             indices = []
@@ -198,11 +202,11 @@ class DataProcessor(object):
         counter = 0
         for w in sorted(dic, key=dic.get, reverse=True):
             # take word more frequent than min_count
-            if dic[w] < min_count: break
+            if dic[w] < self.min_count: break
             d[w] = counter
             counter += 1
             # take most frequent max_vocab_size tokens
-            if max_vocab_size > -1 and counter >= max_vocab_size: break
+            if self.max_vocab_size > -1 and counter >= self.max_vocab_size: break
 
         # add out of vocab token and pad token
         d["<UNK>"] = counter
@@ -212,8 +216,8 @@ class DataProcessor(object):
         with open(self.dataDir + 'vocab.txt', 'wb') as handle:
             pickle.dump(d, handle)
 
-    def createVocab(self, dirs, max_vocab_size, min_count):
-        print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (max_vocab_size, min_count))
+    def createVocab(self, dirs):
+        print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (self.max_vocab_size, self.min_count))
         dic = {}
         for d in dirs:
             indices = []
@@ -230,14 +234,14 @@ class DataProcessor(object):
         with open(self.dataDir + 'vocab.txt', 'w') as v:
             for w in sorted(dic, key=dic.get, reverse=True):
                 # take word more frequent than min_count
-                if dic[w] < min_count: break
+                if dic[w] < self.min_count: break
 
                 v.write(w + " " + str(dic[w]) + "\n")
 
                 d[w] = counter
                 counter += 1
                 # take most frequent max_vocab_size tokens
-                if max_vocab_size > -1 and counter >= max_vocab_size: break
+                if self.max_vocab_size > -1 and counter >= self.max_vocab_size: break
 
     def createCorpus(self):
         corpus = ""
@@ -254,12 +258,12 @@ class DataProcessor(object):
             text_file.write(corpus)
             text_file.close()
 
-    def get_signature(self, max_seq_length, max_vocab_size, min_count):
+    def get_signature(self):
         return str(self.remove_stopwords) + str(self.remove_punct) + " " \
-               + str(max_seq_length) + str(max_vocab_size) + str(min_count)
+               + str(self.max_seq_length) + str(self.max_vocab_size) + str(self.min_count)
 
-    def check_signature(self, max_seq_length, max_vocab_size, min_count):
-        new_signature = self.get_signature(max_seq_length, max_vocab_size, min_count)
+    def check_signature(self):
+        new_signature = self.get_signature()
         old_signature = ""
         if os.path.exists(self.dataDir + "signature.txt"):
             with open(self.dataDir + "signature.txt", 'r') as sig:
@@ -279,8 +283,8 @@ def main():
     max_seq_length = 200  # max sequence dimension
     max_vocab_size = -1  # max vocabulary dimension (-1 for total dimension) (20000)
     min_count = 5  # discard word with low frequency
-    dataP = DataProcessor(dataDir)
-    dataP.run(max_seq_length, max_vocab_size, min_count)
+    dataP = DataProcessor(dataDir, max_seq_length, max_vocab_size, min_count)
+    dataP.run()
 
 
 if __name__ == '__main__':
