@@ -32,9 +32,9 @@ def main():
     hyper_params = read_config_file()
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
-    processor = dp.DataProcessor(data_dir)
+    processor = dp.DataProcessor(data_dir, dp_params["remove_stopwords"], dp_params["remove_punct"])
     processor.run(int(dp_params["max_seq_length"]), int(dp_params["max_vocab_size"]),
-                  int(dp_params["min_vocab_count"]), dp_params["glove_vocab"] == 'True')
+                  int(dp_params["min_vocab_count"]))
 
     # create model
     net_params = hyper_params["sentiment_network_params"]
