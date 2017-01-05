@@ -73,7 +73,7 @@ class DataProcessor(object):
             self.createCorpus()
 
     def createNetworkInputs(self):
-        import vocabmapping as vocabmapping
+        import preprocessing.vocabmapping as vocabmapping
         vocab = vocabmapping.VocabMapping(self.dataDir + self.vocab_name)
         dirCount = 0
         processes = []

@@ -65,6 +65,8 @@ def test_net_with_glove():
         print("matrix must be made again due to inconsistent embedding dimension")
         # Train glove embedding matrix and convert it
         glove.train_and_convert(data_dir, params["glove_params"])
+        embedding_matrix = np.load(embedding_matrix_path)
+
 
     # Train the Neural net with the embedding matrix given by glove
     train_nn(data_dir, params["sentiment_network_params"], embedding_matrix, train_embedding=False)
