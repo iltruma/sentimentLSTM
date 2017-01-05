@@ -76,13 +76,11 @@ def test_net_with_glove():
 def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False):
     # create model
     print("Creating model with...")
-    print("Number of hidden layers: {0}".format(net_params["num_layers"]))
-    print("Number of units per layer: {0}".format(net_params["hidden_size"]))
-    print("Dropout: {0}".format(net_params["dropout"]))
+    hyp.print_parameters(net_params) # print networks parameter
 
     vocabmapping = vmapping.VocabMapping(data_dir + "vocab.txt")
     vocab_size = vocabmapping.getSize()
-    print("Vocab size is: {0}".format(vocab_size))
+    print("Vocab size: {}".format(vocab_size))
 
     path = os.path.join(data_dir, "processed/")
 
@@ -96,10 +94,6 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
         writer = tf.train.SummaryWriter("/tmp/tb_logs", sess.graph)
 
         print("Beggining training...")
-        print("Maximum number of epochs to train for: {0}".format(net_params["max_epoch"]))
-        print("Batch size: {0}".format(net_params["batch_size"]))
-        print("Starting learning rate: {0}".format(net_params["learning_rate"]))
-        print("Learning rate decay factor: {0}".format(net_params["lr_decay_factor"]))
 
         steps_per_checkpoint = int(net_params["steps_per_checkpoint"])
         num_test_batches = len(model.dataH.test_data)

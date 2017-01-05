@@ -13,6 +13,11 @@ def read_config_file(path):
     return config
 
 
+def print_parameters(params):
+    for p in params:
+        print(p + " : " + params[p])
+
+
 class HyperParameterHandler(object):
     def __init__(self, path):
         self.file_path = os.path.join(path, "hyperparams.p")
@@ -34,9 +39,17 @@ class HyperParameterHandler(object):
     def checkChanged(self, new_params):
         if self.checkExists():
             old_params = self.getParams()
-            return old_params["num_layers"] != new_params["num_layers"] or\
-                old_params["hidden_size"] != new_params["hidden_size"] or\
-                old_params["max_seq_length"] != new_params["max_seq_length"] or\
-                old_params["max_vocab_size"] != new_params["max_vocab_size"]
+            return old_params["num_layers"] != new_params["num_layers"] or \
+                   old_params["hidden_size"] != new_params["hidden_size"] or \
+                   old_params["max_seq_length"] != new_params["max_seq_length"] or \
+                   old_params["max_vocab_size"] != new_params["max_vocab_size"]
         else:
             return False
+
+
+def test():
+    print_parameters(read_config_file("../config.ini")["sentiment_network_params"])
+
+
+if __name__ == '__main__':
+    test()
