@@ -10,9 +10,6 @@ dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../
 # dataDirs = ["../../data/aclImdb/train/pos"]
 # dataDirs = ["input"]
 
-print("Tokenizer started")
-
-
 def tokenize(review, punct=True, stop=False):
     """CC
     Tokenize a review:

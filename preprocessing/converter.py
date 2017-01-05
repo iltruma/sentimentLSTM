@@ -43,20 +43,20 @@ def embedding_matrix_converter(glove_word_vectors_path, embedding_matrix_path):
                 s = re.sub('^(.*?) ', "", line)
                 nf.write(s)
 
-        nf.close()
-        f.close()
 
     n = np.loadtxt("/tmp/temp_vectors.txt")
-    np.save(embedding_matrix_path, n)
+    pad = np.zeros((1,np.shape(n)[1]))
+    nn = np.append(n, pad, axis=0)
+    np.save(embedding_matrix_path, nn)
     os.remove("/tmp/temp_vectors.txt")
 
     print("Finished :D")
 
 def test(inDir, outDir):
-    glove_to_tensorflow(inDir + "vocab_mincount5_sizeInf_nopunct.txt", inDir + "vectors.txt", outDir)
+    glove_to_tensorflow(inDir + "vocab.txt", inDir + "vectors.txt", outDir)
 
 if __name__ == '__main__':
     # default directories
     tfDir = "../data/"
-    gloveDir = "../glove/out/"
+    gloveDir = "../data/"
     test(gloveDir, tfDir)
