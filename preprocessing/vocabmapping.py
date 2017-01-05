@@ -13,7 +13,7 @@ class VocabMapping(object):
                 dic = {}
                 line_num = 0
 
-                print("\tConverting vocab file into binary dictonary...")
+                print("Converting vocab file into binary dictonary...")
                 for line in handle.readlines():
                     s = re.match('^\S*', line).group(0)
                     dic[s] = line_num

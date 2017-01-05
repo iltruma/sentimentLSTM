@@ -32,15 +32,18 @@ def main():
     hyper_params = read_config_file()
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
-    processor = dp.DataProcessor(data_dir, dp_params["remove_stopwords"],
-                                 dp_params["remove_punct"],
+    processor = dp.DataProcessor(data_dir,
                                  int(dp_params["max_seq_length"]),
                                  int(dp_params["max_vocab_size"]),
-                                 int(dp_params["min_vocab_count"]))
+                                 int(dp_params["min_vocab_count"]),
+                                 dp_params["remove_stopwords"],
+                                 dp_params["remove_punct"])
     processor.run()
+    train_nn(data_dir, hyper_params["sentiment_network_params"])
+
+def train_nn(data_dir, net_params):
 
     # create model
-    net_params = hyper_params["sentiment_network_params"]
     print("Creating model with...")
     print("Number of hidden layers: {0}".format(net_params["num_layers"]))
     print("Number of units per layer: {0}".format(net_params["hidden_size"]))
