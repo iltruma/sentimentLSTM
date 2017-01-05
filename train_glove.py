@@ -1,11 +1,17 @@
 import subprocess
 import configparser
+import os
 
 def main():
     params = read_config_file()
     data_dir = params["general"]["data_dir"]
 
-
+    if not os.path.exists(data_dir + "vocab.txt"):
+        print("Vocabulary not found! Please run dataprocessor.py first")
+        return
+    if not os.path.exists(data_dir + "corpus.txt"):
+        print("Corpus not found! please run dataprocessor.py first")
+        return
     #Create Co-occurrence Matrix
     subprocess.call("glove/build/cooccur -memory 4.0 -vocab-file " + data_dir + "vocab.txt -verbose " + params["glove_params"]["verbose"] + "-symmetric 1 -window-size " + params["glove_params"]["window_size"] + " <" + data_dir + "corpus.txt > glove/out/cooccurrence.bin", shell=True)
 
