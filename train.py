@@ -43,22 +43,29 @@ def test_net_with_glove():
     import train_glove as glove
 
     params = hyp.read_config_file("config.ini")
+    if params["glove_params"]["vector_size"] != params["sentiment_network_params"]["hidden_size"]:
+        print("ERROR: glove vector size and nn embedding size are different! change them to be equal in config.ini")
+        return
+
     data_dir = params["general"]["data_dir"]
     embedding_matrix_path = data_dir + "embedding_matrix.npy"
-
 
     # Generate all the necessary data for training
     processor = dp.process_data(data_dir, params["dataprocessor_params"])
     changed_signature = processor.changed_signature
 
     if changed_signature or not os.path.exists(embedding_matrix_path):
-        # Train glove embedding matrix
-        glove.glove_train_embedding(data_dir, params["glove_params"])
-
-        # Convert the embedding matrix to be used with
-        glove.convert_gv_to_embedding_matrix(data_dir)
+        # Train glove embedding matrix and convert it
+        glove.train_and_convert(data_dir, params["glove_params"])
+    else:
+        print("embedding_matrix already found...")
 
     embedding_matrix = np.load(embedding_matrix_path)
+    if len(embedding_matrix.transpose()) != params["glove_params"]["vector_size"]:
+        print("matrix must be made again due to inconsistent embedding dimension")
+        # Train glove embedding matrix and convert it
+        glove.train_and_convert(data_dir, params["glove_params"])
+
     # Train the Neural net with the embedding matrix given by glove
     train_nn(data_dir, params["sentiment_network_params"], embedding_matrix, train_embedding=False)
 

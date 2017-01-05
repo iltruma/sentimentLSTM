@@ -37,12 +37,19 @@ def glove_train_embedding(data_dir, params):
                     " -verbose " + params["verbose"] +
                     " -binary " + params["binary"], shell=True)
 
+
 def convert_gv_to_embedding_matrix(data_dir):
     """converts the embedding matrix and returns the path of the file"""
     # Convert glove vectors into an embedding matrix
     import preprocessing.converter as converter
     converter.embedding_matrix_converter(data_dir + "vectors.txt", data_dir + "embedding_matrix.npy")
     return data_dir + "embedding_matrix.npy"
+
+
+def train_and_convert(data_dir, params):
+    # Train glove embedding matrix
+    glove_train_embedding(data_dir, params)
+    convert_gv_to_embedding_matrix(data_dir)
 
 
 if __name__ == '__main__':
