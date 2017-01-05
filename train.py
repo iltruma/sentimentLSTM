@@ -91,7 +91,7 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
         model.initData(path, float(net_params["train_frac"]), -1, True, FLAGS.train_seed)
         writer = tf.train.SummaryWriter("/tmp/tb_logs", sess.graph)
 
-        print("Beggining training...")
+        print("Beginning training...")
 
         steps_per_checkpoint = int(net_params["steps_per_checkpoint"])
         num_test_batches = len(model.dataH.test_data)
