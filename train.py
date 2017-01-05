@@ -32,7 +32,7 @@ def test_net():
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
 
-    #generate all the necessary data for training
+    # generate all the necessary data for training
     dp.process_data(data_dir, dp_params)
 
     # trains the neural net with the config.ini hyperparameters and the data already generated
@@ -67,10 +67,8 @@ def test_net_with_glove():
         glove.train_and_convert(data_dir, params["glove_params"])
         embedding_matrix = np.load(embedding_matrix_path)
 
-
     # Train the Neural net with the embedding matrix given by glove
     train_nn(data_dir, params["sentiment_network_params"], embedding_matrix)
-
 
 
 def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False):
