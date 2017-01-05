@@ -7,22 +7,23 @@ import argparse
 
 corpus = ""
 dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
-#dataDirs = ["../../data/aclImdb/train/pos"]
-#dataDirs = ["input"]
+# dataDirs = ["../../data/aclImdb/train/pos"]
+# dataDirs = ["input"]
 
 print("Tokenizer started")
 
+
 def tokenize(review, punct=True, stop=False):
-    '''CC
+    """CC
     Tokenize a review:
         - Remove HTML
         - Remove Remove punctuation (optional)
         - Tokenize and lowercase the words
         - Remove English stopwords (optional)
-    '''
-    review_text = BeautifulSoup(review, "lxml").get_text()
+    """
+    review_text = BeautifulSoup(review, "html5lib").get_text()
 
-    if punct: review_text = re.sub("[^a-zA-Z]"," ", review_text)
+    if punct: review_text = re.sub("[^a-zA-Z]", " ", review_text)
 
     tokens = nltk.word_tokenize(review_text.lower())
 
@@ -32,8 +33,9 @@ def tokenize(review, punct=True, stop=False):
 
     return tokens
 
+
 if __name__ == '__main__':
-    #Tokenize every file of dataDirs and merge them together
+    # Tokenize every file of dataDirs and merge them together
     parser = argparse.ArgumentParser(description='Tokenizer for Glove')
     parser.add_argument('--punct', action='store_true', help='remove punctuation from corpus')
     parser.add_argument('--stop', action='store_true', help='remove stopwords from corpus')
@@ -48,7 +50,9 @@ if __name__ == '__main__':
                 corpus += " ".join(review_tkn) + "\n"
                 review.close()
 
-    with open("../../data/train_glove{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else ""), "w") as text_file:
+    with open(
+            "../../data/train_glove{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else ""),
+            "w") as text_file:
         text_file.write(corpus)
         text_file.close()
 
