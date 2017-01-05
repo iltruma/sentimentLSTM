@@ -10,16 +10,15 @@ dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../
 #dataDirs = ["../../data/aclImdb/train/pos"]
 #dataDirs = ["input"]
 
-print("Tokenizer started")
-
+'''
+Tokenize a review:
+    - Remove HTML
+    - Remove Remove punctuation (optional)
+    - Tokenize and lowercase the words
+    - Remove English stopwords (optional)
+'''
 def tokenize(review, punct=True, stop=False):
-    '''CC
-    Tokenize a review:
-        - Remove HTML
-        - Remove Remove punctuation (optional)
-        - Tokenize and lowercase the words
-        - Remove English stopwords (optional)
-    '''
+
     review_text = BeautifulSoup(review, "lxml").get_text()
 
     if punct: review_text = re.sub("[^a-zA-Z]"," ", review_text)
@@ -38,6 +37,8 @@ if __name__ == '__main__':
     parser.add_argument('--punct', action='store_true', help='remove punctuation from corpus')
     parser.add_argument('--stop', action='store_true', help='remove stopwords from corpus')
     args = parser.parse_args()
+
+    print("Tokenizer started")
 
     for dir in dataDirs:
         print("\tNow processing folder: " + dir)

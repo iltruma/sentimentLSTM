@@ -38,6 +38,7 @@ class DataProcessor(object):
         if not os.path.exists(self.dataDir):
             print('%s directory not found!' % self.dataDir)
             return
+        else: print('%s directory: OK' % self.dataDir)
         if not os.path.exists(self.dataDir + "checkpoints/"):
             os.makedirs(self.dataDir + "checkpoints")
         if not os.path.isdir(self.dataDir + "aclImdb"):
@@ -48,22 +49,20 @@ class DataProcessor(object):
             print("Extracting dataset...")
             tfile.extractall(self.dataDir)
             tfile.close()
-        if os.path.exists(self.dataDir + self.vocab_name):
-            print("vocab mapping found...")
-        else:
-            print("no vocab mapping found, running preprocessor...")
+        else: print('Dataset: OK')
+        if not os.path.exists(self.dataDir + self.vocab_name):
+            print("Vocab mapping not found, running preprocessor:")
             self.createVocab(self.vocabDirs, max_vocab_size, min_count)
+        else: print("Vocabulary: OK. Delete " + self.dataDir + "vocab to redo it")
         if not os.path.exists(self.dataDir + "processed"):
             os.makedirs(self.dataDir + "processed/")
-            print("No processed data files found, running preprocessor...")
+            print("Processed data files not found, running preprocessor:")
             self.createNetworkInputs(max_seq_length)
-        else:
-            print("Processed data files found: delete " + self.dataDir + "processed  to redo them")
+        else: print("Processed data files: OK. Delete " + self.dataDir + "processed  to redo them")
         if not os.path.exists(self.dataDir + "corpus.txt"):
-            print("No glove corpus data files found, running preprocessor...")
+            print("No Glove Corpus data files found, running preprocessor:")
             self.createCorpus()
-        else:
-            print("Processed glove corpus found: delete " + self.dataDir + "corpus to redo it")
+        else: print("Glove Corpus: OK. Delete " + self.dataDir + "corpus to redo it")
 
 
 
@@ -74,7 +73,7 @@ class DataProcessor(object):
         processes = []
         lock = Lock()
         for d in self.dirs:
-            print("Procesing data with process: " + str(dirCount))
+            print("\tProcesing data with process: " + str(dirCount))
             p = Process(target=self.createProcessedDataFile, args=(vocab, d, dirCount, max_seq_length, lock))
             p.start()
             processes.append(p)
@@ -108,9 +107,9 @@ class DataProcessor(object):
         data = np.array([i for i in range(max_seq_length + 2)])
         for f in os.listdir(directory):
             count += 1
-            if count % 100 == 0:
+            if count % 1000 == 0:
                 lock.acquire()
-                print("Processing: " + f + " the " + str(count) + "th file... on process: " + str(pid))
+                print("\tProcessing: " + f + " the " + str(count) + "th file... on process: " + str(pid))
                 lock.release()
             with open(os.path.join(directory, f), 'r') as review:
                 tokens = tokenizer.tokenize(review.read().lower(), self.remove_punct, self.remove_stopwords)
@@ -132,7 +131,7 @@ class DataProcessor(object):
         # remove first placeholder value
         data = data[1::]
         lock.acquire()
-        print("Saving data file{0} to disk...".format(str(pid)))
+        print("\tSaving data file{0} to disk... ".format(str(pid)), end="")
         lock.release()
         self.saveData(data, pid)
 
@@ -212,7 +211,7 @@ class DataProcessor(object):
             pickle.dump(d, handle)
 
     def createVocab(self, dirs, max_vocab_size, min_count):
-        print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (max_vocab_size, min_count))
+        print("\tCreating vocab mapping (max size: {m}, min frequency: {c})...".format(m = max_vocab_size if max_vocab_size != -1 else "infinite", c=min_count))
         dic = {}
         for d in dirs:
             indices = []
@@ -237,8 +236,11 @@ class DataProcessor(object):
                 counter += 1
                 # take most frequent max_vocab_size tokens
                 if max_vocab_size > -1 and counter >= max_vocab_size: break
+        print("\tVocabulary created: size: %d" % (len(d)))
+
 
     def createCorpus(self):
+        print("Creating corpus for glove (nopunct {p}, nostop: {s})...".format(p = self.remove_punct, s=self.remove_stopwords))
         corpus = ""
         for dir in self.vocabDirs:
             print("\tNow processing folder: " + dir)
@@ -248,8 +250,9 @@ class DataProcessor(object):
                     review_tkn = tokenizer.tokenize(review.read(), self.remove_punct, self.remove_stopwords)
                     corpus += " ".join(review_tkn) + "\n"
 
-        #name_corpus = "corpus{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else "")
-        with open(self.dataDir + "corpus.txt", "w") as text_file:
+        #name_corpus = "corpus{p}{s}.txt".format(p="_nopunct" if self.remove_punct else "", s="_nostop" if self.remove_stopwords else "")
+        name_corpus ="corpus.txt"
+        with open(self.dataDir + name_corpus, "w") as text_file:
             text_file.write(corpus)
             text_file.close()
 
