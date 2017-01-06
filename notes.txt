@@ -1,0 +1,39 @@
+Useful notes to the trainer of the system:
+
+
+----Parameters that don't fit in the GPU (970 4.0 GB)----
+[sentiment_network_params]
+train_embedding: False
+embedding_dim : 200
+num_rec_units: 512 (500 fits)
+num_rec_layers : 1
+hidden_dim: 30
+learning_rate : 0.01
+lr_decay_factor : 0.97
+batch_size : 64
+max_seq_length : 200
+max_epoch : 128
+train_frac : 0.7
+dropout : 0.5
+grad_clip : 5
+steps_per_checkpoint : 50
+
+----Parameters that fit in the GPU but give nan both loss and test loss (970 4.0 GB)----
+[sentiment_network_params]
+train_embedding: False
+embedding_dim : 200
+num_rec_units: 400 (375 is ok)
+num_rec_layers : 1
+hidden_dim: 30
+learning_rate : 0.01
+lr_decay_factor : 0.97
+batch_size : 64
+max_seq_length : 200
+max_epoch : 128
+train_frac : 0.7
+dropout : 0.5
+grad_clip : 5
+steps_per_checkpoint : 50
+
+
+
