@@ -47,7 +47,9 @@ def embedding_matrix_converter(glove_word_vectors_path, embedding_matrix_path):
     n = np.loadtxt("/tmp/temp_vectors.txt")
     pad = np.zeros((1,np.shape(n)[1]))
     nn = np.append(n, pad, axis=0)
-    np.save(embedding_matrix_path, nn)
+    norm_nn = 2.0*(nn - np.amin(nn))/(np.amax(n)-np.amin(n))-1.0
+    #np.savetxt("../data/norm_vector.txt", norm_nn) #DEBUG
+    np.save(embedding_matrix_path, norm_nn)
     os.remove("/tmp/temp_vectors.txt")
 
     print("Finished :D")
