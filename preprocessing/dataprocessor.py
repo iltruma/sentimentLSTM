@@ -290,8 +290,8 @@ def process_data(data_dir, dp_params):
                                  int(dp_params["max_seq_length"]),
                                  int(dp_params["max_vocab_size"]),
                                  int(dp_params["min_vocab_count"]),
-                                 dp_params["remove_stopwords"],
-                                 dp_params["remove_punct"])
+                                 dp_params["remove_punct"],
+                                 dp_params["remove_stopwords"])
     processor.run()
     return processor
 
