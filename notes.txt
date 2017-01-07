@@ -22,7 +22,7 @@ steps_per_checkpoint : 50
 [sentiment_network_params]
 train_embedding: False
 embedding_dim : 200
-num_rec_units: 375 (350 is ok)
+num_rec_units: 350 (300 is ok)
 num_rec_layers : 1
 hidden_dim: 30
 learning_rate : 0.01
@@ -34,6 +34,10 @@ train_frac : 0.7
 dropout : 0.5
 grad_clip : 5
 steps_per_checkpoint : 50
+
+training the embedding gives in general better result that maintaining the embedding
+pretrained as is given by glove.
+
 
 
 
