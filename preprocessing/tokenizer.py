@@ -21,13 +21,13 @@ def tokenize(review, remove_punct=True, remove_stop=False):
     review_text = BeautifulSoup(review, "html5lib").get_text()
 
     if remove_punct:
-        print("removing punct") #DEBUG
+        #print("removing punct") #DEBUG
         review_text = re.sub("[^a-zA-Z]", " ", review_text)
 
     tokens = nltk.word_tokenize(review_text.lower())
 
     if remove_stop:
-        print("removing stopwords") #DEBUG
+        #print("removing stopwords") #DEBUG
         sw = set(stopwords.words('english'))
         tokens = [i for i in tokens if i not in sw]
 
