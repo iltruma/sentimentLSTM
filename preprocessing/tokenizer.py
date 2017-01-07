@@ -10,7 +10,7 @@ dataDirs = ["../data/aclImdb/train/unsup", "../data/aclImdb/train/pos", "../data
 # dataDirs = ["../../data/aclImdb/train/pos"]
 # dataDirs = ["input"]
 
-def tokenize(review, punct=True, stop=False):
+def tokenize(review, remove_punct=True, remove_stop=False):
     """CC
     Tokenize a review:
         - Remove HTML
@@ -20,14 +20,14 @@ def tokenize(review, punct=True, stop=False):
     """
     review_text = BeautifulSoup(review, "html5lib").get_text()
 
-    if punct == True:
-        #print("removing punct") #DEBUG
+    if remove_punct:
+        print("removing punct") #DEBUG
         review_text = re.sub("[^a-zA-Z]", " ", review_text)
 
     tokens = nltk.word_tokenize(review_text.lower())
 
-    if stop == True:
-        #print("removing stopwords") #DEBUG
+    if remove_stop:
+        print("removing stopwords") #DEBUG
         sw = set(stopwords.words('english'))
         tokens = [i for i in tokens if i not in sw]
 
