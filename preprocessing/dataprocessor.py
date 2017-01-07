@@ -219,7 +219,6 @@ class DataProcessor(object):
 
     def createVocab(self, dirs):
         print("Creating vocab mapping (max size: %d, min frequency: %d)..." % (self.max_vocab_size, self.min_count))
-        print(self.remove_punct, self.remove_stopwords)
         dic = {}
         for d in dirs:
             indices = []
