@@ -6,11 +6,12 @@ from bs4 import BeautifulSoup
 import argparse
 
 corpus = ""
-dataDirs = ["../../data/aclImdb/train/pos", "../../data/aclImdb/train/neg", "../../data/aclImdb/train/unsup"]
+dataDirs = ["../data/aclImdb/train/unsup", "../data/aclImdb/train/pos", "../data/aclImdb/train/neg"]
 # dataDirs = ["../../data/aclImdb/train/pos"]
 # dataDirs = ["input"]
 
 def tokenize(review, punct=True, stop=False):
+    print(punct, stop)
     """CC
     Tokenize a review:
         - Remove HTML
@@ -20,13 +21,14 @@ def tokenize(review, punct=True, stop=False):
     """
     review_text = BeautifulSoup(review, "html5lib").get_text()
 
-    if punct: review_text = re.sub("[^a-zA-Z]", " ", review_text)
+    if punct == True:
+        review_text = re.sub("[^a-zA-Z]", " ", review_text)
 
     tokens = nltk.word_tokenize(review_text.lower())
 
-    if stop:
-        stop = set(stopwords.words('english'))
-        tokens = [i for i in tokens if i not in stop]
+    if stop == True:
+        sw = set(stopwords.words('english'))
+        tokens = [i for i in tokens if i not in sw]
 
     return tokens
 
@@ -48,7 +50,7 @@ if __name__ == '__main__':
                 review.close()
 
     with open(
-            "../../data/train_glove{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else ""),
+            "../data/train_glove{p}{s}".format(p="_nopunct" if args.punct else "", s="_nostop" if args.stop else ""),
             "w") as text_file:
         text_file.write(corpus)
         text_file.close()
