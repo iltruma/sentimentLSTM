@@ -1,5 +1,5 @@
 #!/bin/bash
-CORPUS=train_glove_nopunct
+CORPUS=corpus.txt
 DATADIR=../data/
 VERBOSE=2
 BINARY=0
@@ -13,7 +13,7 @@ X_MAX=100
 
 for X in 50 100 150 200 250 300
 do
-  for Y in 5 10 15 20
+  for Y in 5 7 9 11 13 15 17 19
   do
     echo "=============DIMENSIONS============" $X
     echo "============WINDOW_SIZE============" $Y
