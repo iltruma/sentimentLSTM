@@ -43,7 +43,7 @@ class SentimentModel(object):
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
-        rnn_output, rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+        self.rnn_output, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
 
         # hidden layer as in the adversarial paper
         with tf.variable_scope("hidden_layer"):
@@ -55,7 +55,7 @@ class SentimentModel(object):
                 "b",
                 [self.hidden_dim],
                 initializer=tf.constant_initializer(0.1))
-            self.hidden_output = tf.nn.xw_plus_b(rnn_state[-1][0], W, b)
+            self.hidden_output = tf.nn.xw_plus_b(self.rnn_output[-1], W, b)
 
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
@@ -209,6 +209,7 @@ def test():
         str_summary, step_loss, _ = model.step(sess, inputs, targets, seq_lengths)
         print("{}th step executed! results:".format(i))
         print(" step_loss: %.4f" % step_loss)
+
 
 
 if __name__ == '__main__':
