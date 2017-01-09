@@ -55,7 +55,7 @@ class SentimentModel(object):
                 "b",
                 [self.hidden_dim],
                 initializer=tf.constant_initializer(0.1))
-            self.hidden_output = tf.nn.xw_plus_b(self.rnn_output[-1], W, b)
+            self.hidden_output = tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b)
 
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
@@ -96,7 +96,7 @@ class SentimentModel(object):
     def initData(self, data_path, train_frac, max_examples=-1, shuffle_each_pass=True, train_seed=None):
         self.dataH = dh.DataHandler(data_path, self.batch_size, train_frac, max_examples, shuffle_each_pass, train_seed)
 
-    def embedding_layer(self, pre_W, train_embedding = True):
+    def embedding_layer(self, pre_W, train_embedding=True):
         with tf.variable_scope("embedding"), tf.device("/cpu:0"):
             if pre_W is not None:
                 W = tf.Variable(pre_W, trainable=train_embedding, dtype=tf.float32)

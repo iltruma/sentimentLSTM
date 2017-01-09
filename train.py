@@ -24,7 +24,7 @@ FLAGS = flags.FLAGS
 flags.DEFINE_string("config_file", "config.ini", "Path to configuration file with hyper-parameters.")
 flags.DEFINE_string("checkpoint_dir", "data/checkpoints/", "Directory to store/restore checkpoints")
 flags.DEFINE_string("seed", 1, "seed to randomize data")
-flags.DEFINE_string("train_seed", 2, "seed to randomize training")
+flags.DEFINE_string("train_seed", 4, "seed to randomize training")
 
 
 def test_net():
