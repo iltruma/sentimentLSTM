@@ -38,6 +38,11 @@ steps_per_checkpoint : 50
 training the embedding gives in general better result that maintaining the embedding
 pretrained as is given by glove.
 
+bizarre thing: initially train loss and test loss are similar and the test loss drops as the train loss with a
+consequent raise in the test accuracy. after a certain point however (test loss: ~0.2 test_accuracy: 0.84)
+the test loss starts to raise again but the accuracy stays the same or raises a bit. The test loss decreases steadily
+as usual. for example after 17700 steps we have train loss: 0.0778 test accuracy: 0.58 but test loss 0.63. Why?
+
 
 
 
