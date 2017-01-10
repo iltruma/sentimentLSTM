@@ -112,7 +112,6 @@ class SentimentModel(object):
         with tf.variable_scope("lstm"):
             single_cell = rnn_cell.DropoutWrapper(
                 rnn_cell.LSTMCell(self.num_rec_units,
-                                  initializer=tf.random_uniform_initializer(-1.0, 1.0),
                                   state_is_tuple=True),
                 input_keep_prob=1.0,
                 output_keep_prob=1.0)
@@ -192,7 +191,7 @@ def test():
     np.random.seed(seed)
     tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
-    model = SentimentModel(vocab_size=vocab_size, embedding_dim=50, num_rec_units=100, hidden_dim=30, dropout=0.5,
+    model = SentimentModel(vocab_size=vocab_size, embedding_dim=50, num_rec_units=600, hidden_dim=30, dropout=0.5,
                            num_rec_layers=2, max_gradient_norm=5, max_seq_length=200,
                            learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
                            embedding_matrix=np.random.rand(vocab_size, 50))
