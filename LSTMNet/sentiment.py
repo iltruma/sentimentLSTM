@@ -55,7 +55,7 @@ class SentimentModel(object):
                 "b",
                 [self.hidden_dim],
                 initializer=tf.constant_initializer(0.1))
-            self.hidden_output = tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b)
+            self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
 
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
@@ -104,7 +104,7 @@ class SentimentModel(object):
                 W = tf.get_variable(
                     "W",
                     [self.vocab_size, self.embedding_dim],
-                    initializer=tf.random_uniform_initializer(-1.0, 1.0))
+                    initializer=tf.truncated_normal_initializer(stddev=0.1))
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
             return tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
 
@@ -112,6 +112,7 @@ class SentimentModel(object):
         with tf.variable_scope("lstm"):
             single_cell = rnn_cell.DropoutWrapper(
                 rnn_cell.LSTMCell(self.num_rec_units,
+                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
                                   state_is_tuple=True),
                 input_keep_prob=1.0,
                 output_keep_prob=1.0)
