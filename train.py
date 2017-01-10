@@ -88,7 +88,7 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
         tf.set_random_seed(FLAGS.seed)
 
         model = create_model(sess, net_params, vocab_size, embedding_matrix)
-        model.initData(path, float(net_params["train_frac"]), -1, True, FLAGS.train_seed)
+        model.initData(path, -1, True, FLAGS.train_seed)
         writer = tf.train.SummaryWriter("/tmp/tb_logs", sess.graph)
 
         print("Beginning training...")

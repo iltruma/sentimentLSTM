@@ -64,7 +64,8 @@ class DataProcessor(object):
             print("Processed data files found: delete " + self.dataDir + "processed  to redo them")
         else:
             if cs: shutil.rmtree(self.dataDir + "processed")
-            os.makedirs(self.dataDir + "processed/")
+            os.makedirs(self.dataDir + "processed/train/")
+            os.makedirs(self.dataDir + "processed/test/")
             print("No processed data files found, running preprocessor...")
             self.createNetworkInputs()
         if not cs and os.path.exists(self.dataDir + "corpus.txt"):
@@ -80,7 +81,7 @@ class DataProcessor(object):
         processes = []
         lock = Lock()
         for d in self.dirs:
-            print("Procesing data with process: " + str(dirCount))
+            print("Procesing data " + d + "with process: " + str(dirCount))
             p = Process(target=self.createProcessedDataFile, args=(vocab, d, dirCount, self.max_seq_length, lock))
             p.start()
             processes.append(p)
@@ -140,7 +141,7 @@ class DataProcessor(object):
         lock.acquire()
         print("Saving data file{0} to disk...".format(str(pid)))
         lock.release()
-        self.saveData(data, pid)
+        self.saveData(data, pid, directory)
 
     # method from: http://stackoverflow.com/questions/22676/how-do-i-download-a-file-over-http-using-python
     def downloadFile(self, url):
@@ -174,9 +175,12 @@ class DataProcessor(object):
     Saves processed data numpy array
     '''
 
-    def saveData(self, npArray, index):
+    def saveData(self, npArray, index, dir):
         name = "data{0}.npy".format(str(index))
-        outfile = os.path.join(self.dataDir + "processed/", name)
+        if "train" in dir:
+            outfile = os.path.join(self.dataDir + "processed/train/", name)
+        else:
+            outfile = os.path.join(self.dataDir + "processed/test/", name)
         print("numpy array is: {0}x{1}".format(len(npArray), len(npArray[0])))
         np.save(outfile, npArray)
 
@@ -290,8 +294,8 @@ def process_data(data_dir, dp_params):
                                  int(dp_params["max_seq_length"]),
                                  int(dp_params["max_vocab_size"]),
                                  int(dp_params["min_vocab_count"]),
-                                 dp_params["remove_punct"] == 'True',
-                                 dp_params["remove_stopwords"] == 'True')
+                                 dp_params["remove_punct"],
+                                 dp_params["remove_stopwords"])
     processor.run()
     return processor
 

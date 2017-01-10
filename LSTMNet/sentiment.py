@@ -93,8 +93,8 @@ class SentimentModel(object):
             self.merged = tf.merge_summary([loss_summ, acc_summ])
         self.saver = tf.train.Saver(tf.all_variables())
 
-    def initData(self, data_path, train_frac, max_examples=-1, shuffle_each_pass=True, train_seed=None):
-        self.dataH = dh.DataHandler(data_path, self.batch_size, train_frac, max_examples, shuffle_each_pass, train_seed)
+    def initData(self, data_path, max_examples=-1, shuffle_each_pass=True, train_seed=None):
+        self.dataH = dh.DataHandler(data_path, self.batch_size, max_examples, shuffle_each_pass, train_seed)
 
     def embedding_layer(self, pre_W, train_embedding=True):
         with tf.variable_scope("embedding"), tf.device("/cpu:0"):

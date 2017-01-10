@@ -3,46 +3,51 @@ import numpy as np
 
 
 class DataHandler(object):
-    def __init__(self, data_path, batch_size, train_frac, max_examples=-1, shuffle_each_pass=True, train_seed=None):
-        print("init DataHandler with path:{}, batch_size:{}, training fraction ".format(data_path,batch_size)
-              + "{}, max number of examples:{}".format(train_frac,max_examples))
+    def __init__(self, data_path, batch_size, max_examples=-1, shuffle_each_pass=True, train_seed=None):
+        print("init DataHandler with path:{}, batch_size:{}".format(data_path,batch_size) + ", max number of examples:{}".format(max_examples))
         self.batch_size = batch_size
         self.shuffle_each_pass = shuffle_each_pass
 
-
+        train_path = data_path + "train/"
+        test_path =  data_path + "test/"
         # input files (numpy matrices, 1 row per example)
-        inFiles = [f for f in os.listdir(data_path) if os.path.isfile(os.path.join(data_path, f))]
+        trainFiles = [ f for f in os.listdir(train_path) if os.path.isfile(os.path.join(train_path, f))]
+        testFiles = [ f for f in os.listdir(test_path) if os.path.isfile(os.path.join(test_path, f))]
 
         # load all files in memory
-        self.data = np.load(os.path.join(data_path, inFiles[0]))
-        for i in range(1, len(inFiles)):
-            self.data = np.vstack((self.data, np.load(os.path.join(data_path, inFiles[i]))))
+        self.train_data = np.load(os.path.join(train_path, trainFiles[0]))
+        self.test_data = np.load(os.path.join(test_path, testFiles[0]))
+
+        for i in range(1, len(trainFiles)):
+            self.train_data = np.vstack((self.train_data, np.load(os.path.join(train_path, trainFiles[i]))))
+
+        for i in range(1, len(testFiles)):
+            self.test_data = np.vstack((self.test_data, np.load(os.path.join(test_path, testFiles[i]))))
 
         # randomize the dataset
-        np.random.shuffle(self.data)
+        np.random.shuffle(self.train_data)
+        np.random.shuffle(self.test_data)
 
         # use only max_example examples when defined
-        if max_examples >-1 and max_examples < len(self.data):
-            self.data = self.data[:max_examples]
-
-        self.num_batches = len(self.data) // self.batch_size
-
-        # 70/30 split for train/test
-        train_start_end_index = [0, int(train_frac * len(self.data))]
-        test_start_end_index = [int(train_frac * len(self.data)) + 1, len(self.data) - 1]
+        if max_examples >-1 and max_examples < len(self.train_data) and max_examples < len(self.test_data):
+            self.train_data = self.train_data[:max_examples]
+            self.test_data = self.test_data[:max_examples]
 
         self.train_batch_pointer = 0
         self.test_batch_pointer = 0
 
-        targets = (self.data.transpose()[-2]).transpose()
-        onehot = np.zeros((len(targets), 2))
-        onehot[np.arange(len(targets)), targets] = 1
-        sequence_lengths = (self.data.transpose()[-1]).transpose()
-        self.data = (self.data.transpose()[0:-2]).transpose()
+        tr_targets = (self.train_data.transpose()[-2]).transpose()
+        tr_onehot = np.zeros((len(tr_targets), 2))
+        tr_onehot[np.arange(len(tr_targets)), tr_targets] = 1
+        tr_sequence_lengths = (self.train_data.transpose()[-1]).transpose()
+        self.train_data = (self.train_data.transpose()[0:-2]).transpose()
 
+        te_targets = (self.test_data.transpose()[-2]).transpose()
+        te_onehot = np.zeros((len(te_targets), 2))
+        te_onehot[np.arange(len(te_targets)), te_targets] = 1
+        te_sequence_lengths = (self.test_data.transpose()[-1]).transpose()
+        self.test_data = (self.test_data.transpose()[0:-2]).transpose()
 
-        self.train_data = self.data[train_start_end_index[0]: train_start_end_index[1]]
-        self.test_data = self.data[test_start_end_index[0]:test_start_end_index[1]]
 
         # cutoff non even number of batches (is it necessary?)
         num_train_batches = len(self.train_data) // self.batch_size
@@ -54,18 +59,18 @@ class DataHandler(object):
 
         print(" Train size is: {0}, splitting into {1} batches".format(len(self.train_data), num_train_batches))
 
-        self.train_sequence_lengths = sequence_lengths[train_start_end_index[0]:train_start_end_index[1]][:train_cutoff]
+        self.train_sequence_lengths = tr_sequence_lengths[:train_cutoff]
         self.train_sequence_lengths = np.split(self.train_sequence_lengths, num_train_batches)
-        self.train_targets = onehot[train_start_end_index[0]:train_start_end_index[1]][:train_cutoff]
+        self.train_targets = tr_onehot[:train_cutoff]
         self.train_targets = np.split(self.train_targets, num_train_batches)
         self.train_data = np.split(self.train_data, num_train_batches)
 
         print(" Test  size is: {0}, splitting into {1} batches".format(len(self.test_data), num_test_batches))
 
         self.test_data = np.split(self.test_data, num_test_batches)
-        self.test_targets = onehot[test_start_end_index[0]:test_start_end_index[1]][:test_cutoff]
+        self.test_targets = te_onehot[:test_cutoff]
         self.test_targets = np.split(self.test_targets, num_test_batches)
-        self.test_sequence_lengths = sequence_lengths[test_start_end_index[0]:test_start_end_index[1]][:test_cutoff]
+        self.test_sequence_lengths = te_sequence_lengths[:test_cutoff]
         self.test_sequence_lengths = np.split(self.test_sequence_lengths, num_test_batches)
 
         # train and test random indices (the test batches should be random or not?)
@@ -133,17 +138,14 @@ def test_batch_shuffling(dataH):
 
 def test():
     np.random.seed(1)
-    dataH = DataHandler("../data/processed/", 16, 0.7,400, True, 3)
-    print("data shape: {}".format(dataH.data.shape))
-    print("train data shape (batches): list of {} elements with shape {}".format(len(dataH.train_data),
-                                                                                 dataH.train_data[0].shape))
-    print("test  data shape (batches): list of {} elements with shape {}".format(len(dataH.test_data),
-                                                                                 dataH.test_data[0].shape))
+    dataH = DataHandler("../data/processed/", 32,400, True, 3)
+    #print("data shape: {}".format(dataH.train_data.shape))
+    print("train data shape (batches): list of {} elements with shape {}".format(len(dataH.train_data),dataH.train_data[0].shape))
+    print("test  data shape (batches): list of {} elements with shape {}".format(len(dataH.test_data),dataH.test_data[0].shape))
     test_batch_shuffling(dataH)
 
     bi, targets, seq_lengts = dataH.getBatch()
-    print("batch inputs shape: {}, targets shape: {}, seq_lengths shape {}".format(bi.shape,targets.shape,
-                                                                                       seq_lengts.shape))
+    print("batch inputs shape: {}, targets shape: {}, seq_lengths shape {}".format(bi.shape,targets.shape,seq_lengts.shape))
 
 
 
