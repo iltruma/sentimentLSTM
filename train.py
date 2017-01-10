@@ -96,7 +96,7 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
         steps_per_checkpoint = int(net_params["steps_per_checkpoint"])
         num_test_batches = len(model.dataH.test_data)
         num_train_batches = len(model.dataH.train_data)
-        step_time, loss = 0.0, 0.0
+        step_time, loss, train_accuracy = 0.0, 0.0, 0.0
         previous_losses = []
         tot_steps = num_train_batches * int(net_params["max_epoch"])
         # starting at step 1 to prevent test set from running after first batch
@@ -105,24 +105,25 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
             start_time = time.time()
 
             inputs, targets, seq_lengths = model.dataH.getBatch()
-            str_summary, step_loss, _ = model.step(sess, inputs, targets, seq_lengths)
+            str_summary, step_loss, _, step_accuracy = model.step(sess, inputs, targets, seq_lengths)
 
             step_time += (time.time() - start_time) / steps_per_checkpoint
             loss += step_loss / steps_per_checkpoint
+            train_accuracy += step_accuracy / steps_per_checkpoint
 
             # Once in a while we print statistics, and run evals.
             if step % steps_per_checkpoint == 0:
                 writer.add_summary(str_summary, step)
                 # Print statistics for the previous 'epoch'.
-                print("global step %d learning rate %.7f step-time %.2f loss %.4f"
+                print("global step %d learning rate %.7f step-time %.2f loss %.4f, accuracy: %4f"
                       % (model.global_step.eval(), model.learning_rate.eval(),
-                         step_time, loss))
+                         step_time, loss, train_accuracy))
                 # Decrease learning rate if no improvement was seen over last 3 times.
                 if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
                     sess.run(model.learning_rate_decay_op)
                 previous_losses.append(loss)
                 # Save checkpoint and zero timer and loss.
-                step_time, loss, test_accuracy = 0.0, 0.0, 0.0
+                step_time, loss, train_accuracy, test_accuracy = 0.0, 0.0, 0.0, 0.0
 
                 # Run evals on test set and print their accuracy.
                 # print("projW:{}".format(model.projW.eval()))

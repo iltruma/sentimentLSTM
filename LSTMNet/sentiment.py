@@ -166,9 +166,9 @@ class SentimentModel(object):
         input_feed[self.seq_lengths.name] = seq_lengths
         if train:
             input_feed[self.str_summary_type.name] = "train"
-            output_feed = [self.merged, self.mean_loss, self.update]
+            output_feed = [self.merged, self.mean_loss, self.update, self.accuracy]
             outputs = session.run(output_feed, input_feed)
-            return outputs[0], outputs[1], None
+            return outputs[0], outputs[1], None, outputs[3]
 
         else:
             input_feed[self.str_summary_type.name] = "test"
