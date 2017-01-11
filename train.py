@@ -98,7 +98,8 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
         num_train_batches = len(model.dataH.train_data)
         step_time, loss, train_accuracy = 0.0, 0.0, 0.0
         previous_losses = []
-        tot_steps = num_train_batches * int(net_params["max_epoch"])
+        max_epoch = int(net_params["max_epoch"])
+        tot_steps = num_train_batches * max_epoch
         # starting at step 1 to prevent test set from running after first batch
         for step in range(1, tot_steps):
             # Get a batch and make a step.
@@ -113,10 +114,11 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
 
             # Once in a while we print statistics, and run evals.
             if step % steps_per_checkpoint == 0:
+                n_epoch = (step // num_train_batches) + 1
                 writer.add_summary(str_summary, step)
                 # Print statistics for the previous 'epoch'.
                 print("global step %d learning rate %.7f step-time %.2f loss %.4f, accuracy: %4f"
-                      % (model.global_step.eval(), model.learning_rate.eval(),
+                      % (step, model.learning_rate.eval(),
                          step_time, loss, train_accuracy))
                 # Decrease learning rate if no improvement was seen over last 3 times.
                 if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
@@ -137,8 +139,8 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
                 norm_test_loss, norm_test_accuracy = loss / num_test_batches, test_accuracy / num_test_batches
                 writer.add_summary(str_summary, step)
                 print(
-                    "Avg Test Loss: {0}, Avg Test Accuracy: {1}".format(norm_test_loss, norm_test_accuracy))
-                print("-------Step {0}/{1}------".format(step, tot_steps))
+                    "Avg Test Loss: {}, Avg Test Accuracy: {}".format(norm_test_loss, norm_test_accuracy))
+                print("-------Step {}/{}--epoch:{}/{}".format(step, tot_steps, n_epoch, max_epoch))
                 loss = 0.0  # loss reset
                 sys.stdout.flush()
 
