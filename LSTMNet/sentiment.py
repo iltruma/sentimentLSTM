@@ -114,8 +114,8 @@ class SentimentModel(object):
                 rnn_cell.LSTMCell(self.num_rec_units,
                                   initializer=tf.truncated_normal_initializer(stddev=0.1),
                                   state_is_tuple=True),
-                input_keep_prob=1.0,
-                output_keep_prob=1.0)
+                input_keep_prob=self.dropout_keep_prob_lstm_input,
+                output_keep_prob=self.dropout_keep_prob_lstm_output)
             cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
 
             initial_state = cell.zero_state(self.batch_size, tf.float32)
