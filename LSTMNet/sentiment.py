@@ -51,18 +51,20 @@ class SentimentModel(object):
         self.avg_states = tf.reduce_mean(tf.pack(states_list), 0)
 
         # hidden layer as in the adversarial paper
-        with tf.variable_scope("hidden_layer"):
-            W = tf.get_variable(
-                "W",
-                [self.num_rec_units, self.hidden_dim],
-                initializer=tf.truncated_normal_initializer(stddev=0.1))
-            b = tf.get_variable(
-                "b",
-                [self.hidden_dim],
-                initializer=tf.constant_initializer(0.1))
-            # self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
-            self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.avg_states, W, b))
-
+        if self.hidden_dim > 0:
+            with tf.variable_scope("hidden_layer"):
+                W = tf.get_variable(
+                    "W",
+                    [self.num_rec_units, self.hidden_dim],
+                    initializer=tf.truncated_normal_initializer(stddev=0.1))
+                b = tf.get_variable(
+                    "b",
+                    [self.hidden_dim],
+                    initializer=tf.constant_initializer(0.1))
+                # self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
+                self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.avg_states, W, b))
+        else:
+            self.hidden_output = self.avg_states
 
 
         with tf.variable_scope("output_projection"):
@@ -106,7 +108,7 @@ class SentimentModel(object):
         self.dataH = dh.DataHandler(data_path, self.batch_size, max_examples, shuffle_each_pass, train_seed)
 
     def embedding_layer(self, pre_W, train_embedding=True):
-        with tf.variable_scope("embedding"), tf.device("/cpu:0"):
+        with tf.variable_scope("embedding"):
             if pre_W is not None:
                 W = tf.Variable(pre_W, trainable=train_embedding, dtype=tf.float32)
             else:
