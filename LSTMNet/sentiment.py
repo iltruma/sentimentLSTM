@@ -45,6 +45,11 @@ class SentimentModel(object):
 
         self.rnn_output, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
 
+        states_list = []
+        for state in self.rnn_state[-1]:
+            states_list.append(state)
+        self.avg_states = tf.reduce_mean(tf.pack(states_list), 0)
+
         # hidden layer as in the adversarial paper
         with tf.variable_scope("hidden_layer"):
             W = tf.get_variable(
@@ -55,7 +60,10 @@ class SentimentModel(object):
                 "b",
                 [self.hidden_dim],
                 initializer=tf.constant_initializer(0.1))
-            self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
+            # self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
+            self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.avg_states, W, b))
+
+
 
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
@@ -106,7 +114,9 @@ class SentimentModel(object):
                     [self.vocab_size, self.embedding_dim],
                     initializer=tf.truncated_normal_initializer(stddev=0.1))
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
-            return tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
+            return  tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
+
+
 
     def lstm_layers(self, lstm_input, num_rec_layers):
         with tf.variable_scope("lstm"):
@@ -123,6 +133,8 @@ class SentimentModel(object):
             return rnn.rnn(cell, lstm_input,
                            initial_state=initial_state,
                            sequence_length=self.seq_lengths)
+
+
 
     def nn_layer(self, input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
         """Reusable code for making a simple neural net layer.
