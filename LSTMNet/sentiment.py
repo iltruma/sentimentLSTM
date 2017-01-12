@@ -91,6 +91,7 @@ class SentimentModel(object):
         if not forward_only:
             with tf.name_scope("train"):
                 opt = tf.train.RMSPropOptimizer(self.learning_rate)
+                #opt = tf.train.AdamOptimizer(self.learning_rate)
             gradients = tf.gradients(self.losses, params)
             clipped_gradients, norm = tf.clip_by_global_norm(gradients, self.max_gradient_norm)
             with tf.name_scope("grad_norms"):
