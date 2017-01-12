@@ -64,6 +64,7 @@ class SentimentModel(object):
                 # self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
                 self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.avg_states, W, b))
         else:
+            self.hidden_dim =self.num_rec_units
             self.hidden_output = self.avg_states
 
 
