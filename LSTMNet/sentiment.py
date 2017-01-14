@@ -60,7 +60,7 @@ class SentimentModel(object):
                 self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
         else:
             self.hidden_dim =self.num_rec_units
-            self.hidden_output = self.avg_states
+            self.hidden_output = self.rnn_state[-1][0]
 
 
         with tf.variable_scope("output_projection"):
@@ -204,7 +204,7 @@ def test():
     tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
     model = SentimentModel(vocab_size=vocab_size, embedding_dim=50, num_rec_units=100, hidden_dim=30, dropout=0.5,
-                           num_rec_layers=10, max_gradient_norm=5, max_seq_length=200,
+                           num_rec_layers=2, max_gradient_norm=5, max_seq_length=200,
                            learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
                            embedding_matrix=np.random.rand(vocab_size, 50))
     print("Created model")
