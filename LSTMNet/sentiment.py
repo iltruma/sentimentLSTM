@@ -45,10 +45,6 @@ class SentimentModel(object):
 
         self.rnn_output, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
 
-        states_list = []
-        for state in self.rnn_state[-1]:
-            states_list.append(state)
-        self.avg_states = tf.reduce_mean(tf.pack(states_list), 0)
 
         # hidden layer as in the adversarial paper
         if self.hidden_dim > 0:
@@ -61,8 +57,7 @@ class SentimentModel(object):
                     "b",
                     [self.hidden_dim],
                     initializer=tf.constant_initializer(0.1))
-                # self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
-                self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.avg_states, W, b))
+                self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
         else:
             self.hidden_dim =self.num_rec_units
             self.hidden_output = self.avg_states
@@ -208,8 +203,8 @@ def test():
     np.random.seed(seed)
     tf.set_random_seed(seed)
     print("tensorflow session started + tf and numpy seed set")
-    model = SentimentModel(vocab_size=vocab_size, embedding_dim=50, num_rec_units=600, hidden_dim=30, dropout=0.5,
-                           num_rec_layers=2, max_gradient_norm=5, max_seq_length=200,
+    model = SentimentModel(vocab_size=vocab_size, embedding_dim=50, num_rec_units=100, hidden_dim=30, dropout=0.5,
+                           num_rec_layers=10, max_gradient_norm=5, max_seq_length=200,
                            learning_rate=0.01, lr_decay=0.97, batch_size=16, forward_only=False,
                            embedding_matrix=np.random.rand(vocab_size, 50))
     print("Created model")
