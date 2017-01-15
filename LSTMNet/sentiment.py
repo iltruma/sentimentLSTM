@@ -43,7 +43,7 @@ class SentimentModel(object):
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
-        self.rnn_output, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+        self.rnn_output, self.rnn_state = self.lstm_layers_average(lstm_input, num_rec_layers)
 
 
         # hidden layer as in the adversarial paper
@@ -57,10 +57,10 @@ class SentimentModel(object):
                     "b",
                     [self.hidden_dim],
                     initializer=tf.constant_initializer(0.1))
-                self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_state[-1][0], W, b))
+                self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_output, W, b))
         else:
             self.hidden_dim =self.num_rec_units
-            self.hidden_output = self.rnn_state[-1][0]
+            self.hidden_output = self.rnn_output
 
 
         with tf.variable_scope("output_projection"):
@@ -129,9 +129,34 @@ class SentimentModel(object):
 
             initial_state = cell.zero_state(self.batch_size, tf.float32)
 
-            return rnn.rnn(cell, lstm_input,
+            outputs, state = rnn.rnn(cell, lstm_input,
+                                     initial_state=initial_state,
+                                     sequence_length=self.seq_lengths)
+
+
+            return state[-1][1], state
+
+    def lstm_layers_average(self, lstm_input, num_rec_layers):
+        with tf.variable_scope("lstm"):
+            single_cell = rnn_cell.DropoutWrapper(
+                rnn_cell.LSTMCell(self.num_rec_units,
+                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
+                                  state_is_tuple=True),
+                input_keep_prob=self.dropout_keep_prob_lstm_input,
+                output_keep_prob=self.dropout_keep_prob_lstm_output)
+            cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
+
+            initial_state = cell.zero_state(self.batch_size, tf.float32)
+
+            outputs, state =  rnn.rnn(cell, lstm_input,
                            initial_state=initial_state,
                            sequence_length=self.seq_lengths)
+
+            avg_output = tf.reduce_sum(outputs, 0)
+            for i in range(self.batch_size):
+               tf.truediv(avg_output[i, :],  tf.cast(self.seq_lengths[i], tf.float32))
+
+            return avg_output, state
 
 
 
