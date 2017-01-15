@@ -151,13 +151,40 @@ class SentimentModel(object):
             outputs, state =  rnn.rnn(cell, lstm_input,
                            initial_state=initial_state,
                            sequence_length=self.seq_lengths)
-
+            # right average
             avg_output = tf.reduce_sum(outputs, 0)
             for i in range(self.batch_size):
-               tf.truediv(avg_output[i, :],  tf.cast(self.seq_lengths[i], tf.float32))
+                tf.truediv(avg_output[i, :],  tf.cast(self.seq_lengths[i], tf.float32))
+            # wrong average
+            avg_output = tf.reduce_mean(outputs, 0)
 
             return avg_output, state
 
+    def lstm_layers_weighted_average(self, lstm_input, num_rec_layers):
+        with tf.variable_scope("lstm"):
+            single_cell = rnn_cell.DropoutWrapper(
+                rnn_cell.LSTMCell(self.num_rec_units,
+                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
+                                  state_is_tuple=True),
+                input_keep_prob=self.dropout_keep_prob_lstm_input,
+                output_keep_prob=self.dropout_keep_prob_lstm_output)
+            cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
+
+            initial_state = cell.zero_state(self.batch_size, tf.float32)
+
+            outputs, state = rnn.rnn(cell, lstm_input,
+                                     initial_state=initial_state,
+                                     sequence_length=self.seq_lengths)
+
+            avg_output = tf.reduce_sum(outputs, 0)
+            for i in range(self.batch_size):
+                const = tf.constant( 1/sum(tf.range(self.seq_lengths[i]+1)), dtype=tf.float32)
+                weights = tf.mul(tf.constant(range(1, self.max_seq_length+1), dtype=tf.float32), const)
+                print(weights)
+
+                tf.truediv(avg_output[i, :], tf.cast(self.seq_lengths[i], tf.float32))
+
+            return avg_output, state
 
 
     def nn_layer(self, input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
