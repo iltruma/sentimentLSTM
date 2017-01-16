@@ -138,10 +138,10 @@ class SentimentModel(object):
 
     def lstm_layers_average(self, lstm_input, num_rec_layers):
         with tf.variable_scope("lstm"):
-            print("using GRU Cell")
+            print("using LSTM Cell")
             single_cell = rnn_cell.DropoutWrapper(
-                # rnn_cell.LSTMCell(self.num_rec_units, initializer=tf.truncated_normal_initializer(stddev=0.1)),
-                rnn_cell.GRUCell(self.num_rec_units),
+                rnn_cell.LSTMCell(self.num_rec_units, initializer=tf.truncated_normal_initializer(stddev=0.1)),
+                # rnn_cell.GRUCell(self.num_rec_units),
                 input_keep_prob=self.dropout_keep_prob_lstm_input,
                 output_keep_prob=self.dropout_keep_prob_lstm_output)
             cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)

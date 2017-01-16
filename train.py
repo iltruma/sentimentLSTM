@@ -164,4 +164,4 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
 
 
 if __name__ == '__main__':
-    test_net_with_glove()
+    test_net()
