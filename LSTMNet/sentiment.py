@@ -138,10 +138,10 @@ class SentimentModel(object):
 
     def lstm_layers_average(self, lstm_input, num_rec_layers):
         with tf.variable_scope("lstm"):
+            print("using GRU Cell")
             single_cell = rnn_cell.DropoutWrapper(
-                rnn_cell.LSTMCell(self.num_rec_units,
-                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
-                                  state_is_tuple=True),
+                # rnn_cell.LSTMCell(self.num_rec_units, initializer=tf.truncated_normal_initializer(stddev=0.1)),
+                rnn_cell.GRUCell(self.num_rec_units),
                 input_keep_prob=self.dropout_keep_prob_lstm_input,
                 output_keep_prob=self.dropout_keep_prob_lstm_output)
             cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
@@ -155,6 +155,7 @@ class SentimentModel(object):
             avg_output = tf.reduce_sum(outputs, 0)
             for i in range(self.batch_size):
                 tf.truediv(avg_output[i, :],  tf.cast(self.seq_lengths[i], tf.float32))
+
             # wrong average
             avg_output = tf.reduce_mean(outputs, 0)
 
@@ -178,9 +179,11 @@ class SentimentModel(object):
 
             avg_output = tf.reduce_sum(outputs, 0)
             for i in range(self.batch_size):
-                const = tf.constant( 1/sum(tf.range(self.seq_lengths[i]+1)), dtype=tf.float32)
-                weights = tf.mul(tf.constant(range(1, self.max_seq_length+1), dtype=tf.float32), const)
-                print(weights)
+                c = 1/tf.constant(tf.reduce_sum(tf.range(self.seq_lengths[i]+1)), dtype=tf.float32)
+                weights = tf.mul(tf.range(1, self.max_seq_length+1), c)
+                tf.sub()
+
+
 
                 tf.truediv(avg_output[i, :], tf.cast(self.seq_lengths[i], tf.float32))
 
