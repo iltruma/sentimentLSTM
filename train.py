@@ -89,7 +89,13 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
 
         model = create_model(sess, net_params, vocab_size, embedding_matrix)
         model.initData(path, -1, True, FLAGS.train_seed)
-        writer = tf.train.SummaryWriter("/tmp/tb_logs", sess.graph)
+
+        lt = time.localtime()
+        logName = "tlog" + str(lt.tm_hour) + ":" + str(lt.tm_min) + ":" + str(lt.tm_sec) +  \
+                  "_" + str(lt.tm_mday) + ":" + str(lt.tm_mon) + ":" + str(lt.tm_year)
+
+        os.makedirs("tblogs/" + logName)
+        writer = tf.summary.FileWriter("tblogs/" + logName, sess.graph)
 
         print("Beginning training...")
 
@@ -159,7 +165,7 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
                                      int(hyper_params["batch_size"]),
                                      embedding_matrix=embedding_matrix,
                                      train_embedding=hyper_params["train_embedding"] == 'True')
-    session.run(tf.initialize_all_variables())
+    session.run(tf.global_variables_initializer())
     return model
 
 

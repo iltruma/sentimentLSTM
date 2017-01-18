@@ -93,12 +93,12 @@ class SentimentModel(object):
             gradients = tf.gradients(self.losses, params)
             clipped_gradients, norm = tf.clip_by_global_norm(gradients, self.max_gradient_norm)
             with tf.name_scope("grad_norms"):
-                grad_summ = tf.scalar_summary("grad_norms", norm)
+                grad_summ = tf.summary.scalar("grad_norms", norm)
             self.update = opt.apply_gradients(zip(clipped_gradients, params), global_step=self.global_step)
-            loss_summ = tf.scalar_summary("{0}_loss".format(self.str_summary_type), self.mean_loss)
-            acc_summ = tf.scalar_summary("{0}_accuracy".format(self.str_summary_type), self.accuracy)
-            self.merged = tf.merge_summary([loss_summ, acc_summ])
-        self.saver = tf.train.Saver(tf.all_variables())
+            loss_summ = tf.summary.scalar("{}_loss".format(self.str_summary_type), self.mean_loss)
+            acc_summ = tf.summary.scalar("{}_accuracy".format(self.str_summary_type), self.accuracy)
+            self.merged = tf.summary.merge([loss_summ, acc_summ])
+        self.saver = tf.train.Saver(tf.global_variables())
 
     def initData(self, data_path, max_examples=-1, shuffle_each_pass=True, train_seed=None):
         self.dataH = dh.DataHandler(data_path, self.batch_size, max_examples, shuffle_each_pass, train_seed)
