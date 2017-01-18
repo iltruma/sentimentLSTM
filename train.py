@@ -100,13 +100,22 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
         train_writer = tf.summary.FileWriter("tblogs/" + logName + "/train", sess.graph)
         test_writer = tf.summary.FileWriter("tblogs/" + logName + "/test", sess.graph)
 
-
         print("Beginning training...")
+
+        # summary graph... it's ugly but works :/
+        with tf.variable_scope("summary"), tf.device("/cpu:0"):
+            loss_summ_var = tf.placeholder(tf.float32, name="loss_summ_var")
+            acc_summ_var = tf.placeholder(tf.float32, name="acc_summ_var")
+            loss_summ = tf.summary.scalar("loss", loss_summ_var)
+            acc_summ = tf.summary.scalar("accuracy", acc_summ_var)
+            summaries = tf.summary.merge([loss_summ, acc_summ])
 
         steps_per_checkpoint = int(net_params["steps_per_checkpoint"])
         num_test_batches = len(model.dataH.test_data)
         num_train_batches = len(model.dataH.train_data)
         step_time, loss, train_accuracy = 0.0, 0.0, 0.0
+
+
         previous_losses = []
         max_epoch = int(net_params["max_epoch"])
         tot_steps = num_train_batches * max_epoch
@@ -125,8 +134,11 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
             # Once in a while we print statistics, and run evals.
             if step % steps_per_checkpoint == 0:
                 n_epoch = (step // num_train_batches) + 1
-                train_writer.add_summary(str_summary, step)
-                # Print statistics for the previous 'epoch'.
+
+                # writing summary using summary graph created above, it's ugly but works :/
+                train_writer.add_summary(sess.run(summaries, {loss_summ_var.name: loss, acc_summ_var:train_accuracy}), step)
+
+                # Print statistics for the previous 'checkpoint-epoch'.
                 print("global step %d learning rate %.7f step-time %.2f loss %.4f, accuracy: %4f"
                       % (step, model.learning_rate.eval(),
                          step_time, loss, train_accuracy))
@@ -134,11 +146,10 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
                 if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
                     sess.run(model.learning_rate_decay_op)
                 previous_losses.append(loss)
-                # Save checkpoint and zero timer and loss.
+                # zero timer loss and accuracy
                 step_time, loss, train_accuracy, test_accuracy = 0.0, 0.0, 0.0, 0.0
 
                 # Run evals on test set and print their accuracy.
-                # print("projW:{}".format(model.projW.eval()))
                 print("Running test set")
                 for test_step in range(num_test_batches):
                     inputs, targets, seq_lengths = model.dataH.getBatch(True)
@@ -147,7 +158,10 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
                     test_accuracy += accuracy
 
                 norm_test_loss, norm_test_accuracy = loss / num_test_batches, test_accuracy / num_test_batches
-                test_writer.add_summary(str_summary, step)
+
+                # writing summary using summary graph created above, it's ugly but works :/
+                test_writer.add_summary(sess.run(summaries, {loss_summ_var.name: norm_test_loss,
+                                                             acc_summ_var: norm_test_accuracy}), step)
                 print(
                     "Avg Test Loss: {}, Avg Test Accuracy: {}".format(norm_test_loss, norm_test_accuracy))
                 print("-------Step {}/{}--epoch:{}/{}".format(step, tot_steps, n_epoch, max_epoch))
