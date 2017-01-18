@@ -42,7 +42,13 @@ class SentimentModel(object):
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
 
-        self.rnn_output, self.rnn_state = self.lstm_layers_average(lstm_input, num_rec_layers)
+        self.rnn_outputs_all_time_steps, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+
+        # select what to pass to next layer through commenting
+        # self.rnn_output = self.rnn_state[-1][1]  # use last output
+        # self.rnn_output = self.rnn_state[-1][0]  # use last state
+        self.rnn_output = self.average_outputs(self.rnn_outputs_all_time_steps)  # use proper average of outputs
+        # self.rnn_output = tf.reduce_mean(self.rnn_outputs_all_time_steps, 0)  # use simple average (wrong)
 
 
         # hidden layer as in the adversarial paper
@@ -114,8 +120,6 @@ class SentimentModel(object):
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
             return  tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
 
-
-
     def lstm_layers(self, lstm_input, num_rec_layers):
         with tf.variable_scope("lstm"):
             single_cell = rnn_cell.DropoutWrapper(
@@ -128,65 +132,27 @@ class SentimentModel(object):
 
             initial_state = cell.zero_state(self.batch_size, tf.float32)
 
-            outputs, state = rnn.rnn(cell, lstm_input,
+            return rnn.rnn(cell, lstm_input,
                                      initial_state=initial_state,
                                      sequence_length=self.seq_lengths)
 
+    def average_outputs(self, lstm_outputs):
+        # right average
+        avg_output = tf.reduce_sum(lstm_outputs, 0)
+        for i in range(self.batch_size):
+            tf.truediv(avg_output[i, :], tf.cast(self.seq_lengths[i], tf.float32))
+        return avg_output
 
-            return state[-1][1], state
-
-    def lstm_layers_average(self, lstm_input, num_rec_layers):
-        with tf.variable_scope("lstm"):
-            print("using LSTM Cell")
-            single_cell = rnn_cell.DropoutWrapper(
-                rnn_cell.LSTMCell(self.num_rec_units, initializer=tf.truncated_normal_initializer(stddev=0.1)),
-                # rnn_cell.GRUCell(self.num_rec_units),
-                input_keep_prob=self.dropout_keep_prob_lstm_input,
-                output_keep_prob=self.dropout_keep_prob_lstm_output)
-            cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
-
-            initial_state = cell.zero_state(self.batch_size, tf.float32)
-
-            outputs, state =  rnn.rnn(cell, lstm_input,
-                           initial_state=initial_state,
-                           sequence_length=self.seq_lengths)
-            # right average
-            avg_output = tf.reduce_sum(outputs, 0)
-            for i in range(self.batch_size):
-                tf.truediv(avg_output[i, :],  tf.cast(self.seq_lengths[i], tf.float32))
-
-            # wrong average
-            avg_output = tf.reduce_mean(outputs, 0)
-
-            return avg_output, state
-
-    def lstm_layers_weighted_average(self, lstm_input, num_rec_layers):
-        with tf.variable_scope("lstm"):
-            single_cell = rnn_cell.DropoutWrapper(
-                rnn_cell.LSTMCell(self.num_rec_units,
-                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
-                                  state_is_tuple=True),
-                input_keep_prob=self.dropout_keep_prob_lstm_input,
-                output_keep_prob=self.dropout_keep_prob_lstm_output)
-            cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
-
-            initial_state = cell.zero_state(self.batch_size, tf.float32)
-
-            outputs, state = rnn.rnn(cell, lstm_input,
-                                     initial_state=initial_state,
-                                     sequence_length=self.seq_lengths)
-
-            avg_output = tf.reduce_sum(outputs, 0)
+    def weighted_average_outputs(self, lstm_outputs):
+            avg_output = tf.reduce_sum(lstm_outputs, 0)
             for i in range(self.batch_size):
                 c = 1/tf.constant(tf.reduce_sum(tf.range(self.seq_lengths[i]+1)), dtype=tf.float32)
                 weights = tf.mul(tf.range(1, self.max_seq_length+1), c)
                 tf.sub()
 
-
-
                 tf.truediv(avg_output[i, :], tf.cast(self.seq_lengths[i], tf.float32))
 
-            return avg_output, state
+            return avg_output
 
 
     def nn_layer(self, input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
