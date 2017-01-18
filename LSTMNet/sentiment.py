@@ -25,7 +25,6 @@ class SentimentModel(object):
         self.global_step = tf.Variable(0, trainable=False)
         self.max_seq_length = max_seq_length
 
-        self.str_summary_type = tf.placeholder(tf.string, name="str_summary_type")
 
         # seq_input: list of tensors, each tensor is size max_seq_length
         # target: a list of values betweeen 0 and 1 indicating target scores
@@ -95,8 +94,8 @@ class SentimentModel(object):
             with tf.name_scope("grad_norms"):
                 grad_summ = tf.summary.scalar("grad_norms", norm)
             self.update = opt.apply_gradients(zip(clipped_gradients, params), global_step=self.global_step)
-            loss_summ = tf.summary.scalar("{}_loss".format(self.str_summary_type), self.mean_loss)
-            acc_summ = tf.summary.scalar("{}_accuracy".format(self.str_summary_type), self.accuracy)
+            loss_summ = tf.summary.scalar("loss", self.mean_loss)
+            acc_summ = tf.summary.scalar("accuracy", self.accuracy)
             self.merged = tf.summary.merge([loss_summ, acc_summ])
         self.saver = tf.train.Saver(tf.global_variables())
 
@@ -231,13 +230,11 @@ class SentimentModel(object):
         input_feed[self.target.name] = targets
         input_feed[self.seq_lengths.name] = seq_lengths
         if train:
-            input_feed[self.str_summary_type.name] = "train"
             output_feed = [self.merged, self.mean_loss, self.update, self.accuracy]
             outputs = session.run(output_feed, input_feed)
             return outputs[0], outputs[1], None, outputs[3]
 
         else:
-            input_feed[self.str_summary_type.name] = "test"
             output_feed = [self.merged, self.mean_loss, self.y, self.accuracy]
             outputs = session.run(output_feed, input_feed)
             return outputs[0], outputs[1], outputs[2], outputs[3]

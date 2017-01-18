@@ -95,7 +95,9 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
                   "_" + str(lt.tm_mday) + ":" + str(lt.tm_mon) + ":" + str(lt.tm_year)
 
         os.makedirs("tblogs/" + logName)
-        writer = tf.summary.FileWriter("tblogs/" + logName, sess.graph)
+        train_writer = tf.summary.FileWriter("tblogs/" + logName + "/train", sess.graph)
+        test_writer = tf.summary.FileWriter("tblogs/" + logName + "/test", sess.graph)
+
 
         print("Beginning training...")
 
@@ -121,7 +123,7 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
             # Once in a while we print statistics, and run evals.
             if step % steps_per_checkpoint == 0:
                 n_epoch = (step // num_train_batches) + 1
-                writer.add_summary(str_summary, step)
+                train_writer.add_summary(str_summary, step)
                 # Print statistics for the previous 'epoch'.
                 print("global step %d learning rate %.7f step-time %.2f loss %.4f, accuracy: %4f"
                       % (step, model.learning_rate.eval(),
@@ -143,7 +145,7 @@ def train_nn(data_dir, net_params, embedding_matrix=None, train_embedding=False)
                     test_accuracy += accuracy
 
                 norm_test_loss, norm_test_accuracy = loss / num_test_batches, test_accuracy / num_test_batches
-                writer.add_summary(str_summary, step)
+                test_writer.add_summary(str_summary, step)
                 print(
                     "Avg Test Loss: {}, Avg Test Accuracy: {}".format(norm_test_loss, norm_test_accuracy))
                 print("-------Step {}/{}--epoch:{}/{}".format(step, tot_steps, n_epoch, max_epoch))
