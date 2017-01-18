@@ -28,6 +28,7 @@ flags.DEFINE_string("train_seed", None, "seed to randomize training")
 
 
 def test_net():
+    print("----Test NN with random embedding----")
     hyper_params = hyp.read_config_file(FLAGS.config_file)
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
@@ -40,6 +41,7 @@ def test_net():
 
 
 def test_net_with_glove():
+    print("----Test NN with GLOVE embedding----")
     import train_glove as glove
 
     params = hyp.read_config_file("config.ini")
@@ -173,4 +175,4 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
 
 if __name__ == '__main__':
     test_net_with_glove()
-    # test_net()
+    test_net()
