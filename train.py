@@ -36,6 +36,9 @@ def test_net(top_bottom=False):
     # generate all the necessary data for training
     dp.process_data(data_dir, dp_params, top_bottom)
 
+    # add top_bottom param
+    hyper_params["sentiment_network_params"]["top_bottom"] = str(top_bottom)
+
     # trains the neural net with the config.ini hyperparameters and the data already generated
     train_nn(data_dir, hyper_params["sentiment_network_params"])
 
@@ -51,6 +54,9 @@ def test_net_with_glove(top_bottom=False):
 
     data_dir = params["general"]["data_dir"]
     embedding_matrix_path = data_dir + "embedding_matrix.npy"
+
+    # add top_bottom param
+    params["sentiment_network_params"]["top_bottom"] = str(top_bottom)
 
     # Generate all the necessary data for training
     processor = dp.process_data(data_dir, params["dataprocessor_params"], top_bottom)
@@ -182,11 +188,12 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
                                      float(hyper_params["lr_decay_factor"]),
                                      int(hyper_params["batch_size"]),
                                      embedding_matrix=embedding_matrix,
-                                     train_embedding=hyper_params["train_embedding"] == 'True')
+                                     train_embedding=hyper_params["train_embedding"] == 'True',
+                                     top_bottom=hyper_params["top_bottom"] == 'True')
     session.run(tf.global_variables_initializer())
     return model
 
 
 if __name__ == '__main__':
-    # test_net_with_glove()
+    test_net_with_glove(top_bottom=True)
     test_net(top_bottom=True)

@@ -7,7 +7,8 @@ from LSTMNet import datahandler as dh
 class SentimentModel(object):
     def __init__(self, vocab_size, embedding_dim, num_rec_units, hidden_dim, dropout,
                  num_rec_layers, max_gradient_norm, max_seq_length,
-                 learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None, train_embedding=False):
+                 learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None,
+                 train_embedding=False, top_bottom=False):
         self.num_classes = 2
         self.vocab_size = vocab_size
         self.learning_rate = tf.Variable(float(learning_rate), trainable=False)
@@ -41,16 +42,20 @@ class SentimentModel(object):
         embedded_tokens_drop = self.embedding_layer(embedding_matrix, train_embedding)
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
-        lstm_input_top = lstm_input[:self.max_seq_length // 2]
-        lstm_input_bottom = lstm_input[self.max_seq_length // 2:]
 
-        # self.rnn_outputs_all_time_steps, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+        if not top_bottom:
+            self.rnn_outputs_all_time_steps, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+        else:
+            lstm_input_top = lstm_input[:self.max_seq_length // 2]
+            lstm_input_bottom = lstm_input[self.max_seq_length // 2:]
 
-        outputs_top, state_top = self.lstm_layers(lstm_input_top, num_rec_layers, "lstm_top")
-        outputs_bottom, state_bottom = self.lstm_layers(lstm_input_bottom, num_rec_layers, "lstm_bottom")
+            outputs_top, state_top = self.lstm_layers(lstm_input_top, num_rec_layers, "lstm_top")
+            outputs_bottom, state_bottom = self.lstm_layers(lstm_input_bottom, num_rec_layers, "lstm_bottom")
 
-        self.rnn_outputs_all_time_steps = tf.reduce_mean([outputs_bottom, outputs_top], 0)
-        self.rnn_state = tf.reduce_mean([state_top, state_bottom], 0)
+            self.rnn_outputs_all_time_steps = tf.reduce_mean([outputs_bottom, outputs_top], 0)
+            self.rnn_state = tf.reduce_mean([state_top, state_bottom], 0)
+
+
 
 
         # select what to pass to next layer through commenting
