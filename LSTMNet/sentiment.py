@@ -46,6 +46,7 @@ class SentimentModel(object):
         if not top_bottom:
             self.rnn_outputs_all_time_steps, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
         else:
+            print("using Top Bottom architecture")
             lstm_input_top = lstm_input[:self.max_seq_length // 2]
             lstm_input_bottom = lstm_input[self.max_seq_length // 2:]
 
