@@ -38,7 +38,7 @@ class DataProcessor(object):
         self.check_signature()
 
 
-    def run(self):
+    def run(self, top_bottom=False):
         self.printState()
         cs = self.changed_signature
 
@@ -66,15 +66,15 @@ class DataProcessor(object):
             if cs: shutil.rmtree(self.dataDir + "processed")
             os.makedirs(self.dataDir + "processed/train/")
             os.makedirs(self.dataDir + "processed/test/")
-            print("No processed data files found, running preprocessor...")
-            self.createNetworkInputs()
+            print("No processed data files found, running preprocessor with top_bottom={}...".format(top_bottom))
+            self.createNetworkInputs(top_bottom)
         if not cs and os.path.exists(self.dataDir + "corpus.txt"):
             print("Processed glove corpus found: delete " + self.dataDir + "corpus to redo it")
         else:
             print("No glove corpus data files found, running preprocessor...")
             self.createCorpus()
 
-    def createNetworkInputs(self):
+    def createNetworkInputs(self, top_bottom=False):
         import preprocessing.vocabmapping as vocabmapping
         vocab = vocabmapping.VocabMapping(self.dataDir + self.vocab_name)
         dirCount = 0
@@ -82,7 +82,10 @@ class DataProcessor(object):
         lock = Lock()
         for d in self.dirs:
             print("Procesing data " + d + "with process: " + str(dirCount))
-            p = Process(target=self.createProcessedDataFile, args=(vocab, d, dirCount, self.max_seq_length, lock))
+            if top_bottom:
+                p = Process(target=self.createProcessedDataFileTopBottom, args=(vocab, d, dirCount, self.max_seq_length, lock))
+            else:
+                p = Process(target=self.createProcessedDataFile, args=(vocab, d, dirCount, self.max_seq_length, lock))
             p.start()
             processes.append(p)
             dirCount += 1
@@ -135,6 +138,37 @@ class DataProcessor(object):
             indices.append(min(numTokens, max_seq_length))
             assert len(indices) == max_seq_length + 2, str(len(indices))
             data = np.vstack((data, indices))
+            indices = []
+        # remove first placeholder value
+        data = data[1::]
+        lock.acquire()
+        print("Saving data file{0} to disk...".format(str(pid)))
+        lock.release()
+        self.saveData(data, pid, directory)
+
+    def createProcessedDataFileTopBottom(self, vocab_mapping, directory, pid, max_seq_length, lock):
+        count = 0
+        data = np.array([i for i in range(max_seq_length + 2)])
+        for f in os.listdir(directory):
+            count += 1
+            if count % 100 == 0:
+                lock.acquire()
+                print("Processing: " + f + " the " + str(count) + "th file... on process: " + str(pid))
+                lock.release()
+            with open(os.path.join(directory, f), 'r') as review:
+                tokens = tokenizer.tokenize(review.read().lower(), self.remove_punct, self.remove_stopwords)
+                numTokens = len(tokens)
+                indices = [vocab_mapping.getIndex(j) for j in tokens]
+                # take top part and bottom part padded by 0 (the array is divided in 2 parts of length max_seq_length/2)
+                indices = takeTopBottom(indices, max_seq_length, vocab_mapping.getIndex("<PAD>"))
+            if "pos" in directory:
+                indices.append(1)
+            else:
+                indices.append(0)
+            indices.append(min(numTokens, max_seq_length))
+            assert len(indices) == max_seq_length + 2, str(len(indices))
+            data = np.vstack((data, indices))
+
             indices = []
         # remove first placeholder value
         data = data[1::]
@@ -285,18 +319,43 @@ class DataProcessor(object):
     def printState(self):
         print("dataprocessor state is max_seq_length={}, max_vocab_size={}, min_count={}, remove_punct={},"
               " remove_stopwords={}".format(self.max_seq_length, self.max_vocab_size, self.min_count,
-                                            self.remove_punct, self.remove_stopwords))
+                                         self.remove_punct, self.remove_stopwords))
 
 
-"""process data given the directory datadir and parameters in dp_params and returns the processor"""
-def process_data(data_dir, dp_params):
+def takeTopBottom(array, max_length, pad_value):
+    tbarray = [pad_value for i in range(0, max_length)]
+    if max_length > len(array):
+        tbarray[:len(array) // 2] = array[0:len(array) // 2]
+        tbarray[max_length // 2: max_length - (max_length - len(array))//2] = array[len(array) // 2:]
+    else:
+        tbarray[0:max_length // 2] = array[0:max_length // 2]
+        tbarray[max_length // 2:] = array[-(max_length // 2):len(array)]
+
+    return tbarray
+
+def testTopBottom():
+    length = 17
+    max_length = 30
+    array = range(0, length)
+    tbarray = takeTopBottom(array, max_length, 0)
+
+    if len(tbarray) == max_length and np.array_equal(tbarray[0:max_length//2], array[0:max_length//2])  \
+            and np.array_equal(tbarray[max_length//2:], array[-(max_length//2):length]):
+        print("takeTopBottom() function works")
+    else:
+        print("takeTopBottom() function doesnt work! with following array", array)
+        print("this is the tbarray of length{} ,{}".format(len(tbarray), tbarray))
+
+
+def process_data(data_dir, dp_params, top_bottom=False):
+    """process data given the directory datadir and parameters in dp_params and returns the processor"""
     processor = DataProcessor(data_dir,
                                  int(dp_params["max_seq_length"]),
                                  int(dp_params["max_vocab_size"]),
                                  int(dp_params["min_vocab_count"]),
                                  dp_params["remove_punct"] == 'True',
                                  dp_params["remove_stopwords"] == 'True')
-    processor.run()
+    processor.run(top_bottom=top_bottom)
     return processor
 
 
@@ -305,6 +364,7 @@ def main():
     max_seq_length = 200  # max sequence dimension
     max_vocab_size = -1  # max vocabulary dimension (-1 for total dimension) (20000)
     min_count = 5  # discard word with low frequency
+    testTopBottom()
     dataP = DataProcessor(dataDir, max_seq_length, max_vocab_size, min_count)
     dataP.run()
 

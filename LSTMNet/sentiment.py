@@ -41,14 +41,23 @@ class SentimentModel(object):
         embedded_tokens_drop = self.embedding_layer(embedding_matrix, train_embedding)
 
         lstm_input = [embedded_tokens_drop[:, i, :] for i in range(self.max_seq_length)]
+        lstm_input_top = lstm_input[:self.max_seq_length // 2]
+        lstm_input_bottom = lstm_input[self.max_seq_length // 2:]
 
-        self.rnn_outputs_all_time_steps, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+        # self.rnn_outputs_all_time_steps, self.rnn_state = self.lstm_layers(lstm_input, num_rec_layers)
+
+        outputs_top, state_top = self.lstm_layers(lstm_input_top, num_rec_layers, "lstm_top")
+        outputs_bottom, state_bottom = self.lstm_layers(lstm_input_bottom, num_rec_layers, "lstm_bottom")
+
+        self.rnn_outputs_all_time_steps = tf.reduce_mean([outputs_bottom, outputs_top], 0)
+        self.rnn_state = tf.reduce_mean([state_top, state_bottom], 0)
+
 
         # select what to pass to next layer through commenting
         # self.rnn_output = self.rnn_state[-1][1]  # use last output
         # self.rnn_output = self.rnn_state[-1][0]  # use last state
-        self.rnn_output = self.average_outputs(self.rnn_outputs_all_time_steps)  # use proper average of outputs
-        # self.rnn_output = tf.reduce_mean(self.rnn_outputs_all_time_steps, 0)  # use simple average (wrong)
+        # self.rnn_output = self.average_outputs(self.rnn_outputs_all_time_steps)  # use proper average of outputs
+        self.rnn_output = tf.reduce_mean(self.rnn_outputs_all_time_steps, 0)  # use simple average (wrong)
 
 
         # hidden layer as in the adversarial paper
@@ -120,8 +129,8 @@ class SentimentModel(object):
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
             return  tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
 
-    def lstm_layers(self, lstm_input, num_rec_layers):
-        with tf.variable_scope("lstm"):
+    def lstm_layers(self, lstm_input, num_rec_layers, name="lstm"):
+        with tf.variable_scope(name):
             single_cell = rnn_cell.DropoutWrapper(
                 rnn_cell.LSTMCell(self.num_rec_units,
                                   initializer=tf.truncated_normal_initializer(stddev=0.1),
@@ -135,6 +144,33 @@ class SentimentModel(object):
             return rnn.rnn(cell, lstm_input,
                                      initial_state=initial_state,
                                      sequence_length=self.seq_lengths)
+
+    def lstm_layers_top_bottom(self, lstm_input, num_rec_layers):
+        lstm_input_top = lstm_input[:self.max_seq_length // 2]
+        lstm_input_bottom = lstm_input[self.max_seq_length // 2:]
+        with tf.variable_scope("lstm"):
+            single_cell = rnn_cell.DropoutWrapper(
+                rnn_cell.LSTMCell(self.num_rec_units,
+                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
+                                  state_is_tuple=True),
+                input_keep_prob=self.dropout_keep_prob_lstm_input,
+                output_keep_prob=self.dropout_keep_prob_lstm_output)
+            cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
+
+            initial_state = cell.zero_state(self.batch_size, tf.float32)
+
+            outputs_top, state_top = rnn.rnn(cell, lstm_input_top,
+                                     initial_state=initial_state,
+                                     sequence_length=self.seq_lengths // 2)
+
+            outputs_bottom, state_bottom = rnn.rnn(cell, lstm_input_bottom,
+                                     initial_state=initial_state,
+                                     sequence_length=-(-self.seq_lengths // 2))
+
+            outputs = (outputs_bottom + outputs_top)/2
+            state = (state_top + state_bottom)/2
+            return outputs, state
+
 
     def average_outputs(self, lstm_outputs):
         # right average

@@ -27,20 +27,20 @@ flags.DEFINE_string("seed", None, "seed to randomize data")
 flags.DEFINE_string("train_seed", None, "seed to randomize training")
 
 
-def test_net():
+def test_net(top_bottom=False):
     print("----Test NN with random embedding----")
     hyper_params = hyp.read_config_file(FLAGS.config_file)
     data_dir = hyper_params["general"]["data_dir"]
     dp_params = hyper_params["dataprocessor_params"]
 
     # generate all the necessary data for training
-    dp.process_data(data_dir, dp_params)
+    dp.process_data(data_dir, dp_params, top_bottom)
 
     # trains the neural net with the config.ini hyperparameters and the data already generated
     train_nn(data_dir, hyper_params["sentiment_network_params"])
 
 
-def test_net_with_glove():
+def test_net_with_glove(top_bottom=False):
     print("----Test NN with GLOVE embedding----")
     import train_glove as glove
 
@@ -53,7 +53,7 @@ def test_net_with_glove():
     embedding_matrix_path = data_dir + "embedding_matrix.npy"
 
     # Generate all the necessary data for training
-    processor = dp.process_data(data_dir, params["dataprocessor_params"])
+    processor = dp.process_data(data_dir, params["dataprocessor_params"], top_bottom)
     changed_signature = processor.changed_signature
 
     if changed_signature or not os.path.exists(embedding_matrix_path):
@@ -188,5 +188,5 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
 
 
 if __name__ == '__main__':
-    test_net_with_glove()
-    test_net()
+    # test_net_with_glove()
+    test_net(top_bottom=True)
