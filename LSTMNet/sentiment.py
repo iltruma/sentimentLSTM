@@ -151,31 +151,6 @@ class SentimentModel(object):
                                      initial_state=initial_state,
                                      sequence_length=self.seq_lengths)
 
-    def lstm_layers_top_bottom(self, lstm_input, num_rec_layers):
-        lstm_input_top = lstm_input[:self.max_seq_length // 2]
-        lstm_input_bottom = lstm_input[self.max_seq_length // 2:]
-        with tf.variable_scope("lstm"):
-            single_cell = rnn_cell.DropoutWrapper(
-                rnn_cell.LSTMCell(self.num_rec_units,
-                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
-                                  state_is_tuple=True),
-                input_keep_prob=self.dropout_keep_prob_lstm_input,
-                output_keep_prob=self.dropout_keep_prob_lstm_output)
-            cell = rnn_cell.MultiRNNCell([single_cell] * num_rec_layers, state_is_tuple=True)
-
-            initial_state = cell.zero_state(self.batch_size, tf.float32)
-
-            outputs_top, state_top = rnn.rnn(cell, lstm_input_top,
-                                     initial_state=initial_state,
-                                     sequence_length=self.seq_lengths // 2)
-
-            outputs_bottom, state_bottom = rnn.rnn(cell, lstm_input_bottom,
-                                     initial_state=initial_state,
-                                     sequence_length=-(-self.seq_lengths // 2))
-
-            outputs = (outputs_bottom + outputs_top)/2
-            state = (state_top + state_bottom)/2
-            return outputs, state
 
 
     def average_outputs(self, lstm_outputs):
