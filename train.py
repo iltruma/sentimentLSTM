@@ -182,7 +182,8 @@ def create_model(session, hyper_params, vocab_size, embedding_matrix=None):
                                      float(hyper_params["lr_decay_factor"]),
                                      int(hyper_params["batch_size"]),
                                      embedding_matrix=embedding_matrix,
-                                     train_embedding=hyper_params["train_embedding"] == 'True')
+                                     train_embedding=hyper_params["train_embedding"] == 'True',
+                                     beta=hyper_params["beta"])
     session.run(tf.global_variables_initializer())
     return model
 

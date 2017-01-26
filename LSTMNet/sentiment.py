@@ -7,7 +7,7 @@ from LSTMNet import datahandler as dh
 class SentimentModel(object):
     def __init__(self, vocab_size, embedding_dim, num_rec_units, hidden_dim, dropout,
                  num_rec_layers, max_gradient_norm, max_seq_length,
-                 learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None, train_embedding=False):
+                 learning_rate, lr_decay, batch_size, forward_only=False, embedding_matrix=None, train_embedding=False, beta=0):
         self.num_classes = 2
         self.vocab_size = vocab_size
         self.learning_rate = tf.Variable(float(learning_rate), trainable=False)
@@ -24,7 +24,6 @@ class SentimentModel(object):
         self.max_gradient_norm = max_gradient_norm
         self.global_step = tf.Variable(0, trainable=False)
         self.max_seq_length = max_seq_length
-
 
         # seq_input: list of tensors, each tensor is size max_seq_length
         # target: a list of values betweeen 0 and 1 indicating target scores
@@ -64,9 +63,8 @@ class SentimentModel(object):
                     initializer=tf.constant_initializer(0.1))
                 self.hidden_output = tf.nn.relu(tf.nn.xw_plus_b(self.rnn_output, W, b))
         else:
-            self.hidden_dim =self.num_rec_units
+            self.hidden_dim = self.num_rec_units
             self.hidden_output = self.rnn_output
-
 
         with tf.variable_scope("output_projection"):
             W = tf.get_variable(
@@ -81,8 +79,17 @@ class SentimentModel(object):
             self.y = tf.nn.softmax(self.scores)
             self.predictions = tf.argmax(self.scores, 1)
 
+        params = tf.trainable_variables()
+        param_names = [tf_var.name for tf_var in params]
+        print("trained weights: {} ".format(param_names))
+        l2 = beta * sum(
+            tf.nn.l2_loss(tf_var)
+            for tf_var in params
+            if ("lstm" in tf_var.name)
+        )
+
         with tf.variable_scope("loss"):
-            self.losses = tf.nn.softmax_cross_entropy_with_logits(self.scores, self.target, name="ce_losses")
+            self.losses = tf.nn.softmax_cross_entropy_with_logits(self.scores, self.target, name="ce_losses") + l2
             self.total_loss = tf.reduce_sum(self.losses)
             self.mean_loss = tf.reduce_mean(self.losses)
 
@@ -90,11 +97,10 @@ class SentimentModel(object):
             self.correct_predictions = tf.equal(self.predictions, tf.argmax(self.target, 1))
             self.accuracy = tf.reduce_mean(tf.cast(self.correct_predictions, "float"), name="accuracy")
 
-        params = tf.trainable_variables()
         if not forward_only:
             with tf.name_scope("train"):
                 opt = tf.train.RMSPropOptimizer(self.learning_rate)
-                #opt = tf.train.AdamOptimizer(self.learning_rate)
+                # opt = tf.train.AdamOptimizer(self.learning_rate)
             gradients = tf.gradients(self.losses, params)
             clipped_gradients, norm = tf.clip_by_global_norm(gradients, self.max_gradient_norm)
             with tf.name_scope("grad_norms"):
@@ -118,7 +124,7 @@ class SentimentModel(object):
                     [self.vocab_size, self.embedding_dim],
                     initializer=tf.truncated_normal_initializer(stddev=0.1))
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
-            return  tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
+            return tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
 
     def lstm_layers(self, lstm_input, num_rec_layers):
         with tf.variable_scope("lstm"):
@@ -133,8 +139,8 @@ class SentimentModel(object):
             initial_state = cell.zero_state(self.batch_size, tf.float32)
 
             return rnn.rnn(cell, lstm_input,
-                                     initial_state=initial_state,
-                                     sequence_length=self.seq_lengths)
+                           initial_state=initial_state,
+                           sequence_length=self.seq_lengths)
 
     def average_outputs(self, lstm_outputs):
         # right average
@@ -144,16 +150,15 @@ class SentimentModel(object):
         return avg_output
 
     def weighted_average_outputs(self, lstm_outputs):
-            avg_output = tf.reduce_sum(lstm_outputs, 0)
-            for i in range(self.batch_size):
-                c = 1/tf.constant(tf.reduce_sum(tf.range(self.seq_lengths[i]+1)), dtype=tf.float32)
-                weights = tf.mul(tf.range(1, self.max_seq_length+1), c)
-                tf.sub()
+        avg_output = tf.reduce_sum(lstm_outputs, 0)
+        for i in range(self.batch_size):
+            c = 1 / tf.constant(tf.reduce_sum(tf.range(self.seq_lengths[i] + 1)), dtype=tf.float32)
+            weights = tf.mul(tf.range(1, self.max_seq_length + 1), c)
+            tf.sub()
 
-                tf.truediv(avg_output[i, :], tf.cast(self.seq_lengths[i], tf.float32))
+            tf.truediv(avg_output[i, :], tf.cast(self.seq_lengths[i], tf.float32))
 
-            return avg_output
-
+        return avg_output
 
     def nn_layer(self, input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
         """Reusable code for making a simple neural net layer.
@@ -238,7 +243,6 @@ def test():
         str_summary, step_loss, _ = model.step(sess, inputs, targets, seq_lengths)
         print("{}th step executed! results:".format(i))
         print(" step_loss: %.4f" % step_loss)
-
 
 
 if __name__ == '__main__':
