@@ -33,9 +33,9 @@ class SentimentModel(object):
         self.target = tf.placeholder(tf.float32, name="target", shape=[None, self.num_classes])
         self.seq_lengths = tf.placeholder(tf.int32, shape=[None], name="early_stop")
 
-        self.dropout_keep_prob_embedding = tf.constant(self.dropout)
-        self.dropout_keep_prob_lstm_input = tf.constant(self.dropout)
-        self.dropout_keep_prob_lstm_output = tf.constant(self.dropout)
+        self.dropout_keep_prob_embedding = tf.Variable(self.dropout, trainable=False)
+        self.dropout_keep_prob_lstm_input = tf.Variable(self.dropout, trainable=False)
+        self.dropout_keep_prob_lstm_output = tf.Variable(self.dropout, trainable=False)
 
         # embedding weights
         embedded_tokens_drop = self.embedding_layer(embedding_matrix, train_embedding)
@@ -72,8 +72,8 @@ class SentimentModel(object):
             W = tf.get_variable(
                 "W",
                 [self.hidden_dim, self.num_classes],
-                # initializer=tf.truncated_normal_initializer(stddev=0.1))
-                initializer=tf.contrib.layers.xavier_initializer())
+                initializer=tf.truncated_normal_initializer(stddev=0.1))
+                # initializer=tf.contrib.layers.xavier_initializer())
             b = tf.get_variable(
                 "b",
                 [self.num_classes],
@@ -117,8 +117,8 @@ class SentimentModel(object):
                 W = tf.get_variable(
                     "W",
                     [self.vocab_size, self.embedding_dim],
-                    # initializer=tf.truncated_normal_initializer(stddev=0.1))
-                    initializer=tf.contrib.layers.xavier_initializer(False))
+                    initializer=tf.truncated_normal_initializer(stddev=0.1))
+                    # initializer=tf.contrib.layers.xavier_initializer(False))
 
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
             return  tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
@@ -127,8 +127,8 @@ class SentimentModel(object):
         with tf.variable_scope("lstm"):
             single_cell = rnn_cell.DropoutWrapper(
                 rnn_cell.LSTMCell(self.num_rec_units,
-                                  # initializer=tf.truncated_normal_initializer(stddev=0.1),
-                                  initializer=tf.contrib.layers.xavier_initializer(),
+                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
+                                  # initializer=tf.contrib.layers.xavier_initializer(),
                                   state_is_tuple=True),
                 input_keep_prob=self.dropout_keep_prob_lstm_input,
                 output_keep_prob=self.dropout_keep_prob_lstm_output)
@@ -200,14 +200,24 @@ class SentimentModel(object):
         input_feed[self.target.name] = targets
         input_feed[self.seq_lengths.name] = seq_lengths
         if train:
+            self.setDropout(self.dropout)
             output_feed = [self.merged, self.mean_loss, self.update, self.accuracy]
             outputs = session.run(output_feed, input_feed)
             return outputs[0], outputs[1], None, outputs[3]
 
         else:
+            self.setDropout(1.0)
             output_feed = [self.merged, self.mean_loss, self.y, self.accuracy]
             outputs = session.run(output_feed, input_feed)
             return outputs[0], outputs[1], outputs[2], outputs[3]
+
+    def setDropout(self, dropout):
+        self.dropout_keep_prob_embedding.assign(dropout)
+        self.dropout_keep_prob_lstm_input.assign(dropout)
+        self.dropout_keep_prob_lstm_output.assign(dropout)
+
+
+
 
 
 def test():
