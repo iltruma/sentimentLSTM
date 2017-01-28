@@ -129,7 +129,7 @@ def test_batch_shuffling(dataH):
     for i in range(0,ntb*3):
         if i % ntb == 0:
             print("\nbatch indices now are: {}".format(dataH.train_batch_indices))
-            print('batch numbers:         ', end='')
+            print('batch numbers:        ', end='')
         print(' {}'.format(dataH.train_batch_indices[dataH.train_batch_pointer]), end='')
         batch_inputs, targets, seq_lengths = dataH.getBatch()
         if i == 0: print("\nfirst batch_inputs:\n {}".format(batch_inputs))
