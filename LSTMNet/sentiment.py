@@ -72,7 +72,8 @@ class SentimentModel(object):
             W = tf.get_variable(
                 "W",
                 [self.hidden_dim, self.num_classes],
-                initializer=tf.truncated_normal_initializer(stddev=0.1))
+                # initializer=tf.truncated_normal_initializer(stddev=0.1))
+                initializer=tf.contrib.layers.xavier_initializer())
             b = tf.get_variable(
                 "b",
                 [self.num_classes],
@@ -116,7 +117,9 @@ class SentimentModel(object):
                 W = tf.get_variable(
                     "W",
                     [self.vocab_size, self.embedding_dim],
-                    initializer=tf.truncated_normal_initializer(stddev=0.1))
+                    # initializer=tf.truncated_normal_initializer(stddev=0.1))
+                    initializer=tf.contrib.layers.xavier_initializer(False))
+
             embedded_tokens = tf.nn.embedding_lookup(W, self.seq_input)
             return  tf.nn.dropout(embedded_tokens, self.dropout_keep_prob_embedding)
 
@@ -124,7 +127,8 @@ class SentimentModel(object):
         with tf.variable_scope("lstm"):
             single_cell = rnn_cell.DropoutWrapper(
                 rnn_cell.LSTMCell(self.num_rec_units,
-                                  initializer=tf.truncated_normal_initializer(stddev=0.1),
+                                  # initializer=tf.truncated_normal_initializer(stddev=0.1),
+                                  initializer=tf.contrib.layers.xavier_initializer(),
                                   state_is_tuple=True),
                 input_keep_prob=self.dropout_keep_prob_lstm_input,
                 output_keep_prob=self.dropout_keep_prob_lstm_output)
