@@ -48,8 +48,8 @@ class SentimentModel(object):
         # select what to pass to next layer through commenting
         # self.rnn_output = self.rnn_state[-1][1]  # use last output
         # self.rnn_output = self.rnn_state[-1][0]  # use last state
-        self.rnn_output = self.average_outputs(self.rnn_outputs_all_time_steps)  # use proper average of outputs
-        # self.rnn_output = tf.reduce_mean(self.rnn_outputs_all_time_steps, 0)  # use simple average (wrong)
+        # self.rnn_output = self.average_outputs(self.rnn_outputs_all_time_steps)  # use proper average of outputs
+        self.rnn_output = tf.reduce_mean(self.rnn_outputs_all_time_steps, 0)  # use simple average (wrong)
 
 
         # hidden layer as in the adversarial paper
