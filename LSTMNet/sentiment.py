@@ -32,10 +32,11 @@ class SentimentModel(object):
         self.seq_input = tf.placeholder(tf.int32, shape=[None, max_seq_length], name="input")
         self.target = tf.placeholder(tf.float32, name="target", shape=[None, self.num_classes])
         self.seq_lengths = tf.placeholder(tf.int32, shape=[None], name="early_stop")
+        self.current_dropout = tf.placeholder(tf.float32, shape=[], name="current_dropout")
 
-        self.dropout_keep_prob_embedding = tf.Variable(self.dropout, trainable=False)
-        self.dropout_keep_prob_lstm_input = tf.Variable(self.dropout, trainable=False)
-        self.dropout_keep_prob_lstm_output = tf.Variable(self.dropout, trainable=False)
+        self.dropout_keep_prob_embedding = self.current_dropout
+        self.dropout_keep_prob_lstm_input = self.current_dropout
+        self.dropout_keep_prob_lstm_output = self.current_dropout
 
         # embedding weights
         embedded_tokens_drop = self.embedding_layer(embedding_matrix, train_embedding)
@@ -199,24 +200,18 @@ class SentimentModel(object):
         input_feed[self.seq_input.name] = inputs
         input_feed[self.target.name] = targets
         input_feed[self.seq_lengths.name] = seq_lengths
+
         if train:
-            self.setDropout(self.dropout)
+            input_feed[self.current_dropout.name] = self.dropout
             output_feed = [self.merged, self.mean_loss, self.update, self.accuracy]
             outputs = session.run(output_feed, input_feed)
             return outputs[0], outputs[1], None, outputs[3]
 
         else:
-            self.setDropout(1.0)
+            input_feed[self.current_dropout.name] = 1.0
             output_feed = [self.merged, self.mean_loss, self.y, self.accuracy]
             outputs = session.run(output_feed, input_feed)
             return outputs[0], outputs[1], outputs[2], outputs[3]
-
-    def setDropout(self, dropout):
-        self.dropout_keep_prob_embedding.assign(dropout)
-        self.dropout_keep_prob_lstm_input.assign(dropout)
-        self.dropout_keep_prob_lstm_output.assign(dropout)
-
-
 
 
 
