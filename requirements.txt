@@ -1,3 +1,4 @@
+# this code requires python 3 and was tested with python 3.5
 # run 'pip install -r requirements.txt' after going to this folder to install the following requirements
 
 tensorflow >= 0.10
